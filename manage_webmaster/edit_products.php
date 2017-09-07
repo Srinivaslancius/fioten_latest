@@ -158,11 +158,11 @@ if (!isset($_POST['submit']))  {
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group">
-                      <?php                                                                 
-                      $sql = "SELECT id,product_image FROM product_images where product_id = $id";
+                      <?php  $pid = $_GET['pid'];                                                           
+                      $sql = "SELECT id,product_image FROM product_images where product_id = '$pid' ";
                       $getImages= $conn->query($sql);                                                             
                       while($row=$getImages->fetch_assoc()) {
-                          echo "<img id='output' src= 'uploads/product_images/".$row['product_image']."' width=80px; height=80px;/> <a style='cursor:pointer' class='ajax_img_del' id=".$row['id'].">Delete</a> <br />";
+                          echo "<img id='output' src= '../uploads/product_images/".$row['product_image']."' width=80px; height=80px;/> <a style='cursor:pointer' class='ajax_img_del' id=".$row['id'].">Delete</a> <br />";
                       }                               
                      ?>
                   </div>
