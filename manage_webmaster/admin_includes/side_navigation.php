@@ -77,6 +77,14 @@
                 <span class="menu-text">Offers</span>
               </a>
             </li>
+            <li  class="<?php if($page_name == 'customer_enqueries.php') { echo "active"; } ?>">
+              <a href="customer_enqueries.php" aria-haspopup="true">
+                <span class="menu-icon">
+                   <i class="zmdi zmdi-account-box-mail zmdi-hc-fw"></i>
+                </span>
+                <span class="menu-text">Customer Enqueries</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
