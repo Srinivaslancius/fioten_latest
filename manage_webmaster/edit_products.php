@@ -170,14 +170,11 @@ if (!isset($_POST['submit']))  {
                     <label for="form-control-4" class="control-label">Product Image</label>
                     <div>
                       <?php if($getImages->num_rows > 0){ ?>
-                        <label class="btn btn-default file-upload-btn">
-                          Choose file...
-                          <input type="file" name="product_images[]" accept="image/*" onchange="loadFile(event)">
-                          </label>
+                        <input type="file" name="product_images[]" accept="image/*" onchange="loadFile(event)">
                       <?php } else { ?>
                       <img id="output" width="80" height="80">
                       <label class="btn btn-default file-upload-btn">
-                          Choose file...
+                          
                         <input type="file" name="product_images[]" accept="image/*" onchange="loadFile(event)" required >
                       </label>
                       <?php } ?>
