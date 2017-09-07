@@ -8,7 +8,6 @@ if(isset($_POST['user_email'])) {
 	if($query->num_rows>0) {
 	    echo "User Name Already Exist";
 	} else {
-	    echo "not avaliable";
 	}
 exit();
 }
