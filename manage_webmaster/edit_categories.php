@@ -25,7 +25,7 @@ $id = $_GET['bid'];
                     echo "Sorry, there was an error uploading your file.";
                 }
             }  else {
-                $sql = "UPDATE `categories` SET category_name = '$category_name',category_image = '$fileToUpload', status='$status' WHERE id = '$id' ";
+                $sql = "UPDATE `categories` SET category_name = '$category_name', status='$status' WHERE id = '$id' ";
                 if($conn->query($sql) === TRUE){
                    echo "<script type='text/javascript'>window.location='categories.php?msg=success'</script>";
                 } else {
