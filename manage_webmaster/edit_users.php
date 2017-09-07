@@ -9,17 +9,15 @@ $id = $_GET['uid'];
     //If success            
       $user_name = $_POST['user_name'];
       $user_email = $_POST['user_email'];
-      $user_password = encryptPassword($_POST['user_password']);
       $user_mobile = $_POST['user_mobile'];
-      $street_name = $_POST['street_name'];
-      $street_no = $_POST['street_no'];
-      $flat_name = $_POST['flat_name'];
-      $flat_no = $_POST['flat_no'];
-      $location = $_POST['location'];
-      $landmark = $_POST['landmark'];
-      $pincode = $_POST['pincode'];
+      $user_country_id = $_POST['user_country_id'];
+      $user_state_id = $_POST['user_state_id'];
+      $user_city_id = $_POST['user_city_id'];
+      $user_location_id = $_POST['user_location_id'];
+      $user_password = encryptPassword($_POST['user_password']);
+      $user_address = $_POST['user_address'];
       $status = $_POST['status'];
-        $sql = "UPDATE `users` SET user_name='$user_name', user_email='$user_email',user_password='$user_password', user_mobile='$user_mobile',street_name= '$street_name',street_no = '$street_no',flat_name = '$flat_name',flat_no = '$flat_no',location = '$location',landmark = '$landmark',pincode = '$pincode',status = '$status' WHERE id = '$id' ";
+        $sql = "UPDATE `users` SET user_name='$user_name', user_email='$user_email', user_mobile='$user_mobile', user_country_id='$user_country_id', user_state_id='$user_state_id', user_city_id='$user_city_id', user_location_id='$user_location_id', user_password='$user_password', user_address='$user_address', status = '$status' WHERE id = '$id' ";
         if($conn->query($sql) === TRUE){
            echo "<script type='text/javascript'>window.location='users.php?msg=success'</script>";
         } else {
@@ -43,56 +41,72 @@ $id = $_GET['uid'];
                     <input type="text" name="user_name" class="form-control" id="form-control-2" placeholder="User Name" data-error="Please enter user name" required value="<?php echo $getUsers1['user_name'];?>">
                     <div class="help-block with-errors"></div>
                   </div>
+
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Email</label>
                     <input type="email" name="user_email" class="form-control" id="form-control-2" placeholder="Email" data-error="Please enter a valid email address." required value="<?php echo $getUsers1['user_email'];?>">
                     <div class="help-block with-errors"></div>
                   </div>
+
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Password</label>
-                    <input type="text" name="user_password" class="form-control" id="form-control-2" placeholder="Password" data-error="Please enter password." required value="<?php echo decryptPassword($getUsers1['user_password']);?>">
+                    <input type="password" name="user_password" class="form-control" id="form-control-2" placeholder="Password" data-error="Please enter password." required value="<?php echo decryptPassword($getUsers1['user_password']);?>">
                     <div class="help-block with-errors"></div>
                   </div>
+
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Mobile</label>
                     <input type="text" name="user_mobile" class="form-control" id="form-control-2" placeholder="Mobile" data-error="Please enter mobile number." required maxlength="10" pattern="[0-9]{10}" onkeypress="return isNumberKey(event)" value="<?php echo $getUsers1['user_mobile'];?>">
                     <div class="help-block with-errors"></div>
                   </div>
+
+                  <?php $getCountries = getDataFromTables('lkp_countries',$status='0',$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);  ?>
                   <div class="form-group">
-                    <label for="form-control-2" class="control-label">Street Name</label>
-                    <input type="text" name="street_name" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter street name." required value="<?php echo $getUsers1['street_name'];?>">
+                    <label for="form-control-3" class="control-label">Select Country</label>
+                      <select name="user_country_id" id="user_country_id" class="custom-select" required onChange="getState(this.value);">
+                          <option value="">Select Country</option>
+                          <?php while($row = $getCountries->fetch_assoc()) {  ?>
+                              <option <?php if($row['id'] == $getUsers1['user_country_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['country_name']; ?></option>
+                          <?php } ?>
+                      </select> 
+                  </div>
+
+                  <?php $getStates =  getDataFromTables('lkp_states',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL); ?>
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Select State</label>
+                    <select id="user_state_id" name="user_state_id" class="custom-select" data-error="This field is required." required onChange="getCities(this.value);">
+                       <option value="">Select State</option>
+                      <?php while($row = $getStates->fetch_assoc()) {  ?>
+                      <option <?php if($row['id'] == $getUsers1['user_state_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['state_name']; ?></option>
+                      <?php } ?>
+                   </select>
                     <div class="help-block with-errors"></div>
                   </div>
+
+                  <?php $getCities =  getDataFromTables('lkp_cities',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL); ?>
                   <div class="form-group">
-                    <label for="form-control-2" class="control-label">Street Number</label>
-                    <input type="text" name="street_no" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter street number." required value="<?php echo $getUsers1['street_no'];?>">
+                    <label for="form-control-3" class="control-label">Select City</label>
+                    <select id="user_city_id" name="user_city_id" class="custom-select" data-error="This field is required." required onChange="getLocations(this.value);">
+                       <option value="">Select City</option>
+                      <?php while($row = $getCities->fetch_assoc()) {  ?>
+                      <option <?php if($row['id'] == $getUsers1['user_city_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['city_name']; ?></option>
+                      <?php } ?>
+                   </select>
                     <div class="help-block with-errors"></div>
                   </div>
+
+                  <?php $getLocations =  getDataFromTables('lkp_locations',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL); ?>
                   <div class="form-group">
-                    <label for="form-control-2" class="control-label">Flat Name</label>
-                    <input type="text" name="flat_name" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter flat name." required value="<?php echo $getUsers1['flat_name'];?>">
+                    <label for="form-control-3" class="control-label">Select Location</label>
+                    <select id="user_location_id" name="user_location_id" class="custom-select" data-error="This field is required." required>
+                       <option value="">Select Location</option>
+                      <?php while($row = $getLocations->fetch_assoc()) {  ?>
+                      <option <?php if($row['id'] == $getUsers1['user_location_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['location_name']; ?></option>
+                      <?php } ?>
+                   </select>
                     <div class="help-block with-errors"></div>
                   </div>
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">flat Number</label>
-                    <input type="text" name="flat_no" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter flat number." required value="<?php echo $getUsers1['flat_no'];?>">
-                    <div class="help-block with-errors"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Location</label>
-                    <input type="text" name="location" class="form-control" id="form-control-2" placeholder="Location" data-error="Please enter your location." required value="<?php echo $getUsers1['location'];?>">
-                    <div class="help-block with-errors"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Landmark</label>
-                    <input type="text" name="landmark" class="form-control" id="form-control-2" placeholder="Landmark" data-error="Please enter your landmark." required value="<?php echo $getUsers1['landmark'];?>">
-                    <div class="help-block with-errors"></div>
-                  </div>
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Pincode</label>
-                    <input type="text" name="pincode" class="form-control" id="form-control-2" placeholder="Pincode" data-error="Please enter pincode number." required maxlength="6" onkeypress="return isNumberKey(event)" value="<?php echo $getUsers1['pincode'];?>">
-                    <div class="help-block with-errors"></div>
-                  </div>
+
                   <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Choose your status</label>
@@ -104,6 +118,13 @@ $id = $_GET['uid'];
                     </select>
                     <div class="help-block with-errors"></div>
                   </div>
+
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Address</label>
+                    <textarea type="text" name="user_address" class="form-control" id="form-control-2" placeholder="Address" data-error="This field is required." required><?php echo $getUsers1['user_address'];?></textarea>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
                   <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
                 </form>
               </div>
@@ -122,4 +143,36 @@ $id = $_GET['uid'];
             return false;
         return true;
     }
+    function getState(val) {
+    $.ajax({
+    type: "POST",
+    url: "get_state.php",
+    data:'country_id='+val,
+    success: function(data){
+        $("#user_state_id").html(data);
+    }
+    });
+  }
+
+  function getCities(val) { 
+      $.ajax({
+      type: "POST",
+      url: "get_cities.php",
+      data:'state_id='+val,
+      success: function(data){
+          $("#user_city_id").html(data);
+      }
+      });
+  }
+
+  function getLocations(val) { 
+      $.ajax({
+      type: "POST",
+      url: "get_locations.php",
+      data:'city_id='+val,
+      success: function(data){
+          $("#user_location_id").html(data);
+      }
+      });
+  }
 </script>

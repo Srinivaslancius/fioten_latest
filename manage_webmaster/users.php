@@ -9,13 +9,62 @@
           </div>
           <div class="panel-body">
             <div class="table-responsive">
+              <?php $sql = "SELECT users.user_country_id, lkp_countries.country_name FROM users LEFT JOIN lkp_countries ON users.user_country_id=lkp_countries.id GROUP BY users.user_country_id";
+                  $result = $conn->query($sql);
+
+                  $sql1 = "SELECT users.user_state_id, lkp_states.state_name FROM users LEFT JOIN lkp_states ON users.user_state_id=lkp_states.id GROUP BY users.user_state_id";
+                  $result1 = $conn->query($sql1);
+
+                  $sql2 = "SELECT users.user_city_id, lkp_cities.city_name FROM users LEFT JOIN lkp_cities ON users.user_city_id=lkp_cities.id GROUP BY users.user_city_id";
+                  $result2 = $conn->query($sql2);
+              ?>
+
+                <div class="col s12 m12 l12">
+                  <div class="col s4 m4 l4">
+                      <select id="select-country">
+                        <option value="">Select Country</option>
+                        <?php while ($getAllCountries = $result->fetch_assoc()) { ?>
+                          <option value="<?php echo $getAllCountries['country_name']; ?>"><?php echo $getAllCountries['country_name']; ?></option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                  <div class="col s4 m4 l4">
+                      <select id="select-state">
+                        <option value="">Select State</option>
+                        <?php while ($getAllStates = $result1->fetch_assoc()) { ?>
+                          <option value="<?php echo $getAllStates['state_name']; ?>"><?php echo $getAllStates['state_name']; ?></option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                  <div class="col s4 m4 l4">
+                      <select id="select-cities">
+                        <option value="">Select City</option>
+                        <?php while ($getAllCities = $result2->fetch_assoc()) { ?>
+                          <option value="<?php echo $getAllCities['city_name']; ?>"><?php echo $getAllCities['city_name']; ?></option>
+                        <?php } ?>
+                      </select>
+                  </div>
+                </div>
+
+              <div class="col s12 m12 l12 checkbox_new_div" style="position: relative; top: 9px; text-align:center ;">
+                    <p class="p-v-xs col s4">
+                        <input id="test5" onchange="filterme()" type="checkbox" name="type" value="Active">
+                        <label for="test5">Verified Users</label>
+                    </p>
+                    <p class="p-v-xs col s4">
+                        <input id="test6" onchange="filterme()" type="checkbox" name="type" value="In Active">
+                        <label for="test6">Non Verified Users</label>
+                    </p>                                        
+              </div>
               <table class="table table-striped table-bordered dataTable" id="table-1">
                 <thead>
                   <tr>
                     <th>S.No</th>
                     <th>User Name</th>
-                    <th>User Email</th>
-                    <th>User Mobile</th>
+                    <th>Country</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Address</th>
                     <th>Status</th>
                     <th>Actions</th>
                   </tr>
@@ -25,8 +74,10 @@
                   <tr>
                     <td><?php echo $i;?></td>
                     <td><?php echo $row['user_name'];?></td>
-                    <td><?php echo $row['user_email'];?></td>
-                    <td><?php echo $row['user_mobile'];?></td> 
+                    <td><?php $getCountryData =  getDataFromTables('lkp_countries',$status=NULL,'id',$row['user_country_id'],$activeStatus=NULL,$activeTop=NULL); $country = $getCountryData->fetch_assoc(); echo $country['country_name']?></td>
+                    <td><?php $getStateData =  getDataFromTables('lkp_states',$status=NULL,'id',$row['user_state_id'],$activeStatus=NULL,$activeTop=NULL); $state = $getStateData->fetch_assoc(); echo $state['state_name']?></td>
+                    <td><?php $getCityData =  getDataFromTables('lkp_cities',$status=NULL,'id',$row['user_city_id'],$activeStatus=NULL,$activeTop=NULL); $city = $getCityData->fetch_assoc(); echo $city['city_name']?></td>
+                    <td><?php echo $row['user_address'];?></td> 
                     <td><?php if ($row['status']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['status']." data-tbname='users'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['status']." data-incId=".$row['id']." data-tbname='users'>In Active</span>" ;} ?></td>
                     <td> <a href="edit_users.php?uid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a> &nbsp; <a href="#"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" class=""></i></a></td>
                     <!-- Open Modal Box  here -->
@@ -59,38 +110,28 @@
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Street Name: </div>
-                            <div class="col-sm-6"><?php echo $row['street_name'];?></div>
+                            <div class="col-sm-4">Country: </div>
+                            <div class="col-sm-6"><?php $getCountryData =  getDataFromTables('lkp_countries',$status=NULL,'id',$row['user_country_id'],$activeStatus=NULL,$activeTop=NULL); $country = $getCountryData->fetch_assoc(); echo $country['country_name']?></div>
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Street No: </div>
-                            <div class="col-sm-6"><?php echo $row['street_no'];?></div>
+                            <div class="col-sm-4">State: </div>
+                            <div class="col-sm-6"><?php $getStateData =  getDataFromTables('lkp_states',$status=NULL,'id',$row['user_state_id'],$activeStatus=NULL,$activeTop=NULL); $state = $getStateData->fetch_assoc(); echo $state['state_name']?></div>
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Flat Name: </div>
-                            <div class="col-sm-6"><?php echo $row['flat_name'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Flat No: </div>
-                            <div class="col-sm-6"><?php echo $row['flat_no'];?></div>
+                            <div class="col-sm-4">City: </div>
+                            <div class="col-sm-6"><?php $getCityData =  getDataFromTables('lkp_cities',$status=NULL,'id',$row['user_city_id'],$activeStatus=NULL,$activeTop=NULL); $city = $getCityData->fetch_assoc(); echo $city['city_name']?></div>
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-4">Location: </div>
-                            <div class="col-sm-6"><?php echo $row['location'];?></div>
+                            <div class="col-sm-6"><?php $getLocationData =  getDataFromTables('lkp_locations',$status=NULL,'id',$row['user_location_id'],$activeStatus=NULL,$activeTop=NULL); $loaction = $getLocationData->fetch_assoc(); echo $loaction['location_name']?></div>
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Landmark: </div>
-                            <div class="col-sm-6"><?php echo $row['landmark'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Pincode: </div>
-                            <div class="col-sm-6"><?php echo $row['pincode'];?></div>
+                            <div class="col-sm-4">Address: </div>
+                            <div class="col-sm-6"><?php echo $row['user_address'];?></div>
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
@@ -124,3 +165,47 @@
       </div>
    <?php include_once 'admin_includes/footer.php'; ?>
    <script src="js/tables-datatables.min.js"></script>
+   <script type="text/javascript">
+    $(document).ready(function() {
+
+    var table =  $('#table-1').DataTable({
+        language: {
+            searchPlaceholder: 'Search records',
+            sSearch: '',
+            sLengthMenu: 'Show _MENU_',
+            sLength: 'dataTables_length',
+            oPaginate: {
+                sFirst: '<i class="material-icons">chevron_left</i>',
+                sPrevious: '<i class="material-icons">chevron_left</i>',
+                sNext: '<i class="material-icons">chevron_right</i>',
+                sLast: '<i class="material-icons">chevron_right</i>' 
+            }
+        }
+    });
+    //Filters for country Satate and city
+    $('#select-country').on('change', function () {
+        table.columns(2).search( this.value ).draw();
+    } );
+    $('#select-state').on('change', function () {
+        table.columns(3).search( this.value ).draw();
+    } );
+    $('#select-cities').on('change', function () {
+        table.columns(4).search( this.value ).draw();
+    } );
+    
+    $('.dataTables_length select').addClass('browser-default');
+    });
+
+    //Filters for Active and inactive checkbox
+    $(function() {
+      otable = $('#table-1').dataTable();
+    })
+    function filterme() {
+      //build a regex filter string with an or(|) condition
+      var types = $('input:checkbox[name="type"]:checked').map(function() {
+        return '^' + this.value + '\$';
+      }).get().join('|');
+      //filter in column 0, with an regex, no smart filtering, no inputbox,not case sensitive
+      otable.fnFilter(types, 6, true, false, false, false);  
+    }
+   </script>

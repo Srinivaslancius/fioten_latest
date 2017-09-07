@@ -11,19 +11,17 @@ if (!isset($_POST['submit']))  {
     print_r($_POST);die;*/
     $user_name = $_POST['user_name'];
     $user_email = $_POST['user_email'];
-    $user_password = encryptPassword($_POST['user_password']);
     $user_mobile = $_POST['user_mobile'];
-    $street_name = $_POST['street_name'];
-    $street_no = $_POST['street_no'];
-    $flat_name = $_POST['flat_name'];
-    $flat_no = $_POST['flat_no'];
-    $location = $_POST['location'];
-    $landmark = $_POST['landmark'];
-    $pincode = $_POST['pincode'];
+    $user_country_id = $_POST['user_country_id'];
+    $user_state_id = $_POST['user_state_id'];
+    $user_city_id = $_POST['user_city_id'];
+    $user_location_id = $_POST['user_location_id'];
+    $user_password = encryptPassword($_POST['user_password']);
+    $user_address = $_POST['user_address'];
     $created_admin_id = $_SESSION['admin_user_id'];
     $created_at = date("Y-m-d h:i:s");
     
-    $sql = "INSERT INTO users (`user_name`, `user_email`, `user_password`,`user_mobile`,`street_name`,`street_no`,`flat_name`,`flat_no`,`location`,`landmark`,`pincode`,`created_admin_id`, `created_at`, `status`) VALUES ('$user_name', '$user_email','$user_password','$user_mobile','$street_name','$street_no','$flat_name','$flat_no','$location','$landmark','$pincode','$created_admin_id','$created_at', 0)";
+    $sql = "INSERT INTO users (`user_name`, `user_email`, `user_mobile`, `user_country_id`, `user_state_id`, `user_city_id`, `user_location_id`, `user_password`, `user_address`,`created_admin_id`, `created_at`, `status`) VALUES ('$user_name', '$user_email', '$user_mobile', '$user_country_id', '$user_state_id', '$user_city_id', '$user_location_id', '$user_password', '$user_address', '$created_admin_id', '$created_at', 1)";
     if($conn->query($sql) === TRUE){
        echo "<script type='text/javascript'>window.location='users.php?msg=success'</script>";
     } else {
@@ -64,45 +62,38 @@ if (!isset($_POST['submit']))  {
                     <div class="help-block with-errors"></div>
                   </div>
 
+                  <?php $getCountries = getDataFromTables('lkp_countries',$status='0',$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);  ?>
                   <div class="form-group">
-                    <label for="form-control-2" class="control-label">Street Name</label>
-                    <input type="text" name="street_name" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter street name." required>
+                    <label for="form-control-3" class="control-label">Select Country</label>
+                      <select name="user_country_id" id="user_country_id" class="custom-select" required onChange="getState(this.value);">
+                          <option value="">Select Country</option>
+                          <?php while($row = $getCountries->fetch_assoc()) {  ?>
+                              <option value="<?php echo $row['id']; ?>"><?php echo $row['country_name']; ?></option>
+                          <?php } ?>
+                      </select> 
+                  </div>
+
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Select State</label>
+                    <select id="user_state_id" name="user_state_id" class="custom-select" data-error="This field is required." required onChange="getCities(this.value);">
+                      <option value="">Select State</option>
+                   </select>
                     <div class="help-block with-errors"></div>
                   </div>
 
                   <div class="form-group">
-                    <label for="form-control-2" class="control-label">Street Number</label>
-                    <input type="text" name="street_no" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter street number." required>
+                    <label for="form-control-3" class="control-label">Select City</label>
+                    <select id="user_city_id" name="user_city_id" class="custom-select" data-error="This field is required." required onChange="getLocations(this.value);">
+                      <option value="">Select City</option>
+                   </select>
                     <div class="help-block with-errors"></div>
                   </div>
 
                   <div class="form-group">
-                    <label for="form-control-2" class="control-label">Flat Name</label>
-                    <input type="text" name="flat_name" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter flat name." required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">flat Number</label>
-                    <input type="text" name="flat_no" class="form-control" id="form-control-2" placeholder="Street Name" data-error="Please enter flat number." required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Location</label>
-                    <input type="text" name="location" class="form-control" id="form-control-2" placeholder="Location" data-error="Please enter your location." required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Landmark</label>
-                    <input type="text" name="landmark" class="form-control" id="form-control-2" placeholder="Landmark" data-error="Please enter your landmark." required>
-                    <div class="help-block with-errors"></div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="form-control-2" class="control-label">Pincode</label>
-                    <input type="text" name="pincode" class="form-control" id="form-control-2" placeholder="Pincode" data-error="Please enter pincode number." required maxlength="6" onkeypress="return isNumberKey(event)">
+                    <label for="form-control-3" class="control-label">Select Location</label>
+                    <select id="user_location_id" name="user_location_id" class="custom-select" data-error="This field is required." required>
+                      <option value="">Select Location</option>
+                   </select>
                     <div class="help-block with-errors"></div>
                   </div>
                   
@@ -117,6 +108,11 @@ if (!isset($_POST['submit']))  {
                    </select>
                     <div class="help-block with-errors"></div>
                   </div>
+
+                  <div class="form-group">
+                    <label for="form-control-4" class="control-label">Address</label>
+                    <textarea type="text" name="user_address" class="form-control" id="form-control-2" placeholder="Address" data-error="This field is required." required></textarea>
+                  </div>
                 
                   <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
                 </form>
@@ -128,6 +124,38 @@ if (!isset($_POST['submit']))  {
       </div>
 <?php include_once 'admin_includes/footer.php'; ?>
 <script type="text/javascript">
+function getState(val) {
+    $.ajax({
+    type: "POST",
+    url: "get_state.php",
+    data:'country_id='+val,
+    success: function(data){
+        $("#user_state_id").html(data);
+    }
+    });
+}
+
+function getCities(val) { 
+    $.ajax({
+    type: "POST",
+    url: "get_cities.php",
+    data:'state_id='+val,
+    success: function(data){
+        $("#user_city_id").html(data);
+    }
+    });
+}
+
+function getLocations(val) { 
+    $.ajax({
+    type: "POST",
+    url: "get_locations.php",
+    data:'city_id='+val,
+    success: function(data){
+        $("#user_location_id").html(data);
+    }
+    });
+}
   function isNumberKey(evt){
     var charCode = (evt.which) ? evt.which : event.keyCode
       if (charCode > 31 && (charCode < 48 || charCode > 57))
