@@ -187,7 +187,7 @@ $id = $_GET['uid'];
       },
       success: function (response) {
         $( '#email_status' ).html(response);
-        if (response == "User Name Already Exist"){
+        if (response == "Email Already Exist"){
           $("#user_email").val("");
         }        
         }
