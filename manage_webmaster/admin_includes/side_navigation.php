@@ -77,14 +77,14 @@
                 <span class="menu-text">Orders</span>
               </a>
             </li> 
-            <li  class="<?php if($page_name == 'product_offers.php' || $page_name == 'add_product_offers.php' || $page_name == 'edit_product_offers.php') { echo "active"; } ?>">
+            <!-- <li  class="<?php if($page_name == 'product_offers.php' || $page_name == 'add_product_offers.php' || $page_name == 'edit_product_offers.php') { echo "active"; } ?>">
               <a href="product_offers.php" aria-haspopup="true">
                 <span class="menu-icon">
                    <i class="zmdi zmdi-shopping-basket zmdi-hc-fw"></i>
                 </span>
                 <span class="menu-text">Offers</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>

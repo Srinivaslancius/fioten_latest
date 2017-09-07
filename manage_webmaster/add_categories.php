@@ -16,7 +16,7 @@
                 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                    $sql = "INSERT INTO categories (`category_name`, `category_image`, `status`) VALUES ('$category_name', '$fileToUpload','$status')";
+                    $sql = "INSERT INTO `categories` (`category_name`, `category_image`, `status`) VALUES ('$category_name', '$fileToUpload','$status')";
                     if($conn->query($sql) === TRUE){
                        echo "<script type='text/javascript'>window.location='categories.php?msg=success'</script>";
                     } else {
