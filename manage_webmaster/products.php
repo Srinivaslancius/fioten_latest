@@ -28,7 +28,7 @@
                                        
                     <td><?php if ($row['status']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['status']." data-tbname='products
                     '>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['status']." data-incId=".$row['id']." data-tbname='products'>In Active</span>" ;} ?></td>
-                    <td> <a href="edit_products.php?uid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a> &nbsp; <a href="#"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" class=""></i></a></td>
+                    <td> <a href="edit_products.php?pid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a> &nbsp; <a href="#"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" class=""></i></a></td>
                      <!-- Open Modal Box  here -->
                     <div id="<?php echo $row['id']; ?>" class="modal fade" tabindex="-1" role="dialog">
                       <div class="modal-dialog">
@@ -39,7 +39,7 @@
                                 <i class="zmdi zmdi-close"></i>
                               </span>
                             </button>
-                            <center><h4 class="modal-title">Products Information</h4></center>
+                            <center><h4 class="modal-title">Product Information</h4></center>
                           </div>
                         <div class="modal-body" id="modal_body">
                           <div class="row">
@@ -54,13 +54,48 @@
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
+                            <div class="col-sm-4">Offer Price: </div>
+                            <div class="col-sm-6"><?php echo $row['offer_price'];?></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">Selling Price: </div>
+                            <div class="col-sm-6"><?php echo $row['selling_price'];?></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">Start Date: </div>
+                            <div class="col-sm-6"><?php echo $row['deal_start_date'];?></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">End Date: </div>
+                            <div class="col-sm-6"><?php echo $row['deal_end_date'];?></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-2"></div>
                             <div class="col-sm-4">Quantity: </div>
                             <div class="col-sm-6"><?php echo $row['quantity'];?></div>
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
+                            <div class="col-sm-4">Minimum Order Quantity: </div>
+                            <div class="col-sm-6"><?php echo $row['minimum_order_quantity'];?></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">Key Features: </div>
+                            <div class="col-sm-6"><?php echo $row['key_features'];?></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-2"></div>
                             <div class="col-sm-4">Product Inforamtion: </div>
                             <div class="col-sm-6"><?php echo $row['product_info'];?></div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-4">Specifications: </div>
+                            <div class="col-sm-6"><?php echo $row['specifications'];?></div>
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
