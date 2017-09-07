@@ -37,7 +37,7 @@ if (!isset($_POST['submit']))  {
           <div class="panel-body">            
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <form data-toggle="validator" method="POST">
+                <form data-toggle="validator" method="POST" autocomplete="off">
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Name</label>
                     <input type="text" name="user_name" class="form-control" id="form-control-2" placeholder="User Name" data-error="Please enter user name." required autofocus="on">
@@ -46,7 +46,8 @@ if (!isset($_POST['submit']))  {
 
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Email</label>
-                    <input type="email" name="user_email" class="form-control" id="form-control-2" placeholder="Email" data-error="Please enter a valid email address." required>
+                    <input type="email" name="user_email" class="form-control" id="user_email" placeholder="Email" onkeyup="checkemail();" data-error="Please enter a valid email address." required>
+                    <span id="email_status"></span>
                     <div class="help-block with-errors"></div>
                   </div>
 
@@ -160,6 +161,21 @@ function getLocations(val) {
     var charCode = (evt.which) ? evt.which : event.keyCode
       if (charCode > 31 && (charCode < 48 || charCode > 57))
         return false;
-      return true;
-    }
+    return true;
+  }
+  function checkemail() {
+    var email1 = document.getElementById("user_email").value;
+    if (email1){
+      $.ajax({
+      type: "POST",
+      url: "check_email_avail.php",
+      data: {
+        user_email:email1,
+      },
+      success: function (response) {
+        $( '#email_status' ).html(response);        
+        }
+       });          
+      }
+  }
 </script>

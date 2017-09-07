@@ -35,7 +35,7 @@ $id = $_GET['uid'];
               <?php $getUsers = getDataFromTables('users',$status=NULL,'id',$id,$activeStatus=NULL,$activeTop=NULL);
               $getUsers1 = $getUsers->fetch_assoc(); ?>		
               <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <form data-toggle="validator" method="POST">
+                <form data-toggle="validator" method="POST" autocomplete="off">
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Name</label>
                     <input type="text" name="user_name" class="form-control" id="form-control-2" placeholder="User Name" data-error="Please enter user name" required value="<?php echo $getUsers1['user_name'];?>">
@@ -44,7 +44,8 @@ $id = $_GET['uid'];
 
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Email</label>
-                    <input type="email" name="user_email" class="form-control" id="form-control-2" placeholder="Email" data-error="Please enter a valid email address." required value="<?php echo $getUsers1['user_email'];?>">
+                    <input type="email" name="user_email" class="form-control" id="user_email" placeholder="Email" onkeyup="checkemail();" data-error="Please enter a valid email address." required value="<?php echo $getUsers1['user_email'];?>">
+                    <span id="email_status"></span>
                     <div class="help-block with-errors"></div>
                   </div>
 
@@ -174,5 +175,20 @@ $id = $_GET['uid'];
           $("#user_location_id").html(data);
       }
       });
+  }
+  function checkemail() {
+    var email1 = document.getElementById("user_email").value;
+    if (email1){
+      $.ajax({
+      type: "POST",
+      url: "check_email_avail.php",
+      data: {
+        user_email:email1,
+      },
+      success: function (response) {
+        $( '#email_status' ).html(response);        
+        }
+       });          
+    }
   }
 </script>
