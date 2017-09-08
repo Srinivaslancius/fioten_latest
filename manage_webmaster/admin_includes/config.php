@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 date_default_timezone_set("Asia/Kolkata");
 
 //Set session expiry time
@@ -48,5 +48,5 @@ if ($conn->connect_error) {
 } 
 
 $base_url = "http://localhost/fioten_latest/";
-
+ 
 ?>
