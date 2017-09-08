@@ -17,6 +17,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
 	if($row) {
 	    $_SESSION['admin_user_id'] = $row['id'];
 	    $_SESSION['admin_user_name'] = $row['admin_name'];
+	    //Assign the current timestamp as the user's
+		//latest activity
+		$_SESSION['last_action'] = time();
 	    if(isset($_SESSION["admin_user_name"])) {
 		    echo "<script type='text/javascript'>window.location='dashboard.php'</script>";
 		}
