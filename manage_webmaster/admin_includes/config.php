@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 date_default_timezone_set("Asia/Kolkata");
 
 $setcon = 2;
@@ -9,7 +9,7 @@ if($setcon == 1) {
 	$password = "";
 	$dbname = "";
 } else {
-	$servername = "192.168.0.115";	
+	$servername = "192.168.0.100";	
 	$username = "root";
 	$password = "root";
 	$dbname = "fioten_latest";
