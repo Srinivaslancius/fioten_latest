@@ -19,43 +19,54 @@
                   $result2 = $conn->query($sql2);
               ?>
 
-                <div class="col s12 m12 l12">
-                  <div class="col s4 m4 l4">
-                      <select id="select-country">
-                        <option value="">Select Country</option>
+                <div class="col s12 m12 l12">                  
+
+                  <div class="form-group col-md-4">                    
+                    <select id="select-country" class="custom-select">
+                       <option value="">Select Country</option>
                         <?php while ($getAllCountries = $result->fetch_assoc()) { ?>
                           <option value="<?php echo $getAllCountries['country_name']; ?>"><?php echo $getAllCountries['country_name']; ?></option>
                         <?php } ?>
-                      </select>
+                    </select>                    
                   </div>
-                  <div class="col s4 m4 l4">
-                      <select id="select-state">
-                        <option value="">Select State</option>
+
+                  <div class="form-group col-md-4">                    
+                    <select id="select-state" class="custom-select">
+                       <option value="">Select State</option>
                         <?php while ($getAllStates = $result1->fetch_assoc()) { ?>
                           <option value="<?php echo $getAllStates['state_name']; ?>"><?php echo $getAllStates['state_name']; ?></option>
                         <?php } ?>
-                      </select>
+                    </select>                    
                   </div>
-                  <div class="col s4 m4 l4">
-                      <select id="select-cities">
+
+                  <div class="form-group col-md-4">                    
+                    <select id="select-cities" class="custom-select">
                         <option value="">Select City</option>
                         <?php while ($getAllCities = $result2->fetch_assoc()) { ?>
                           <option value="<?php echo $getAllCities['city_name']; ?>"><?php echo $getAllCities['city_name']; ?></option>
                         <?php } ?>
-                      </select>
+                    </select>                    
                   </div>
+
                 </div>
 
-              <div class="col s12 m12 l12 checkbox_new_div" style="position: relative; top: 9px; text-align:center ;">
-                    <p class="p-v-xs col s4">
-                        <input id="test5" onchange="filterme()" type="checkbox" name="type" value="Active">
-                        <label for="test5">Verified Users</label>
-                    </p>
-                    <p class="p-v-xs col s4">
-                        <input id="test6" onchange="filterme()" type="checkbox" name="type" value="In Active">
-                        <label for="test6">Non Verified Users</label>
-                    </p>                                        
-              </div>
+                <div class="clear_fix"></div>
+
+                <div class="form-group col-md-4">
+                  <div class="custom-controls-stacked checkbox_new_div">
+                    <label class="custom-control custom-control-primary custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="test5" name="type" onchange="filterme()" value="Active">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-label" for="test5">Verified Users</span>
+                    </label>
+                    <label class="custom-control custom-control-primary custom-checkbox">
+                      <input class="custom-control-input" type="checkbox" id="test6" name="type" onchange="filterme()" value="In Active">
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-label" for="test6">Non Verified Users</span>
+                    </label>
+                  </div>
+                </div>
+              
               <table class="table table-striped table-bordered dataTable" id="table-1">
                 <thead>
                   <tr>
