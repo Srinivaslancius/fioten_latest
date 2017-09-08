@@ -17,7 +17,7 @@
     $address = $_POST['address'];
     if($_FILES["logo"]["name"]!='') {
                                           
-        $logo = $_FILES["logo"]["name"];        
+        $logo = $_FILES["logo"]["name"];
         $target_dir = "../uploads/logo/";
         $target_file = $target_dir . basename($_FILES["logo"]["name"]);
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
