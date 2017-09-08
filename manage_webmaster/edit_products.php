@@ -170,12 +170,12 @@ if (!isset($_POST['submit']))  {
                     <label for="form-control-4" class="control-label">Product Image</label>
                     <div>
                       <?php if($getImages->num_rows > 0){ ?>
-                        <input type="file" name="product_images[]" accept="image/*" onchange="loadFile(event)">
+                        <input type="file" name="product_images[]" accept="image/*">
                       <?php } else { ?>
                       <img id="output" width="80" height="80">
                       <label class="btn btn-default file-upload-btn">
                           
-                        <input type="file" name="product_images[]" accept="image/*" onchange="loadFile(event)" required >
+                        <input type="file" name="product_images[]" accept="image/*" required >
                       </label>
                       <?php } ?>
                       <a style="cursor:pointer" id="add_more" class="add_field_button">Add More Fields</a>
@@ -215,26 +215,9 @@ if (!isset($_POST['submit']))  {
 
 <script type="text/javascript">
 $(document).ready(function() {
-var abc = 0;
     $('#add_more').click(function () {
         $(this).before("<div><input type='file' id='file' name='product_images[]' accept='image/*'required><a href='#' class='remove_field'>Remove</a> </div>");
     });
-    $('body').on('change', '#file', function () {
-        if (this.files && this.files[0])
-        {
-            abc += 1; //increementing global variable by 1
-            var z = abc - 1;
-            var x = $(this).parent().find('#previewimg' + z).remove();
-            $(this).before("<div id='abcd" + abc + "' class='abcd'><img id='previewimg" + abc + "' src='' width='150' height='150'/></div>");
-            var reader = new FileReader();
-            reader.onload = imageIsLoaded;
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-        //image preview
-    function imageIsLoaded(e) {
-        $('#previewimg' + abc).attr('src', e.target.result);
-    };
     $(this).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })

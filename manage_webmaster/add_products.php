@@ -199,22 +199,6 @@ var abc = 0;
     $('#add_more').click(function () {
         $(this).before("<div><input type='file' id='file' name='product_images[]' accept='image/*'required><a href='#' class='remove_field'>Remove</a> </div>");
     });
-    $('body').on('change', '#file', function () {
-        if (this.files && this.files[0])
-        {
-            abc += 1; //increementing global variable by 1
-            var z = abc - 1;
-            var x = $(this).parent().find('#previewimg' + z).remove();
-            $(this).before("<div id='abcd" + abc + "' class='abcd'><img id='previewimg" + abc + "' src='' width='150' height='150'/></div>");
-            var reader = new FileReader();
-            reader.onload = imageIsLoaded;
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-        //image preview
-    function imageIsLoaded(e) {
-        $('#previewimg' + abc).attr('src', e.target.result);
-    };
     $(this).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
