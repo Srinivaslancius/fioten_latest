@@ -6,9 +6,8 @@ if(isset($_POST['user_email'])) {
 	$checkdata=" SELECT user_email FROM users WHERE user_email='$email' ";
 	$query=$conn->query($checkdata);
 	if($query->num_rows>0) {
-	    echo "User Name Already Exist";
+	    echo "Email Already Exist";
 	} else {
-	    echo "not avaliable";
 	}
 exit();
 }

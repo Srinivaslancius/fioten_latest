@@ -45,7 +45,7 @@ $id = $_GET['uid'];
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Email</label>
                     <input type="email" name="user_email" class="form-control" id="user_email" placeholder="Email" onkeyup="checkemail();" data-error="Please enter a valid email address." required value="<?php echo $getUsers1['user_email'];?>">
-                    <span id="email_status"></span>
+                    <span id="email_status" style="color: red;"></span>
                     <div class="help-block with-errors"></div>
                   </div>
 
@@ -186,7 +186,10 @@ $id = $_GET['uid'];
         user_email:email1,
       },
       success: function (response) {
-        $( '#email_status' ).html(response);        
+        $( '#email_status' ).html(response);
+        if (response == "Email Already Exist"){
+          $("#user_email").val("");
+        }        
         }
        });          
     }
