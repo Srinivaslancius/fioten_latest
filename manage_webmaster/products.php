@@ -9,11 +9,24 @@
           </div>
           <div class="panel-body">
             <div class="table-responsive">
+              <?php $sql = "SELECT products.category_id, categories.category_name FROM products LEFT JOIN categories ON products.category_id=categories.id GROUP BY products.category_id";
+            $result = $conn->query($sql);
+          ?>
+          <div class="form-group col-md-4">            
+            <select id="select-category" class="custom-select">
+              <option value="">Select Category</option>
+              <?php while($getAllCategories = $result->fetch_assoc()) {  ?>
+                <option value="<?php echo $getAllCategories['category_name']; ?>"><?php echo $getAllCategories['category_name']; ?></option>
+              <?php } ?>
+            </select>           
+          </div>
+          <div class="clear_fix"></div>
               <table class="table table-striped table-bordered dataTable" id="table-1">
                 <thead>
                   <tr>
                     <th>S.No</th>
                     <th>Product Name</th>
+                    <th>Category Name</th>
                     <th>Product Price</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -24,6 +37,8 @@
                   <tr>
                     <td><?php echo $i;?></td>
                     <td><?php echo $row['product_name'];?></td>
+                    <td><?php $getCategories = getDataFromTables('categories',$status=NULL,'id',$row['category_id'],$activeStatus=NULL,$activeTop=NULL);
+                    $getCategory = $getCategories->fetch_assoc(); echo $getCategory['category_name']; ?></td>
                     <td><?php echo $row['product_price'];?></td>
                                        
                     <td><?php if ($row['status']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['status']." data-tbname='products
