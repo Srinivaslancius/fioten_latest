@@ -40,15 +40,15 @@
           </div>
           <div class="panel-body">
             <div class="table-responsive">
-              <?php $sql = "SELECT orders.order_status, order_status.id FROM orders LEFT JOIN order_status ON orders.order_status=order_status.id GROUP BY orders.order_status";
-            $result = $conn->query($sql);
+              <?php $sql1 = "SELECT orders.order_status, order_status.id,order_status.status FROM orders LEFT JOIN order_status ON orders.order_status=order_status.id GROUP BY orders.order_status";
+            $result1 = $conn->query($sql1);
           ?>
           <div class="form-group col-md-4">
                       
             <select id="select-order" class="custom-select">
               <option value="">Choose Status</option>
-              <?php while($getAllCategories = $result->fetch_assoc()) {  ?>
-                <option value="<?php $getAllCategories['order_status']; ?>"><?php echo $getAllCategories['order_status']; ?></option>
+              <?php while($getAllOrderStatus = $result1->fetch_assoc()) {  ?>
+                <option value="<?php $getAllOrderStatus['status']; ?>"><?php echo $getAllOrderStatus['status']; ?></option>
               <?php } ?>
             </select>           
           </div>
