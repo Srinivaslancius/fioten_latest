@@ -57,7 +57,7 @@ if (!isset($_POST['submit']))  {
               <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <form data-toggle="validator" method="post" enctype="multipart/form-data">
 
-                  <?php $getCategories = getDataFromTables('categories',0,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
+                  <?php $getCategories = getDataFromTables('categories','0',$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Choose your Category</label>
                     <select id="form-control-3" name="category_id" class="custom-select" data-error="This field is required." required onChange="getSubCategories(this.value);">

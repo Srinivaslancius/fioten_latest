@@ -7,7 +7,7 @@
         if($table!='' && $table!=NULL && $clause!='' && $clause!=NULL && $id!='' && $id!=NULL) {
             //Get All Table Data with Where Condition(4)
             $sql="select * from `$table` WHERE `$clause` = '$id' ";
-        } elseif($table!='' && $table!=NULL && $status!=='' ) {
+        } elseif($table!='' && $table!=NULL && $status!='' ) {
             //Get Active Records (3)
             $sql="select * from `$table` WHERE `status` = '$status' ORDER BY id DESC";
         } elseif($table!='' && $table!=NULL && $activeTop!='' && $activeTop!=NULL) {
