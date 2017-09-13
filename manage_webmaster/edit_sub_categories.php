@@ -59,12 +59,12 @@ $getCategories = getDataFromTables('categories',$status=NULL,$clause=NULL,$id=NU
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group">
-                    <label for="form-control-2" class="control-label">Category Name</label>
+                    <label for="form-control-2" class="control-label">Sub Category Name</label>
                     <input type="text" class="form-control" id="form-control-2" name="sub_category_name" required value="<?php echo $getSubCategories['sub_category_name'];?>">
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group">
-                    <label for="form-control-4" class="control-label">Category Image</label>
+                    <label for="form-control-4" class="control-label">Sub Category Image</label>
                     <img src="<?php echo $base_url . 'uploads/sub_category_images/'.$getSubCategories['sub_category_image'] ?>"  id="output" height="100" width="100"/>
                     <label class="btn btn-default file-upload-btn">
                         Choose file...
