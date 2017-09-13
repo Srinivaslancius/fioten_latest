@@ -4,6 +4,7 @@ $id = $_GET['bid'];
  if (!isset($_POST['submit']))  {
             echo "fail";
     } else  {
+            $category_id = $_POST['category_id'];
             $status = $_POST['status'];
             $sub_category_name = $_POST['sub_category_name'];
             if($_FILES["fileToUpload"]["name"]!='') {
@@ -14,7 +15,7 @@ $id = $_GET['bid'];
               $getImgUnlink = getImageUnlink('sub_category_image','sub_categories','id',$id,$target_dir);
                 //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
               if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                    $sql = "UPDATE `sub_categories` SET sub_category_name = '$sub_category_name', sub_category_image = '$fileToUpload', status='$status' WHERE id = '$id' ";
+                    $sql = "UPDATE `sub_categories` SET category_id = '$category_id', sub_category_name = '$sub_category_name', sub_category_image = '$fileToUpload', status='$status' WHERE id = '$id' ";
                     if($conn->query($sql) === TRUE){
                        echo "<script type='text/javascript'>window.location='sub_categories.php?msg=success'</script>";
                     } else {
@@ -25,7 +26,7 @@ $id = $_GET['bid'];
                     echo "Sorry, there was an error uploading your file.";
                 }
             }  else {
-                $sql = "UPDATE `sub_categories` SET sub_category_name = '$sub_category_name', status='$status' WHERE id = '$id' ";
+                $sql = "UPDATE `sub_categories` SET category_id = '$category_id', sub_category_name = '$sub_category_name', status='$status' WHERE id = '$id' ";
                 if($conn->query($sql) === TRUE){
                    echo "<script type='text/javascript'>window.location='sub_categories.php?msg=success'</script>";
                 } else {
@@ -36,6 +37,7 @@ $id = $_GET['bid'];
 ?>
 <?php $getSubCategoriesData = getDataFromTables('sub_categories',$status=NULL,'id',$id,$activeStatus=NULL,$activeTop=NULL);
 $getSubCategories = $getSubCategoriesData->fetch_assoc();
+$getCategories = getDataFromTables('categories',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);
  ?>
 <div class="site-content">
         <div class="panel panel-default">
@@ -46,6 +48,16 @@ $getSubCategories = $getSubCategoriesData->fetch_assoc();
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <form data-toggle="validator" method="post" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Choose your Category</label>
+                    <select id="form-control-3" name="category_id" class="custom-select" data-error="This field is required." required>
+                      <option value="">Select Category</option>
+                      <?php while($row = $getCategories->fetch_assoc()) {  ?>
+                        <option value="<?php echo $row['id']; ?>" <?php if($row['id'] == $getSubCategories['category_id']) { echo "selected=selected"; }?> ><?php echo $row['category_name']; ?></option>
+                    <?php } ?>
+                   </select>
+                    <div class="help-block with-errors"></div>
+                  </div>
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Category Name</label>
                     <input type="text" class="form-control" id="form-control-2" name="sub_category_name" required value="<?php echo $getSubCategories['sub_category_name'];?>">
