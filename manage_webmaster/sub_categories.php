@@ -4,7 +4,7 @@
         <div class="panel panel-default panel-table">
           <div class="panel-heading">
             <a href="add_sub_categories.php" style="float:right">Add Sub Categories</a>
-            <h3 class="m-t-0 m-b-5">Categories</h3>            
+            <h3 class="m-t-0 m-b-5">Sub Categories</h3>            
           </div>
           <div class="panel-body">
             <div class="table-responsive">

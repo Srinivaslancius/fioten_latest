@@ -8,6 +8,7 @@ if (!isset($_POST['submit']))  {
     //Save data into database
     $product_name = $_POST['product_name'];
     $category_id = $_POST['category_id'];
+    $sub_category_id = $_POST['sub_category_id'];
     $product_price = $_POST['product_price'];
     $price_type = $_POST['price_type'];
     $offer_price = $_POST['offer_price'];
@@ -25,7 +26,7 @@ if (!isset($_POST['submit']))  {
     $created_by = $_SESSION['admin_user_id'];
     //save product images into product_images table    
     
-    $sql1 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',product_price ='$product_price',price_type ='$price_type',offer_price ='$offer_price',selling_price ='$selling_price', deal_start_date = '$deal_start_date', deal_end_date ='$deal_end_date',quantity = '$quantity',minimum_order_quantity = '$minimum_order_quantity',key_features = '$key_features',product_info = '$product_info',specifications = '$specifications',availability_id = '$availability_id',status = '$status' WHERE id = '$id'"; 
+    $sql1 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',sub_category_id ='$sub_category_id',product_price ='$product_price',price_type ='$price_type',offer_price ='$offer_price',selling_price ='$selling_price', deal_start_date = '$deal_start_date', deal_end_date ='$deal_end_date',quantity = '$quantity',minimum_order_quantity = '$minimum_order_quantity',key_features = '$key_features',product_info = '$product_info',specifications = '$specifications',availability_id = '$availability_id',status = '$status' WHERE id = '$id'"; 
     
     if ($conn->query($sql1) === TRUE) {
     echo "Record updated successfully";
@@ -71,11 +72,22 @@ if (!isset($_POST['submit']))  {
 
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Choose your Category</label>
-                    <select id="form-control-3" name="category_id" class="custom-select" data-error="This field is required." required>
+                    <select id="form-control-3" name="category_id" class="custom-select" data-error="This field is required." required onChange="getSubCategories(this.value);">
                       <option value="">Select Category</option>
                       <?php while($row = $getCategories->fetch_assoc()) {  ?>
                         <option value="<?php echo $row['id']; ?>" <?php if($row['id'] == $getProducts['category_id']) { echo "selected=selected"; }?> ><?php echo $row['category_name']; ?></option>
                     <?php } ?>
+                   </select>
+                    <div class="help-block with-errors"></div>
+                  </div>
+                  <?php $getSubCategories =  getDataFromTables('sub_categories',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL); ?>
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Select Sub Category</label>
+                    <select id="sub_category_id" name="sub_category_id" class="custom-select" data-error="This field is required." required >
+                       <option value="">Select Sub Category</option>
+                      <?php while($row = $getSubCategories->fetch_assoc()) {  ?>
+                      <option <?php if($row['id'] == $getProducts['sub_category_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['sub_category_name']; ?></option>
+                      <?php } ?>
                    </select>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -325,6 +337,16 @@ $(function(){
          }
         });
 });
+function getSubCategories(val) {
+    $.ajax({
+    type: "POST",
+    url: "get_sub_categories.php",
+    data:'category_id='+val,
+    success: function(data){
+        $("#sub_category_id").html(data);
+    }
+    });
+}
 </script>
 
 

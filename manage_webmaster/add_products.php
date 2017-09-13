@@ -7,6 +7,7 @@ if (!isset($_POST['submit']))  {
     //Save data into database
     $product_name = $_POST['product_name'];
     $category_id = $_POST['category_id'];
+    $sub_category_id = $_POST['sub_category_id'];
     $product_price = $_POST['product_price'];
     $price_type = $_POST['price_type'];
     $offer_price = $_POST['offer_price'];
@@ -24,7 +25,7 @@ if (!isset($_POST['submit']))  {
     $created_by = $_SESSION['admin_user_id'];
     //save product images into product_images table    
     
-    $sql1 = "INSERT INTO products (`product_name`,`category_id`,`product_price`,`price_type`,`offer_price`,`selling_price`, `deal_start_date`, `deal_end_date`, `quantity`, `minimum_order_quantity`, `key_features`,`product_info`,`specifications`,`availability_id`,`status`,`created_by`,`created_at`) VALUES ('$product_name','$category_id','$product_price','$price_type','$offer_price','$selling_price', '$deal_start_date', '$deal_end_date', '$quantity', '$minimum_order_quantity', '$key_features','$product_info','$specifications','$availability_id','$status','$created_by','$created_at')";
+    $sql1 = "INSERT INTO products (`product_name`,`category_id`,`sub_category_id`,`product_price`,`price_type`,`offer_price`,`selling_price`, `deal_start_date`, `deal_end_date`, `quantity`, `minimum_order_quantity`, `key_features`,`product_info`,`specifications`,`availability_id`,`status`,`created_by`,`created_at`) VALUES ('$product_name','$category_id','$sub_category_id','$product_price','$price_type','$offer_price','$selling_price', '$deal_start_date', '$deal_end_date', '$quantity', '$minimum_order_quantity', '$key_features','$product_info','$specifications','$availability_id','$status','$created_by','$created_at')";
     $result1 = $conn->query($sql1);
     $last_id = $conn->insert_id;
 
@@ -59,11 +60,19 @@ if (!isset($_POST['submit']))  {
                   <?php $getCategories = getDataFromTables('categories',0,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Choose your Category</label>
-                    <select id="form-control-3" name="category_id" class="custom-select" data-error="This field is required." required>
+                    <select id="form-control-3" name="category_id" class="custom-select" data-error="This field is required." required onChange="getSubCategories(this.value);">
                       <option value="">Select Category</option>
                       <?php while($row = $getCategories->fetch_assoc()) {  ?>
                         <option value="<?php echo $row['id']; ?>"><?php echo $row['category_name']; ?></option>
                       <?php } ?>
+                   </select>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Select Sub Category</label>
+                    <select id="sub_category_id" name="sub_category_id" class="custom-select" data-error="This field is required." required >
+                      <option value="">Select Sub Category</option>
                    </select>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -280,6 +289,16 @@ $(document).ready(function() {
    });
    
   });
+function getSubCategories(val) {
+    $.ajax({
+    type: "POST",
+    url: "get_sub_categories.php",
+    data:'category_id='+val,
+    success: function(data){
+        $("#sub_category_id").html(data);
+    }
+    });
+}
 </script>
 
 
