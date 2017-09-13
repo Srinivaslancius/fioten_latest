@@ -1,12 +1,13 @@
 <?php
     
     function getDataFromTables($table=NULL,$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL) {
-
+        
+        //echo $table ."<br />". $status;
         global $conn;
         if($table!='' && $table!=NULL && $clause!='' && $clause!=NULL && $id!='' && $id!=NULL) {
             //Get All Table Data with Where Condition(4)
             $sql="select * from `$table` WHERE `$clause` = '$id' ";
-        } elseif($table!='' && $table!=NULL && $status!='' && $status!=NULL) {
+        } elseif($table!='' && $table!=NULL && $status!=='' ) {
             //Get Active Records (3)
             $sql="select * from `$table` WHERE `status` = '$status' ORDER BY id DESC";
         } elseif($table!='' && $table!=NULL && $activeTop!='' && $activeTop!=NULL) {
@@ -19,7 +20,7 @@
             //Last if fail then go to this
             $sql="select * from `$table` ORDER BY status, id DESC";
         }
-
+        
         $result = $conn->query($sql);
         return $result;
     }
