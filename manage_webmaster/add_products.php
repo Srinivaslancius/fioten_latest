@@ -32,7 +32,7 @@ if (!isset($_POST['submit']))  {
     $product_images = $_FILES['product_images']['name'];
     foreach($product_images as $key=>$value){
 
-        $product_images1 = $_FILES['product_images']['name'][$key];
+        $product_images1 = time().'_'.$_FILES['product_images']['name'][$key];
         $file_tmp = $_FILES["product_images"]["tmp_name"][$key];
         $file_destination = '../uploads/product_images/' . $product_images1;
         move_uploaded_file($file_tmp, $file_destination);        
