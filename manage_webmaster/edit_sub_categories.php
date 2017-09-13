@@ -37,7 +37,7 @@ $id = $_GET['bid'];
 ?>
 <?php $getSubCategoriesData = getDataFromTables('sub_categories',$status=NULL,'id',$id,$activeStatus=NULL,$activeTop=NULL);
 $getSubCategories = $getSubCategoriesData->fetch_assoc();
-$getCategories = getDataFromTables('categories',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);
+$getCategories = getDataFromTables('categories','0',$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);
  ?>
 <div class="site-content">
         <div class="panel panel-default">

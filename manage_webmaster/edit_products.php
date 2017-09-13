@@ -64,7 +64,7 @@ if (!isset($_POST['submit']))  {
             <div class="row">
               <?php $getProductsData = getDataFromTables('products',$status=NULL,'id',$id,$activeStatus=NULL,$activeTop=NULL);
                 $getProducts = $getProductsData->fetch_assoc();
-                $getCategories = getDataFromTables('categories',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);;
+                $getCategories = getDataFromTables('categories','0',$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);;
                 ?>
                 
               <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
@@ -372,23 +372,3 @@ function getSubCategories(val) {
     });
 }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-                  
-
-
-
-
-                      
-
-                  
