@@ -25,8 +25,8 @@ if (!isset($_POST['submit']))  {
     $created_at = date("Y-m-d h:i:s");
     $created_by = $_SESSION['admin_user_id'];
     //save product images into product_images table    
-    $sql1 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',sub_category_id ='$sub_category_id',product_price ='$product_price',price_type ='$price_type',offer_price ='$offer_price',selling_price ='$selling_price', deal_start_date = '$deal_start_date', deal_end_date ='$deal_end_date',quantity = '$quantity',minimum_order_quantity = '$minimum_order_quantity',key_features = '$key_features',product_info = '$product_info',specifications = '$specifications',availability_id = '$availability_id',status = '$status' WHERE id = '$id'"; 
     
+    $sql1 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',sub_category_id ='$sub_category_id',product_price ='$product_price',price_type ='$price_type',offer_price ='$offer_price',selling_price ='$selling_price', deal_start_date = '$deal_start_date', deal_end_date ='$deal_end_date',quantity = '$quantity',minimum_order_quantity = '$minimum_order_quantity',key_features = '$key_features',product_info = '$product_info',specifications = '$specifications',availability_id = '$availability_id',status = '$status' WHERE id = '$id'"; 
     
     if ($conn->query($sql1) === TRUE) {
     echo "Record updated successfully";
@@ -178,7 +178,8 @@ if (!isset($_POST['submit']))  {
                       }                               
                      ?>
                   </div>
-                  <div class="form-group">
+
+                  <!-- <div class="form-group">
                     <label for="form-control-4" class="control-label">Product Image</label>
                     <div>
                       <?php if($getImages->num_rows > 0){ ?>
@@ -192,6 +193,18 @@ if (!isset($_POST['submit']))  {
                       <?php } ?>
                       <a style="cursor:pointer" id="add_more" class="add_field_button">Add More Fields</a>
                     </div>
+                  </div> -->
+
+                  <div id="formdiv">                   
+                      <div id="filediv">
+                        <?php if($getImages->num_rows > 0){ ?>
+                          <input name="product_images[]" accept="image/*" type="file" id="file" />
+                         <?php } else { ?>
+                          <input name="product_images[]" accept="image/*" type="file" id="file" required/>
+                         <?php } ?>
+
+                      </div><br/>               
+                      <input type="button" id="add_more" class="upload" value="Add More Files"/>                                                    
                   </div>
 
                   <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
@@ -216,7 +229,8 @@ if (!isset($_POST['submit']))  {
       </div>
       <?php include_once 'admin_includes/footer.php'; ?>
       <script src="js/tables-datatables.min.js"></script>
-      <script src="js/tables-datatables.min.js"></script>
+      <script src="js/multi_image_upload.js"></script>
+      <link rel="stylesheet" type="text/css" href="css/multi_image_upload.css">
    <!-- Below script for ck editor -->
 <script src="//cdn.ckeditor.com/4.7.0/full/ckeditor.js"></script>
 <script>
@@ -225,7 +239,7 @@ if (!isset($_POST['submit']))  {
     CKEDITOR.replace( 'specifications' );
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function() {
     $('#add_more').click(function () {
         $(this).before("<div><input type='file' id='file' name='product_images[]' accept='image/*'required><a href='#' class='remove_field'>Remove</a> </div>");
@@ -234,7 +248,7 @@ $(document).ready(function() {
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
   });
-</script>
+</script> -->
 <!--Multiple images script end here -->
 <script type="text/javascript">
 
@@ -315,27 +329,37 @@ $(document).ready(function() {
 <script type="text/javascript">
 $(function(){
     $(document).on('click','.ajax_img_del',function(){
-        var del_id= $(this).attr('id');
-        var $ele = $(this).parent().parent();
-        var r = confirm("Are you sure you want to delete?");
-        if(r == true){
-        $.ajax({
-            type:'POST',
-            url:'delete_image.php',
-            data:{'del_id':del_id},
-            success: function(data){              
-                 if(data=="YES"){
-                   location.reload();
-                 }else{
-                    alert("Deleted Failed");  
-                }
-             }
 
-           });
-         } else{
-            location.reload();
-         }
-        });
+        var divOldLength = $(".form-group > img").length;
+        var divNewLength = $(".abcd > img").length;
+
+        if(divOldLength == '1' && divNewLength=='0')  {
+          alert("Require at lease one image!");
+          return false;
+        } else {
+          var del_id= $(this).attr('id');
+          var $ele = $(this).parent().parent();
+          var r = confirm("Are you sure you want to delete?");
+          if(r == true){
+          $.ajax({
+              type:'POST',
+              url:'delete_image.php',
+              data:{'del_id':del_id},
+              success: function(data){    
+                   if(data=="YES"){
+                     location.reload();
+                   }else{
+                      alert("Deleted Failed");  
+                  }
+               }
+
+             });
+           } else{
+              //location.reload();
+           }
+        }
+        
+    });
 });
 function getSubCategories(val) {
     $.ajax({
@@ -348,23 +372,3 @@ function getSubCategories(val) {
     });
 }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-                  
-
-
-
-
-                      
-
-                  
