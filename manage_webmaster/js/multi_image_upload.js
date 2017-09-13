@@ -25,7 +25,9 @@ $('body').on('change', '#file', function(){
                
 			    $(this).hide();
                 $("#abcd"+ abc).append($("<img/>", {id: 'img', src: 'x.png', alt: 'delete'}).click(function() {
-                if(z==0) {
+                    //alert($(".abcd").children("img").length);
+                var divOldLength = $(".form-group > img").length;
+                if($(".abcd").children("img").length==2 && divOldLength ==0) {
                    alert("Require at lease one image!");
                     return false; 
                 } else {
