@@ -153,7 +153,7 @@ if (!isset($_POST['submit']))  {
                     <div class="help-block with-errors"></div>
                   </div>
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="form-control-4" class="control-label">Product Images</label>
                     <img id="output" height="100" width="100"/>
                     <label class="btn btn-default file-upload-btn">
@@ -161,7 +161,12 @@ if (!isset($_POST['submit']))  {
                           <input id="product_images" class="file-upload-input" type="file" accept="image/*" name="product_images[]" id="product_images"  onchange="loadFile(event)"  multiple="multiple" required >
                       </label>
                       <a style="cursor:pointer" id="add_more" class="add_field_button">Add More Fields</a>
-                  </div>
+                  </div> -->
+
+                    <div id="formdiv">                   
+                          <div id="filediv"><input required name="product_images[]" accept="image/*" type="file" id="file" /></div><br/>               
+                          <input type="button" id="add_more" class="upload" value="Add More Files"/>                                                    
+                    </div>
 
                   <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
                   <div class="form-group">
@@ -185,6 +190,8 @@ if (!isset($_POST['submit']))  {
       </div>
       <?php include_once 'admin_includes/footer.php'; ?>
    <script src="js/tables-datatables.min.js"></script>
+   <script src="js/multi_image_upload.js"></script>
+   <link rel="stylesheet" type="text/css" href="css/multi_image_upload.css">
    <!-- Below script for ck editor -->
 <script src="//cdn.ckeditor.com/4.7.0/full/ckeditor.js"></script>
 <script>
@@ -193,7 +200,7 @@ if (!isset($_POST['submit']))  {
     CKEDITOR.replace( 'specifications' );
 </script>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function() {
 var abc = 0;
     $('#add_more').click(function () {
@@ -203,7 +210,7 @@ var abc = 0;
         e.preventDefault(); $(this).parent('div').remove(); x--;
     })
   });
-</script>
+</script> -->
 <!--Multiple images script end here -->
 <script type="text/javascript">
 
