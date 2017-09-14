@@ -23,6 +23,7 @@ if (!isset($_POST['submit']))  {
     $availability_id = $_POST['availability_id'];
     $status = $_POST['status'];
     $created_at = date("Y-m-d h:i:s");
+    $t = time();
     $created_by = $_SESSION['admin_user_id'];
     //save product images into product_images table    
     
@@ -39,7 +40,7 @@ if (!isset($_POST['submit']))  {
 
         $product_images1 = $_FILES['product_images']['name'][$key];
         $file_tmp = $_FILES["product_images"]["tmp_name"][$key];
-        $file_destination = '../uploads/product_images/' . $product_images1;
+        $file_destination = '../uploads/product_images/' . $product_images1.$t;
         if($product_images1!=''){
             move_uploaded_file($file_tmp, $file_destination);        
             $sql = "INSERT INTO product_images ( `product_id`,`product_image`) VALUES ('$id','$product_images1')";
