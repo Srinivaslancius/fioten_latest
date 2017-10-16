@@ -1,4 +1,8 @@
 <?php include_once "main_header_scripts.php"; ?>
+<?php $getAboutUsData = getDataFromTables('content_pages',$status=NULL,'id',1,$activeStatus=NULL,$activeTop=NULL);
+      $getAboutUs = $getAboutUsData->fetch_assoc();?>
+<?php $getcontentWhy = getDataFromTables('content_pages',$status=NULL,'id',2,$activeStatus=NULL,$activeTop=NULL);
+      $getcontentWhyUs = $getcontentWhy->fetch_assoc();?>
 <!DOCTYPE html>
 
 <!--[if IE 7 ]>  <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
@@ -238,13 +242,10 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="about-us m-t50 m-b20">
-                                            <h5 class="h5 m-t0 m-b5">About Us</h5>
-                                            <div class="w3-separator bg-gray-dark"></div>
-                                            
-                                            <p>We are an upcoming Technology company based in Chicago, Illinois with varied interest in IT hardware solutions, telecom solutions and cloud based solutions. As a company we are bold, ambitious and enthusiastic about what we do at Fioten every day. Our passion for technology and our aspiration of being a dependable brand amongst our customers and partners drives us towards excellence.</p>
-                                            <p>As a company we are in our infancy but that's in no way a disadvantage. Fioten is lead by a group of highly motivated and enterprising team of professionals with decades of corporate experience and proven track record across geographies in Asia, Africa and Latin American markets.</p>
-                                            <a href="" class="site-button">Read More</a>
-                                    </div>
+	                                    <h5 class="h5 m-t0 m-b5"><?php echo $getAboutUs['title'] ?></h5>
+	                                    <div class="w3-separator bg-gray-dark"></div>                                            
+	                                     <?php echo substr($getAboutUs['description'],0,1000); ?>
+	                                    <a href="about_us.php" class="site-button">Read More</a>                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -257,26 +258,18 @@
             <div class="container">
 				<div class="row">
 					<div class="col-md-6 col-sm-6">
-                                            <div class="m-b30" style="margin-top: 15px;">
-							
+                        <div class="m-b30" style="margin-top: 15px;">							
 							<div class="our-classes-block">
-                                                            <h3 class="h3 m-t0">Why Us</h3>
-                                                            <img src="images/why_us.png" alt="" class="img-responsive"/>
+                                <h3 class="h3 m-t0"><?php echo $getcontentWhyUs['title']; ?></h3>
+                                <img src="<?php echo $base_url . 'uploads/content_images/'.$getcontentWhyUs['image'] ?>" alt="" class="img-responsive"/>
 							</div>	
 						</div>
 					</div>
-                                    <div class="col-md-1 col-sm-6"></div>
+                    <div class="col-md-1 col-sm-6"></div>
 					<div class="col-md-5 col-sm-6">
 						<div class="row">
-                                                    <p>We are a young company full of energy, motivation and enthusiasm. Our ideas are forward looking and we are fearless.</p>
-                                                    <p>We understand our customer partners and the requirements of IT. We provide cost effective IT hardware solutions through the right channels in Africa so as to enable our customer's access to latest products in their own backyard.</p>
-                                                   
-                                                    <p>We have the process knowledge and expertise to ease a customer's burden of selecting and purchasing the IT assets while streamlining IT management and cost in the African & LATAM regions.</p>
-                                                    <p>We have expertise in delivering end to end services, from requirements analysis, sizing the requirement, implementation, support & training on total IT solutions.</p>
-                                                    <p>"We have expertise in providing end-to-end solutions in the area of system integration. Ranging from Printing, Network cabling, Network & Data security to higher end solutions on storage and virtualization."</p>
-                                                    <p>Providing top notch customer support & technical support services irrespective of geographical constrains.</p>
-                                                    <p>We are fast growing in to new markets and we carry our customers and partners along wherever we go.</p>
-                                                </div>
+                            <?php echo $getcontentWhyUs['description']; ?>
+                        </div>
 					</div>
 				</div>
             </div>
@@ -403,13 +396,15 @@
 			</div>
 		</div>
 		<!-- Appointment END-->
-                <div class="section-full bg-img-fix content-inner overlay-primary-dark over-50" style="background-image:url(images/background/bg7.jpg);">
+		<?php $getChooseUs = getDataFromTables('content_pages',$status=NULL,'id',3,$activeStatus=NULL,$activeTop=NULL);
+      $getChooseUsData = $getChooseUs->fetch_assoc();?>
+                <div class="section-full bg-img-fix content-inner overlay-primary-dark over-50" style="background-image:url(<?php echo $base_url . 'uploads/content_images/'.$getChooseUsData['image'] ?>);">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 text-left text-white">
-						<h2 class="h2">Why choose us ?</h2>
+						<h2 class="h2"><?php echo $getChooseUsData['title'] ?></h2>
 						<div class="w3-separator bg-white"></div>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+						<?php echo $getChooseUsData['description'] ?>
 					</div>
 				</div>	
 				<div class="row">
