@@ -1,4 +1,8 @@
-
+<?php include_once "main_header_scripts.php"; ?>
+<?php $getLogi = getDataFromTables('content_pages',$status=NULL,'id',6,$activeStatus=NULL,$activeTop=NULL);
+      $getLogiInfo = $getLogi->fetch_assoc();?>
+<?php $getPartInfo = getDataFromTables('content_pages',$status=NULL,'id',7,$activeStatus=NULL,$activeTop=NULL);
+      $getPartInfoDat = $getPartInfo->fetch_assoc();?>
 <!DOCTYPE html>
 <!-- Meta -->
 <html lang="en">
@@ -44,7 +48,7 @@
     <!-- Content -->
     <div class="page-content">
         <!-- inner page banner -->
-        <div class="w3-bnr-inr overlay-black-middle" style="background-image:url(images/background/bg3.jpg);">
+        <div class="w3-bnr-inr overlay-black-middle" style="background-image:url(<?php echo $base_url . 'uploads/content_images/'.$getLogiInfo['image'] ?>);">
             <div class="container">
                 <div class="w3-bnr-inr-entry">
                     <h1 class="text-white">Logistics and Partnership</h1>
@@ -69,24 +73,22 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12 text-center section-head">
-							<h2 class="h2"> <span class="text-primary">Logistics</span></h2>
+							<h2 class="h2"> <span class="text-primary"><?php echo $getLogiInfo['title'];?></span></h2>
 							<div class="w3-separator bg-primary"></div>
 							
 						</div>
-                                            <div class="clearfix">
-                                                <div class="col-md-12">
-                                                    <p>At fioten we believe in providing tailored logistics solution to every customer who engages with us. Packing, shipping, customs management and end to end handling of inventory can be a very complex affair especially when trading is international and more so when the trade involves high value goods.</p>
-                                                    <p>We at fioten perfectly understand the concerns of our customers from a logistics stand point and hence take great care to ensure the shipments of our customers reach them in perfect condition and as per the committed time & date. </p>
-                                                    <p>As a customer when you engage with Fioten, you get end to end logistics management services at no additional cost. We ensure that your inventory reaches at your doorstep effortlessly. </p>
-                                                </div>
-                                            </div>
+                        <div class="clearfix">
+                            <div class="col-md-12">
+                                <?php echo $getLogiInfo['description'];?>
+                            </div>
+                        </div>
 					</div>
 				</div>
             </div>
             <!-- About Us END -->
             
             <!-- What peolpe are saying -->
-            <div class="section-full w3-slider-btn overlay-black-middle bg-img-fix content-inner" style="background-image:url(images/background/bg4.jpg);">
+            <div class="section-full w3-slider-btn overlay-black-middle bg-img-fix content-inner" style="background-image:url(<?php echo $base_url . 'uploads/content_images/'.$getPartInfoDat['image'] ?>);">
                 <div class="container">
                     <div class="section-head text-center text-white">
                         <h2 class="h2">Our <span class="text-primary">Partnership</span></h2>
@@ -97,10 +99,8 @@
                     </div>
                     <div class="section-content">
                         <div class="row">
-                            <div class="col-md-12">
-                                <p style="color: #fff;">Fioten is proud of the alliances and partnerships that the company has been able to build over the years with world class organizations through its founders. Over the last 2 decades the founders of Fioten have worked with some of the worlds best IT companies which enabled the founders to forge strong and lasting relationships. These relationships position fioten on an extremely strong platform to deliver on its promise of excellence. </p>
-                                <p style="color: #fff;">Fioten believes in the concept of inclusive growth where team fioten strives to invest in every relationship and partnership with an eye to the future. </p>
-                                <p style="color: #fff;">We believe in supporting our partners growth process which also fuels fioten’s own growth and hence keeping this in mind we always go the extra mile to ensure that our partners get all the attention and resources to be successful in their business through their association with fioten. </p>
+                            <div class="col-md-12" style="color:#ffff">
+                                <?php echo $getPartInfoDat['description'];?>
                             </div>
                         </div>
                     </div>

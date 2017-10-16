@@ -277,14 +277,16 @@
 
 		<!-- Choose Us END -->
 		<!-- Team member -->
+		<?php $getOurSer = getDataFromTables('content_pages',$status=NULL,'id',4,$activeStatus=NULL,$activeTop=NULL);
+      $getServiceData = $getOurSer->fetch_assoc();?>
 		<div class="section-full bg-white content-inner">
 			<div class="container">
 				<div class="section-head text-center">
-					<h2 class="h2">Our<span class="text-primary">Services</span></h2>
+					<h2 class="h2"><span class="text-primary"><?php echo $getServiceData['title'];?></span></h2>
 					<div class="w3-separator-outer ">
 						<div class="w3-separator bg-primary style-liner"></div>
 					</div>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has been the industry's standard dummy text ever since the been when an unknown printer.</p>
+					<?php echo $getServiceData['description'];?>
 				</div>
 				<div class="section-content text-center ">
 					<div class="row">
@@ -343,10 +345,12 @@
 							<div class="dzFormMsg "></div>
 							<form method="post" id="appointment_form" class="dzForm" action="#">
 								<div class="row">
+									<?php $getAnyque = getDataFromTables('content_pages',$status=NULL,'id',5,$activeStatus=NULL,$activeTop=NULL);
+      $getAnyQueries = $getAnyque->fetch_assoc();?>
 									<div class="section-head text-center">
 										<h2 class="h2">Any<span class="text-primary"> Queries</span></h2>
 										<div class="w3-separator-outer "><div class="w3-separator bg-primary style-liner"></div></div>
-										<p class="title-small">Lorem ipsum dolor sit amet, cons ectetur elit. Vestibulum nec odios Suspe ndisse cursus mal suada faci lisis. </p>
+										<?php echo $getAnyQueries['description']; ?>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
@@ -412,25 +416,25 @@
 						<div class="row">
 							<div class="col-md-6 col-sm-6">
 								<div class="text-left m-b30">
-									<span class="counter">1035</span>
+									<span class="counter"><?php echo $getSiteSettingsData['active_experts']; ?></span>
 									<h4 class="m-a0">Active Experts</h4>
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6">
 								<div class="text-left m-b30">
-									<span class="counter">1226</span>
+									<span class="counter"><?php echo $getSiteSettingsData['happy_clients']; ?></span>
 									<h4 class="m-a0">Happy Client</h4>
 								</div>
 							</div>
 							<div class="col-md-6 col-sm-6">
 								<div class="text-left m-b30">
-									<span class="counter">1552</span>
+									<span class="counter"><?php echo $getSiteSettingsData['developer_hand']; ?></span>
 									<h4 class="m-a0">Developer Hand</h4>
 								</div>
 							</div>					
 							<div class="col-md-6 col-sm-6">
 								<div class="text-left m-b10">
-									<span class="counter">1156</span>
+									<span class="counter"><?php echo $getSiteSettingsData['completed_project']; ?></span>
 									<h4 class="m-a0">Completed Project</h4>
 								</div>
 							</div>
