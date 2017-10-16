@@ -15,6 +15,7 @@
     $mobile = $_POST['mobile'];
     $footer_text = $_POST['footer_text'];
     $address = $_POST['address'];
+    $inst_link = $_POST['inst_link'];
     if($_FILES["logo"]["name"]!='') {
                                           
         $logo = $_FILES["logo"]["name"];
@@ -30,7 +31,7 @@
         $getImgUnlink = getImageUnlink('logo','site_settings','id',$id,$target_dir);
         //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
         if (move_uploaded_file($_FILES["logo"]["tmp_name"], $target_file)) {
-            $sql = "UPDATE `site_settings` SET admin_title = '$admin_title', email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link', mobile='$mobile', logo = '$logo', footer_text='$footer_text', address='$address' WHERE id = '$id' ";
+            $sql = "UPDATE `site_settings` SET admin_title = '$admin_title', email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link',inst_link='$inst_link', mobile='$mobile', logo = '$logo', footer_text='$footer_text', address='$address' WHERE id = '$id' ";
             if($conn->query($sql) === TRUE){
                echo "<script type='text/javascript'>window.location='site_settings.php?msg=success'</script>";
             } else {
@@ -41,7 +42,7 @@
             echo "Sorry, there was an error uploading your file.";
         }
     }  else {
-        $sql = "UPDATE `site_settings` SET admin_title = '$admin_title', email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link', mobile='$mobile',footer_text='$footer_text', address='$address' WHERE id = '$id' ";
+        $sql = "UPDATE `site_settings` SET admin_title = '$admin_title', email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link',inst_link='$inst_link', mobile='$mobile',footer_text='$footer_text', address='$address' WHERE id = '$id' ";
         if($conn->query($sql) === TRUE){
            echo "<script type='text/javascript'>window.location='site_settings.php?msg=success'</script>";
         } else {
@@ -81,20 +82,26 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="form-control-2" class="control-label">Instagram Link</label>
-                    <input type="url" name="twitter_link" class="form-control" id="form-control-2" placeholder="Instagram Link" data-error="Please enter a valid Instagram Link." value="<?php echo $getSiteSettingsData['twitter_link'];?>" required>
+                    <label for="form-control-2" class="control-label">Twitter Link</label>
+                    <input type="url" name="twitter_link" class="form-control" id="form-control-2" placeholder="Instagram Link" data-error="Please enter a valid Twitter Link." value="<?php echo $getSiteSettingsData['twitter_link'];?>" required>
                     <div class="help-block with-errors"></div>
                   </div>
 
                   <div class="form-group">
-                    <label for="form-control-2" class="control-label">Youtube Link</label>
-                    <input type="url" name="gplus_link" class="form-control" id="form-control-2" placeholder="Youtube Link" data-error="Please enter a valid Youtube Link." value="<?php echo $getSiteSettingsData['gplus_link'];?>" required>
+                    <label for="form-control-2" class="control-label">Instagram Link</label>
+                    <input type="url" name="inst_link" class="form-control" id="form-control-2" placeholder="Instagram Link" data-error="Please enter a valid Instagram Link." value="<?php echo $getSiteSettingsData['inst_link'];?>" required>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">G+ Link</label>
+                    <input type="url" name="gplus_link" class="form-control" id="form-control-2" placeholder="G+ Link" data-error="Please enter a valid G+ Link." value="<?php echo $getSiteSettingsData['gplus_link'];?>" required>
                     <div class="help-block with-errors"></div>
                   </div>
 
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Mobile</label>
-                    <input type="text" name="mobile" class="form-control" id="form-control-2" maxlength="10"  pattern="[0-9]{10}" onkeypress="return isNumberKey(event)" placeholder="Mobile" data-error="Please enter valid Mobile." value="<?php echo $getSiteSettingsData['mobile'];?>" required>
+                    <input type="text" name="mobile" class="form-control" id="form-control-2"  placeholder="Mobile" data-error="Please enter valid Mobile." value="<?php echo $getSiteSettingsData['mobile'];?>" required>
                     <div class="help-block with-errors"></div>
                   </div>         
 

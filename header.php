@@ -3,9 +3,9 @@
                     <div class="row">
                         <div class="w3-topbar-left">
                             <ul class="social-line text-center pull-right">
-                                <li><a href="javascript:void(0);"><i class="fa fa-phone"></i> <span>+234 805 609 9279</span> </a>
+                                <li><a href="Tel:<?php echo $getSiteSettingsData['mobile']; ?>"><i class="fa fa-phone"></i> <span><?php echo $getSiteSettingsData['mobile'] ?></span> </a>
                                 </li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-clock-o"></i> <span>support@fioten.com</span></a>
+                                <li><a href="javascript:void(0);"><i class="fa fa-clock-o"></i> <span><?php echo $getSiteSettingsData['email'] ?></span></a>
                                 </li>
                                 <li><a href="javascript:void(0);"><i class="fa fa-envelope-o"></i> <span>Mon - Fri: 08.00 - 17.00</span></a>
                                 </li>
@@ -14,16 +14,16 @@
                         <div class="w3-topbar-right">
                             <ul class="social-line text-center pull-right">
                                 <li>
-                                    <a href="javascript:void(0);" class="fa fa-facebook"></a>
+                                    <a href="<?php echo $getSiteSettingsData['fb_link'] ?>" target="_blank" class="fa fa-facebook"></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);" class="fa fa-twitter"></a>
+                                    <a href="<?php echo $getSiteSettingsData['twitter_link'] ?>" target="_blank" class="fa fa-twitter"></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);" class="fa fa-linkedin"></a>
+                                    <a href="<?php echo $getSiteSettingsData['inst_link'] ?>"  target="_blank" class="fa fa-linkedin"></a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);" class="fa fa-google-plus"></a>
+                                    <a href="<?php echo $getSiteSettingsData['gplus_link'] ?>" target="_blank" class="fa fa-google-plus"></a>
                                 </li>
                             </ul>
                         </div>
