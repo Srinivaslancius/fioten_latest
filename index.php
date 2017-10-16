@@ -288,6 +288,8 @@
 					</div>
 					<?php echo $getServiceData['description'];?>
 				</div>
+				<?php $getOurSer1 = getDataFromTables('content_pages',$status=NULL,'id',8,$activeStatus=NULL,$activeTop=NULL);
+      $getServiceData1 = $getOurSer1->fetch_assoc();?>
 				<div class="section-content text-center ">
 					<div class="row">
 						<div class="col-md-4 col-sm-6">
@@ -298,12 +300,15 @@
 									</a>
 								</div>
 								<div class="p-a10">
-									<h4 class="w3-title m-b10 font-weight-600"><a href="javascript:;">IT Distribution - Latin America & Africa</a></h4>
-                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+									<h4 class="w3-title m-b10 font-weight-600"><a href="javascript:;"><?php echo $getServiceData1['title'];?></a></h4>
+                                    <?php echo substr($getServiceData1['description'], 0,150);?>
 								</div>
 							</div>
 						</div>
-                                                <div class="col-md-4 col-sm-6">
+
+						<?php $getOurSer2 = getDataFromTables('content_pages',$status=NULL,'id',8,$activeStatus=NULL,$activeTop=NULL);
+      $getServiceData2 = $getOurSer2->fetch_assoc();?>
+                        <div class="col-md-4 col-sm-6">
 							<div class="w3-box m-b30 border-1 hover w3-img-effect off-color">
 								<div class="w3-media">
 									<a href="javascript:;">
@@ -311,12 +316,14 @@
 									</a>
 								</div>
 								<div class="p-a10">
-									<h4 class="w3-title m-b10 font-weight-600"><a href="javascript:;">Business Consulting - Americas</a></h4>
-                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+									<h4 class="w3-title m-b10 font-weight-600"><a href="javascript:;"><?php echo $getServiceData2['title'];?></a></h4>
+                                    <?php echo substr($getServiceData2['description'], 0,150);?>
 								</div>
 							</div>
 						</div>
-                                                <div class="col-md-4 col-sm-6">
+						<?php $getOurSer3 = getDataFromTables('content_pages',$status=NULL,'id',8,$activeStatus=NULL,$activeTop=NULL);
+      $getServiceData3 = $getOurSer3->fetch_assoc();?>
+                        <div class="col-md-4 col-sm-6">
 							<div class="w3-box m-b30 border-1 hover w3-img-effect off-color">
 								<div class="w3-media">
 									<a href="javascript:;">
@@ -324,8 +331,8 @@
 									</a>
 								</div>
 								<div class="p-a10">
-									<h4 class="w3-title m-b10 font-weight-600"><a href="javascript:;">Telecom Solutions - Latin America</a></h4>
-                                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever</p>
+									<h4 class="w3-title m-b10 font-weight-600"><a href="javascript:;"><?php echo $getServiceData3['title'];?></a></h4>
+                                    <?php echo substr($getServiceData3['description'], 0,150);?>
 								</div>
 							</div>
 						</div>
