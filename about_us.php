@@ -1,4 +1,6 @@
 <?php include_once "main_header_scripts.php"; ?>
+<?php $getAboutUsData = getDataFromTables('content_pages',$status=NULL,'id',1,$activeStatus=NULL,$activeTop=NULL);
+      $getAboutUs = $getAboutUsData->fetch_assoc();?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -69,14 +71,10 @@
             <!-- Services -->
             <div class="container">
                 <div class="row m-b30">
-                    <div class="col-md-4 col-sm-4"> <img class="p-t50" src="images/machine.jpg" alt="" /> </div>
+                    <div class="col-md-4 col-sm-4"> <img class="p-t50" src="<?php echo $base_url . 'uploads/content_images/'.$getAboutUs['image'] ?>" alt="" /> </div>
                     <div class="col-md-8 col-sm-8">
-                        <h2 class="text-uppercase"> About Us</h2>
-                        <p>We are an upcoming Technology company based in Chicago, Illinois with varied interest in IT hardware solutions, telecom solutions and cloud based solutions. As a company we are bold, ambitious and enthusiastic about what we do at Fioten every day. Our passion for technology and our aspiration of being a dependable brand amongst our customers and partners drives us towards excellence.</p>
-                        <p>As a company we are in our infancy but that's in no way a disadvantage. Fioten is lead by a group of highly motivated and enterprising team of professionals with decades of corporate experience and proven track record across geographies in Asia, Africa and Latin American markets.</p>
-                        <p>" We are specialized in providing our customers with products that come with cutting edge technology and offer solutions that help them meet their IT needs. We have the expertise, resources and motivation to provide products and services that meets the highest standards of quality and promise."</p>
-                        <p>OEM's partnering with Fioten have the opportunity to leverage our learnings, expertise and the know-how of engaging in African and Latin American markets. We have the presence and infrastructure to conduct extensive market research to build a comprehensive go to market plan for new products and services in the markets that we operate in. Fioten is a bridge that connects the technology gap between OEM's and customers especially in Africa and Latin American markets.</p>
-                        
+                        <h2 class="text-uppercase"> <?php echo $getAboutUs['title'] ?> </h2>
+                        <?php echo $getAboutUs['description'] ?>
                     </div>
                 </div>
             </div>
