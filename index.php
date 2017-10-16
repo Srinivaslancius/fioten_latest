@@ -1,3 +1,4 @@
+<?php include_once "main_header_scripts.php"; ?>
 <!DOCTYPE html>
 
 <!--[if IE 7 ]>  <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
