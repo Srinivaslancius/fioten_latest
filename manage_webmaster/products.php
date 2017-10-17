@@ -42,10 +42,10 @@
                     <td><?php $getCategories = getDataFromTables('categories',$status=NULL,'id',$row['category_id'],$activeStatus=NULL,$activeTop=NULL);
                     $getCategory = $getCategories->fetch_assoc(); echo $getCategory['category_name']; ?></td>
 
-                    <td><?php $getSubCategories = getDataFromTables('sub_categories',$status=NULL,'id',$row['category_id'],$activeStatus=NULL,$activeTop=NULL);
+                    <td><?php $getSubCategories = getDataFromTables('sub_categories',$status=NULL,'id',$row['sub_category_id'],$activeStatus=NULL,$activeTop=NULL);
                     $getSubCategory = $getSubCategories->fetch_assoc(); echo $getSubCategory['sub_category_name']; ?></td>
 
-                    <td><?php $getSubSubCategories = getDataFromTables('sub_sub_categories',$status=NULL,'id',$row['sub_category_id'],$activeStatus=NULL,$activeTop=NULL);
+                    <td><?php $getSubSubCategories = getDataFromTables('sub_sub_categories',$status=NULL,'id',$row['sub_sub_category_id'],$activeStatus=NULL,$activeTop=NULL);
                     $getSubSubCategory = $getSubSubCategories->fetch_assoc(); echo $getSubSubCategory['sub_sub_category_name']; ?></td>
 
                     <td><?php echo $row['product_price'];?></td>
