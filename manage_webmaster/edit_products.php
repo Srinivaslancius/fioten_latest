@@ -41,7 +41,7 @@ if (!isset($_POST['submit']))  {
 
         $product_images1 = $_FILES['product_images']['name'][$key];
         $file_tmp = $_FILES["product_images"]["tmp_name"][$key];
-        $file_destination = '../uploads/product_images/' . $product_images1.$t;
+        $file_destination = '../uploads/product_images/' . $product_images1;
         if($product_images1!=''){
             move_uploaded_file($file_tmp, $file_destination);        
             $sql = "INSERT INTO product_images ( `product_id`,`product_image`) VALUES ('$id','$product_images1')";
