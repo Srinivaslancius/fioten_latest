@@ -111,22 +111,22 @@ mail($to,$subject,$message,$headers);
                                 <li class="icon-bx-wraper left m-b30">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getUSAAddress1['title'];?></h6>
-                                        <p><?php echo $getUSAAddress1['description'];?></p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte">Corporate Office Address</h6>
+                                        <?php echo $getUSAAddress1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left  m-b30">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getEmail1['title'];?></h6>
-                                        <p><?php echo $getEmail1['description'];?></p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte">EMAIL</h6>
+                                        <?php echo $getEmail1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getUSAPhone1['title'];?></h6>
-                                        <p><?php echo $getUSAPhone1['description'];?></p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte">PHONE</h6>
+                                        <?php echo $getUSAPhone1['description'];?>
                                     </div>
                                 </li>
                             </ul>
@@ -145,22 +145,22 @@ mail($to,$subject,$message,$headers);
                                 <li class="icon-bx-wraper left m-b30">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getNigeriaAddress1['title'];?></h6>
-                                        <p><?php echo $getNigeriaAddress1['description'];?></p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte">ADDRESS</h6>
+                                        <?php echo $getNigeriaAddress1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left  m-b30">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getEmail1['title'];?></h6>
-                                        <p><?php echo $getEmail1['description'];?></p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte">EMAIL</h6>
+                                        <?php echo $getEmail1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getUSAPhone1['title'];?></h6>
-                                        <p><?php echo $getUSAPhone1['description'];?></p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte">PHONE</h6>
+                                        <?php echo $getUSAPhone1['description'];?>
                                     </div>
                                 </li>
                             </ul>
@@ -180,21 +180,21 @@ mail($to,$subject,$message,$headers);
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getChinaAddress1['title'];?></h6>
-                                        <p><?php echo $getChinaAddress1['description'];?></p>
+                                        <?php echo $getChinaAddress1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left  m-b30">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getEmail1['title'];?></h6>
-                                        <p><?php echo $getEmail1['description'];?></p>
+                                        <?php echo $getEmail1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getChinaPhone1['title'];?></h6>
-                                        <p><?php echo $getChinaPhone1['description'];?></p>
+                                        <?php echo $getChinaPhone1['description'];?>
                                     </div>
                                 </li>
                             </ul>
