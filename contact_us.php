@@ -1,5 +1,33 @@
 <?php include_once "main_header_scripts.php"; ?>
-<!DOCTYPE html>
+<?php
+//ob_start();
+if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message']))  {
+$dataem = $getSiteSettingsData['email'];
+//$to = "srinivas@lanciussolutions.com";
+$to = "$dataem";
+$subject = "Fioten - Contact Us ";
+
+$message = "<html><head><title>Fioten </title></head>
+<body>
+<p>User Feed Back Information!</p>
+<h4>Name: </h4><p>".$_POST['name']."</p>
+<h4>Email: </h4><p>".$_POST['email']."</p>
+<h4>Message: </h4><p>".$_POST['message']."</p>
+</body>
+</html>
+";
+
+// Always set content-type when sending HTML email
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+// More headers
+$headers .= 'From: <info@fioten.com>' . "\r\n";
+// $headers .= 'Cc: myboss@example.com' . "\r\n";
+
+mail($to,$subject,$message,$headers);
+
+}?><!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -20,7 +48,7 @@
 <!--[if lt IE 9]>
         <script src="js/html5shiv.min.js"></script>
         <script src="js/respond.min.js"></script>
-	<![endif]-->
+    <![endif]-->
 <!-- Stylesheets -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/fontawesome/css/font-awesome.min.css" />
@@ -71,88 +99,102 @@
                     <!-- Left part END -->
                     <!-- right part start -->
                     <div class="col-md-4">
+                        <?php $getUSAAddress = getDataFromTables('content_pages',$status=NULL,'id',11,$activeStatus=NULL,$activeTop=NULL);
+                        $getUSAAddress1 = $getUSAAddress->fetch_assoc();?>
+                        <?php $getEmail = getDataFromTables('content_pages',$status=NULL,'id',12,$activeStatus=NULL,$activeTop=NULL);
+                        $getEmail1 = $getEmail->fetch_assoc();?>
+                        <?php $getUSAPhone = getDataFromTables('content_pages',$status=NULL,'id',13,$activeStatus=NULL,$activeTop=NULL);
+                        $getUSAPhone1 = $getUSAPhone->fetch_assoc();?>
                         <h4>Corporate Office</h4>
                         <div class="p-a30 bg-white m-b30">
                             <ul class="no-margin">
                                 <li class="icon-bx-wraper left m-b30">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte">Address</h6>
-                                        <p><b>Fioten USA Limited</b><br>No 235, Parkside Estate, 4848 North <br>
-                                            Lydell Avenue, Glendale, Wisconsin, 53217</p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte">Corporate Office Address</h6>
+                                        <?php echo $getUSAAddress1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left  m-b30">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte">EMAIl</h6>
-                                        <p>info@fioten.com</p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte">EMAIL</h6>
+                                        <?php echo $getEmail1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte">PHONE</h6>
-                                        <p>+2348064347979</p>
+                                        <?php echo $getUSAPhone1['description'];?>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-4">
+                        <?php $getNigeriaAddress = getDataFromTables('content_pages',$status=NULL,'id',14,$activeStatus=NULL,$activeTop=NULL);
+                        $getNigeriaAddress1 = $getNigeriaAddress->fetch_assoc();?>
+                        <?php $getUSAEmil = getDataFromTables('content_pages',$status=NULL,'id',12,$activeStatus=NULL,$activeTop=NULL);
+                        $getUSAEmil1 = $getUSAEmil->fetch_assoc();?>
+                        <?php $getUSAPhone = getDataFromTables('content_pages',$status=NULL,'id',13,$activeStatus=NULL,$activeTop=NULL);
+                        $getUSAPhone1 = $getUSAPhone->fetch_assoc();?>
                         <h4>Nigeria Office</h4>
                         <div class="p-a30 bg-white m-b30">
                             <ul class="no-margin">
                                 <li class="icon-bx-wraper left m-b30">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte">Address</h6>
-                                        <p><b>Fioten Nigeria Limited</b><br>
-                                                    Centage Plaza, 5th Floor, No:14, <br>
-                                                    Allen Avenue, Ikeja, Lagos,<br> Nigeria</p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte">ADDRESS</h6>
+                                        <?php echo $getNigeriaAddress1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left  m-b30">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte">EMAIl</h6>
-                                        <p>info@fioten.com</p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte">EMAIL</h6>
+                                        <?php echo $getEmail1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte">PHONE</h6>
-                                        <p>+2348064347979</p>
+                                        <?php echo $getUSAPhone1['description'];?>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-4">
+                        <?php $getChinaAddress = getDataFromTables('content_pages',$status=NULL,'id',15,$activeStatus=NULL,$activeTop=NULL);
+                        $getChinaAddress1 = $getChinaAddress->fetch_assoc();?>
+                        <?php $getUSAEmil = getDataFromTables('content_pages',$status=NULL,'id',12,$activeStatus=NULL,$activeTop=NULL);
+                        $getUSAEmil1 = $getUSAEmil->fetch_assoc();?>
+                        <?php $getChinaPhone = getDataFromTables('content_pages',$status=NULL,'id',16,$activeStatus=NULL,$activeTop=NULL);
+                        $getChinaPhone1 = $getChinaPhone->fetch_assoc();?>
                         <h4>China Office</h4>
                         <div class="p-a30 bg-white m-b30">
                             <ul class="no-margin">
                                 <li class="icon-bx-wraper left m-b30">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte">Address</h6>
-                                        <p>121 King Street, Melb <br>
-                                            Victoria 3000 Australia</p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getChinaAddress1['title'];?></h6>
+                                        <?php echo $getChinaAddress1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left  m-b30">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte">EMAIl</h6>
-                                        <p>info@fioten.com</p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getEmail1['title'];?></h6>
+                                        <?php echo $getEmail1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left">
                                     <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
                                     <div class="icon-content">
-                                        <h6 class="text-uppercase m-b0 w3-tilte">PHONE</h6>
-                                        <p>+61 3 8376 6284</p>
+                                        <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getChinaPhone1['title'];?></h6>
+                                        <?php echo $getChinaPhone1['description'];?>
                                     </div>
                                 </li>
                             </ul>
@@ -165,33 +207,33 @@
                         <h4>Contact form</h4>
                         <div class="dzFormMsg"></div>
                         <div class="p-a30 bg-white clearfix m-b30">
-                            <form method="post" class="dzForm" action="#">
+                            <form method="post"  action="">
                                 <input type="hidden" value="Contact" name="dzToDo" >
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                                <input name="dzName" type="text" required class="form-control ">
+                                                <input name="name" type="text" required class="form-control ">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <div class="input-group"> <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                                <input name="dzEmail" type="email" class="form-control" required >
+                                                <input name="email" type="email" class="form-control" required >
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class="input-group"> <span class="input-group-addon v-align-t"><i class="fa fa-pencil"></i></span>
-                                                <textarea name="dzMessage" rows="4" class="form-control" required ></textarea>
+                                                <textarea name="message" rows="4" class="form-control" required ></textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <button name="submit" type="submit" value="Submit" class="site-button "> <span>Submit</span> </button>
-                                        <button name="Resat" type="reset" value="Reset"  class="site-button  m-l30"> <span>Reset</span> </button>
+                                        <button name="Reset" type="reset" value="Reset"  class="site-button  m-l30"> <span>Reset</span> </button>
                                     </div>
                                 </div>
                             </form>
@@ -202,8 +244,9 @@
                         <!-- Map part start -->
                         <h4>Our Location</h4>
                         <div id="gmap_canvas">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2912.977839896567!2d-87.91356848468456!3d43.1049805957248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88051eedab1d2321%3A0x22c9d93d12fb4c4b!2s4848+N+Lydell+Ave%2C+Milwaukee%2C+WI+53217%2C+USA!5e0!3m2!1sen!2sin!4v1505902149319" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
-						</div>
+                        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2912.977839896567!2d-87.91356848468456!3d43.1049805957248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88051eedab1d2321%3A0x22c9d93d12fb4c4b!2s4848+N+Lydell+Ave%2C+Milwaukee%2C+WI+53217%2C+USA!5e0!3m2!1sen!2sin!4v1505902149319" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2912.9795346934648!2d-87.91344268485466!3d43.10494497914389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88051eed0e11be0f%3A0x6d33635e7b7bfebc!2sParkside+At+Estabrook+Apartments!5e0!3m2!1sen!2sin!4v1508240610254" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
                         <!-- Map part END -->
                     </div>
                 </div>

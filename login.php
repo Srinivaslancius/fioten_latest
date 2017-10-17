@@ -39,7 +39,28 @@
 <div class="page-wrapers">
     <header class="site-header header-style-1 dark style-2">
 		<!-- Main Header -->
-		<?php include_once 'header.php';?>
+		<?php include_once 'header.php';
+            if (!isset($_POST['submit']))  {
+                //If fail
+                echo "fail";
+            } else  { 
+                  // //If success
+                $user_full_name = $_POST['user_full_name'];
+                $user_email = $_POST['user_email'];
+                $user_address = $_POST['user_address'];
+                $user_city_id = $_POST['user_city_id'];
+                $user_name = $_POST['user_name'];
+                $user_password = encryptPassword($_POST['user_password']);
+                $created_admin_id = $_SESSION['admin_user_id'];
+                $created_at = date("Y-m-d h:i:s");
+                  $sql = "INSERT INTO users (`user_full_name`, `user_email`, `user_address`, `user_city_id`, `user_name`, `user_password`, `created_admin_id`, `created_at`, `status`) VALUES ('$user_full_name', '$user_email', '$user_address', '$user_city_id', '$user_name', '$user_password', '$created_admin_id', '$created_at', 1)";
+                if($conn->query($sql) === TRUE){
+                   echo "<script type='text/javascript'>alert('Data Added Successfully');window.location='login.php'</script>";
+                } else {
+                   echo "<script type='text/javascript'>alert('Data Added failed');window.location='login.php'</script>";
+                }
+            }
+        ?>
 		<!-- Main Header END -->
 	</header>
     <!-- Content -->
@@ -85,40 +106,42 @@
                     </form>
                 </div>
                 <div id="developement-1" class="tab-pane fade">
-                    <form class="p-a30 w3-form text-center text-center">
+                    <form class="p-a30 w3-form text-center text-center" method="post">
                         <h3 class="form-title m-t0">Sign Up</h3>
                         <div class="w3-separator-outer m-b5">
                             <div class="w3-separator bg-primary style-liner"></div>
                         </div>
                         <p>Enter your personal details below: </p>
                         <div class="form-group">
-                            <input name="dzName" required="" class="form-control" placeholder="Full Name" type="text"/>
+                            <input name="user_full_name" required="" class="form-control" placeholder="Full Name" type="text"/>
                         </div>
                         <div class="form-group">
-                            <input name="dzName" required="" class="form-control" placeholder="Email Id" type="text"/>
+                            <input name="user_email" required="" class="form-control" placeholder="Email Id" type="email"/>
                         </div>
                         <div class="form-group">
-                            <input name="dzName" required="" class="form-control" placeholder="Address" type="text"/>
+                            <input name="user_address" required="" class="form-control" placeholder="Address" type="text"/>
                         </div>
                         <div class="form-group">
-                            <input name="dzName" required="" class="form-control" placeholder="City/Town" type="text"/>
+                            <input name="user_city_id" required="" class="form-control" placeholder="City/Town" type="text"/>
                         </div>
                         <label class="text-left m-b20">Enter your account details below: </label>
                         <div class="form-group">
-                            <input name="dzName" required="" class="form-control" placeholder="User Name" type="text"/>
+                            <input name="user_name" id="user_name" required="" class="form-control" placeholder="User Name" type="text" onkeyup="checkUserName()"/>
                         </div>
+                        <span id="name_status"></span>
                         <div class="form-group">
-                            <input name="dzName" required="" class="form-control" placeholder="Password" type="text"/>
+                            <input name="user_password" id="user_password" required="" class="form-control" placeholder="Password" type="password"/>
                         </div>
                         <div class="">
-                            <input name="dzName" required="" class="form-control" placeholder="Re-type Your Password" type="text"/>
+                            <input name="user_password1" id="user_password1" required="" class="form-control" placeholder="Re-type Your Password" type="password"/ onChange="checkPasswordMatch();">
                         </div>
+                        <div id="divCheckPasswordMatch"></div>
                         <label class="m-b30">
                         <input type="checkbox"/>
                         <label>I agree to the <a href="#">Terms of Service </a>& <a href="#">Privacy Policy </a></label>
                         </label>
                         <div class="form-group text-left "> <a class="site-button outline gray" data-toggle="tab" href="#login">Back</a>
-                            <button class="site-button pull-right">Submit</button>
+                            <button class="site-button pull-right" type="submit" name="submit" value="Submit">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -157,6 +180,37 @@
 <script type="text/javascript"  src="js/dz.carousel.js"></script>
 <!-- sortcode fuctions  -->
 <!-- switcher fuctions -->
+<!-- script for check email available -->
+<script type="text/javascript">
+function checkUserName() {
+    var user_name = $("#user_name").val();
+    if (user_name){
+      $.ajax({
+      type: "POST",
+      url: "check_user_name_avail.php",
+      data: {
+        user_name:user_name,
+      },
+      success: function (response) {
+        $( '#name_status' ).html(response);
+        if (response == "User Name Already Exist"){
+          $("#user_name").val("");
+        }
+        }
+       });
+    }
+}
+function checkPasswordMatch() {
+    var password = $("#user_password").val();
+    var confirmPassword = $("#user_password1").val();
+    if (confirmPassword != password) {
+        $("#divCheckPasswordMatch").html("Passwords do not match!");
+    }
+    else {
+        $("#divCheckPasswordMatch").html("Passwords match.");
+    }
+}
+</script>
 
 
 </body>
