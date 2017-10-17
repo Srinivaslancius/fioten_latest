@@ -51,17 +51,15 @@
        
 		
 		<!-- About Us -->
+		<?php $id = $_GET['catId']; $getCategory = getDataFromTables('categories',$status=NULL,'id',$id,$activeStatus=NULL,$activeTop=NULL); $getCat = $getCategory->fetch_assoc();  ?>
         <div class="section-full bg-white">
             <div class="container">
                 <div class="section-content">
                     <div class="row m-b30">
                    
                     <div class="col-md-12 col-sm-8">
-                        <h2 class="text-uppercase"> About HP</h2>
-                        <p>We are an upcoming Technology company based in Chicago, Illinois with varied interest in IT hardware solutions, telecom solutions and cloud based solutions. As a company we are bold, ambitious and enthusiastic about what we do at Fioten every day. Our passion for technology and our aspiration of being a dependable brand amongst our customers and partners drives us towards excellence.</p>
-                        <p>As a company we are in our infancy but that's in no way a disadvantage. Fioten is lead by a group of highly motivated and enterprising team of professionals with decades of corporate experience and proven track record across geographies in Asia, Africa and Latin American markets.</p>
-                        <p>" We are specialized in providing our customers with products that come with cutting edge technology and offer solutions that help them meet their IT needs. We have the expertise, resources and motivation to provide products and services that meets the highest standards of quality and promise."</p>
-                        <p>OEM's partnering with Fioten have the opportunity to leverage our learnings, expertise and the know-how of engaging in African and Latin American markets. We have the presence and infrastructure to conduct extensive market research to build a comprehensive go to market plan for new products and services in the markets that we operate in. Fioten is a bridge that connects the technology gap between OEM's and customers especially in Africa and Latin American markets.</p>
+                        <h2 class="text-uppercase"> About <?php echo $getCat['category_name']; ?></h2>
+                        <p><?php echo $getCat['description']; ?></p>
                         
                     </div>
                 </div>
@@ -70,13 +68,15 @@
         </div>
         <!-- About Us END -->
 		<!-- Our Classes -->
+		<?php $id = $_GET['catId']; $getProducts = getDataFromTables('products',$status=NULL,'category_id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();  ?>
 		<div class="section-full text-white bg-img-fix content-inner overlay-gray-dark choose-us" style="background-image:url(images/background/bg1.jpg);">
             <div class="container">
 				<div class="row">
 					<div class="col-md-6 col-sm-6">
 						<div class="bg-primary m-b30">
 							<div class="p-a30 text-white z-index10 relative">
-								<h3 class="h3 m-t0">Consumer Laptops</h3>
+								<?php $getSubCat = getDataFromTables('sub_categories',$status=NULL,'category_id',$getPro['category_id'],$activeStatus=NULL,$activeTop=NULL); $getSubCat1 = $getSubCat->fetch_assoc();  ?>
+								<h3 class="h3 m-t0"><?php echo $getSubCat1['sub_category_name']; ?></h3>
 								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 								<a href="#" class="site-button white">Read More</a>
 							</div>
@@ -88,7 +88,7 @@
 					<div class="col-md-6 col-sm-6">
 						<div class="row">
 							<div class="col-md-6 col-sm-6 col-xs-6 m-b30">
-                                <div class="w3-media w3-img-effect rotate"> <img src="images/categories/hpspectra360.png" alt=""> </div>
+                                <div class="w3-media w3-img-effect rotate"> <img src="<?php echo $base_url . 'uploads/product_images/'.$getPro['product_image'] ?>" alt=""> </div>
                                 <h3>HP Spectra 360</h3>
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6 m-b30">
