@@ -102,6 +102,15 @@
               </a>
             </li> -->
             </li>
+            <li  class="<?php if($page_name == 'partner_logos.php' || $page_name == 'add_partner_logos.php' || $page_name == 'edit_partner_logos.php' ) { echo "active"; } ?>">
+              <a href="partner_logos.php" aria-haspopup="true">
+                <span class="menu-icon">
+                   <i class="zmdi zmdi-collection-image zmdi-hc-fw"></i>
+                </span>
+                <span class="menu-text">Partner Logos</span>
+              </a>
+            </li>
+
             <li  class="<?php if($page_name == 'customer_enqueries.php') { echo "active"; } ?>">
               <a href="customer_enqueries.php" aria-haspopup="true">
                 <span class="menu-icon">

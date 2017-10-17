@@ -134,7 +134,7 @@
 
                   <div class="form-group">
                     <label for="form-control-4" class="control-label">Sub Sub Banner Image</label>
-                    <img id="output" height="100" width="100"/>
+                    <img id="output1" height="100" width="100"/>
                     <label class="btn btn-default file-upload-btn">
                       Choose file...
                         <input id="form-control-22" class="file-upload-input" type="file" accept="image/*" name="fileToUpload1" id="fileToUpload1"  onchange="loadFile1(event)"  multiple="multiple" required >

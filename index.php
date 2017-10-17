@@ -457,67 +457,14 @@
             <div class="container">
                 <div class="section-content">
                     <div class="client-logo-carousel mfp-gallery gallery owl-btn-center-lr">
-                        <div class="item">
+                    	<?php $getPartnerLogos = getDataFromTables('partner_logos','0',$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL); ?>
+                    	<?php while ($getPartnerLogosData = $getPartnerLogos->fetch_assoc()) { ?>
+                    		<div class="item">
                             <div class="ow-client-logo">
-                                <div class="client-logo"><a href="#"><img src="images/client-logo/01.png" alt=""></a></div>
+                                <div class="client-logo"><a href="#"><img src="<?php echo $base_url . 'uploads/partner_logos/'.$getPartnerLogosData['partner_logo'] ?>" alt=""></a></div>
                             </div>
                         </div>
-                        
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/03.png" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/04.png" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/05.png" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/06.png" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"><a href="#"><img src="images/client-logo/07.png" alt=""></a></div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/08.png" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/09.png" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/10.png" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/11.png" alt=""></a> </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/12.png" alt=""></a> </div>
-                            </div>
-                        </div>
-                         <div class="item">
-                            <div class="ow-client-logo">
-                                <div class="client-logo"> <a href="#"><img src="images/client-logo/13.png" alt=""></a> </div>
-                            </div>
-                        </div>
+                    	<?php } ?>
                     </div>
                 </div>
             </div>
