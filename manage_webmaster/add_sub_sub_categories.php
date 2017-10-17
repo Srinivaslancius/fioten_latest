@@ -5,6 +5,7 @@
           echo "fail";
         } else  {
             //If success
+            //echo "<pre>";print_r($_POST);
             $category_id = $_POST['category_id'];
             $sub_category_id = $_POST['sub_category_id'];
             $sub_sub_category_name = $_POST['sub_sub_category_name'];
@@ -23,7 +24,7 @@
                 //$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
               move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1);
-              $sql = "INSERT INTO `sub_sub_categories` (`category_id`,`sub_category_id`, `sub_sub_category_name`,`frame_type`,`background_image`,`sub_sub_banner_image`,`status`) VALUES ('$category_id','$sub_category_id','$sub_sub_category_name','$frame_type','$fileToUpload','$fileToUpload','$status')";
+               $sql = "INSERT INTO `sub_sub_categories` (`category_id`,`sub_category_id`, `sub_sub_category_name`,`frame_type`,`background_image`,`sub_sub_banner_image`,`status`) VALUES ('$category_id','$sub_category_id','$sub_sub_category_name','$frame_type','$fileToUpload','$fileToUpload1','$status')";
               if($conn->query($sql) === TRUE){
                  echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
               } else {
