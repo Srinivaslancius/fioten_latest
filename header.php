@@ -65,42 +65,33 @@
                                                        
 							<li> 
 								<a href="javascript:;">Products<i class="fa fa-chevron-down"></i></a>
-								<ul class="sub-menu">
-									
-									<li> 
-										<a href="javascript:;">Laptops</a>
-										<ul class="sub-menu">
-											<li><a href="#">HP</a></li>
-											<li><a href="#">Dell</a></li>
-											<li><a href="#">Lenovo</a></li>
-                                            <li><a href="#">Apple</a></li>
-                                            <li><a href="#">Acer</a></li>
-										</ul>
-									</li>
+									<ul class="sub-menu">
+									<?php $getCategory = getDataFromTables('categories','0',$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
+									<?php while($getCat = $getCategory->fetch_assoc()) {  ?>
 
-                                    <li> 
-										<a href="javascript:;">Laptops</a>
-										<ul class="sub-menu">
-											<li><a href="#">HP</a></li>
-											<li><a href="#">Dell</a></li>
-											<li><a href="#">Lenovo</a></li>
-	                                        <li><a href="#">Apple</a></li>
-	                                        <li><a href="#">Acer</a></li>
-										</ul>
-									</li>
-                                    <li> 
-										<a href="javascript:;">Laptops</a>
-										<ul class="sub-menu">
-											<li><a href="#">HP</a></li>
-											<li><a href="#">Dell</a></li>
-											<li><a href="#">Lenovo</a></li>
-                                            <li><a href="#">Apple</a></li>
-                                            <li><a href="#">Acer</a></li>
-										</ul>
-									</li>
-									
-								</ul>
+										<li>
+											<a href="javascript:;"><?php echo $getCat['category_name']; ?></a>
+											<?php $getSubCat = getDataFromTables('sub_categories','0','category_id',$getCat['id'],$activeStatus=NULL,$activeTop=NULL);  ?>
+											<ul class="sub-menu">
+												<?php while($getSubCatDet = $getSubCat->fetch_assoc()) {  ?>
+												<li>
+													<a href="#"><?php echo $getSubCatDet['sub_category_name']; ?></a>
+													<?php $getSubSubCat = getDataFromTables('sub_sub_categories','0','sub_category_id',$getSubCatDet['id'],$activeStatus=NULL,$activeTop=NULL);  ?>
+													<ul class="sub-menu">
+														<?php while($getSubSubDat = $getSubSubCat->fetch_assoc()) {  ?>
+															<li><a href="#"><?php echo $getSubSubDat['sub_sub_category_name']; ?></a></li>
+														<?php } ?>
+													</ul>
+												</li>
+												<?php } ?>												
+											</ul>
+										</li>
+
+									<?php } ?>
+										
+									</ul>
 							</li>
+
 	                        <li> 
 	                           <a href="logistics_partenership.php">Logistics & Partnership</a>
 							</li>
