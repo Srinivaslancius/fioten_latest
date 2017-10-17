@@ -4,15 +4,15 @@ date_default_timezone_set("Asia/Kolkata");
 
 $setcon = 2;
 if($setcon == 1) {
-	$servername = "localhost";
-	$username = "";
-	$password = "";
-	$dbname = "";
+    $servername = "localhost";
+    $username = "";
+    $password = "";
+    $dbname = "";
 } else {
-	$servername = "192.168.0.100";	
-	$username = "root";
-	$password = "root";
-	$dbname = "fioten_latest";
+    $servername = "192.168.0.100";  
+    $username = "root";
+    $password = "root";
+    $dbname = "fioten_latest";
 }  
 
 // Create connection
