@@ -6,7 +6,8 @@ $id = $_GET['bid'];
     } else  {
           $status = $_POST['status'];
           $category_name = $_POST['category_name'];
-          $sql = "UPDATE `categories` SET category_name = '$category_name',status='$status' WHERE id = '$id' ";
+          $description = $_POST['description'];
+          $sql = "UPDATE `categories` SET category_name = '$category_name',description = '$description',status='$status' WHERE id = '$id' ";
           if($conn->query($sql) === TRUE){
              echo "<script type='text/javascript'>window.location='categories.php?msg=success'</script>";
           } else {
@@ -39,6 +40,11 @@ $getBanners = $getBannersData->fetch_assoc();
                         <input id="form-control-22" class="file-upload-input" type="file" accept="image/*" name="fileToUpload" id="fileToUpload"  onchange="loadFile(event)"  multiple="multiple" >
                       </label>
                   </div> -->
+                   <div class="form-group">
+                    <label for="form-control-2" class="control-label">Description</label>
+                    <textarea name="description" class="form-control" id="description" data-error="This field is required." required><?php echo $getBanners['description'];?></textarea>
+                    <div class="help-block with-errors"></div>
+                  </div>
                   <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Choose your status</label>
@@ -61,3 +67,7 @@ $getBanners = $getBannersData->fetch_assoc();
       <?php include_once 'admin_includes/footer.php'; ?>
    <script src="js/tables-datatables.min.js"></script>
 
+<script src="//cdn.ckeditor.com/4.7.0/full/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'description' ); 
+</script>
