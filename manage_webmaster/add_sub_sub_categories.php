@@ -14,7 +14,7 @@
             //$background_image = $_POST['background_image'];
             $fileToUpload1 = $_FILES['fileToUpload1']["name"];
             $status = $_POST['status'];
-            if ($frame_type == '2') {
+            if ($frame_type == '1') {
               if($fileToUpload!='') {
 
                 $target_dir = "../uploads/background_images/";
@@ -35,8 +35,8 @@
                       echo "Sorry, there was an error uploading your file.";
                 }
               }
-            }
-            else {
+              
+            } else {
               if($fileToUpload1!='') {
 
                 // $target_dir = "../uploads/background_images/";
@@ -134,7 +134,7 @@
 
                   <div class="form-group">
                     <label for="form-control-4" class="control-label">Sub Sub Banner Image</label>
-                    <img id="output" height="100" width="100"/>
+                    <img id="output1" height="100" width="100"/>
                     <label class="btn btn-default file-upload-btn">
                       Choose file...
                         <input id="form-control-22" class="file-upload-input" type="file" accept="image/*" name="fileToUpload1" id="fileToUpload1"  onchange="loadFile1(event)"  multiple="multiple" required >
@@ -178,7 +178,7 @@
       <script type="text/javascript">
         $(document).ready(function () {
           $("input[name='frame_type']").click(function () {
-            if ($("#frame2").is(":checked")) {
+            if ($("#frame1").is(":checked")) {
                 $("#background_image").show();
             } else {
                 $("#background_image").hide();

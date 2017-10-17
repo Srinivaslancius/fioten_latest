@@ -139,16 +139,19 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
                           <input name="frame_type" id="frame2" value="2" type="radio" <?php if($getSubCategories['frame_type']  == 2){ echo "checked=checked"; }?> required> Frame2
                         </label>
                   </div>
-                  <?php if($getSubCategories['frame_type']  == 2){ ?>
+                  
                   <div class="form-group" id="background_image">
-                    <label for="form-control-4" class="control-label">Background Image</label>
-                    <img src="<?php echo $base_url . 'uploads/background_images/'.$getSubCategories['background_image'] ?>"  id="output" height="100" width="100"/>
+                    <label for="form-control-4" class="control-label">Background Image</label>   
+                    <?php if($getSubCategories['background_image']!=''){ ?>
+                      <img src="<?php echo $base_url . 'uploads/background_images/'.$getSubCategories['background_image'] ?>"  id="output" height="100" width="100"/>  
+                    <?php } ?>     
+
                     <label class="btn btn-default file-upload-btn">
                       Choose file...
                         <input id="form-control-22" class="file-upload-input" type="file" accept="image/*" name="fileToUpload" id="fileToUpload"  onchange="loadFile(event)"  multiple="multiple">
                       </label>
                   </div>
-                  <?php } ?>
+                  
                   <div class="form-group">
                     <label for="form-control-4" class="control-label">Sub Sub Banner Image</label>
                     <img src="<?php echo $base_url . 'uploads/sub_sub_banner_images/'.$getSubCategories['sub_sub_banner_image'] ?>"  id="output1" height="100" width="100"/>
@@ -193,12 +196,20 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-          $("input[name='frame_type']").click(function () {
-            if ($("#frame2").is(":checked")) {
+          
+            if ($("input[type=radio][name='frame_type']:checked").val() == 1) {
+                $("#background_image").show();
+            } else {
+                $("#background_image").hide();
+            }
+          
+          $("input[name='frame_type']").click(function () {            
+            if ($("input[type=radio][name='frame_type']:checked").val() == 1) {
                 $("#background_image").show();
             } else {
                 $("#background_image").hide();
             }
           });
+
         });
       </script>
