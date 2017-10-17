@@ -27,6 +27,7 @@
                     <th>S.No</th>
                     <th>Product Name</th>
                     <th>Category Name</th>
+                    <th>Sub Category Name</th>
                     <th>Product Price</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -39,6 +40,8 @@
                     <td><?php echo $row['product_name'];?></td>
                     <td><?php $getCategories = getDataFromTables('categories',$status=NULL,'id',$row['category_id'],$activeStatus=NULL,$activeTop=NULL);
                     $getCategory = $getCategories->fetch_assoc(); echo $getCategory['category_name']; ?></td>
+                    <td><?php $getSubCategories = getDataFromTables('sub_categories',$status=NULL,'id',$row['category_id'],$activeStatus=NULL,$activeTop=NULL);
+                    $getSubCategory = $getSubCategories->fetch_assoc(); echo $getSubCategory['sub_category_name']; ?></td>
                     <td><?php echo $row['product_price'];?></td>
                                        
                     <td><?php if ($row['status']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['status']." data-tbname='products

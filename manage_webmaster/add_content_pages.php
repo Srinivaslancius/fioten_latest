@@ -8,13 +8,28 @@ if (!isset($_POST['submit']))  {
   $title = $_POST['title'];
   $description = $_POST['description'];
   $status = $_POST['status'];
+  $fileToUpload = $_FILES["fileToUpload"]["name"];
   
-  $sql = "INSERT INTO content_pages (`title`, `description`, `status`) VALUES ('$title', '$description', '$status')";
-  if($conn->query($sql) === TRUE){
-    echo "<script type='text/javascript'>window.location='content_pages.php?msg=success'</script>";
-  }else {
-    echo "<script type='text/javascript'>window.location='content_pages.php?msg=fail'</script>";
+  if($fileToUpload!='') {
+
+    $target_dir = "../uploads/content_images/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        $sql = "INSERT INTO content_pages (`title`, `description`,`image`, `status`) VALUES ('$title', '$description','$fileToUpload', '$status')";
+        if($conn->query($sql) === TRUE){
+           echo "<script type='text/javascript'>window.location='content_pages.php?msg=success'</script>";
+        } else {
+           echo "<script type='text/javascript'>window.location='content_pages.php?msg=fail'</script>";
+        }
+        //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+
   }
+  
 }
 ?>
       <div class="site-content">
@@ -25,11 +40,19 @@ if (!isset($_POST['submit']))  {
           <div class="panel-body">
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <form data-toggle="validator" method="POST">
+                <form data-toggle="validator" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Title</label>
                     <input type="text" name="title" class="form-control" id="form-control-2" placeholder="Title" data-error="Please enter Title" required>
                     <div class="help-block with-errors"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="form-control-4" class="control-label">Banner</label>
+                    <img id="output" height="100" width="100"/>
+                    <label class="btn btn-default file-upload-btn">
+                      Choose file...
+                        <input id="form-control-22" class="file-upload-input" type="file" accept="image/*" name="fileToUpload" id="fileToUpload"  onchange="loadFile(event)"  multiple="multiple" required >
+                      </label>
                   </div>
 
                   <div class="form-group">

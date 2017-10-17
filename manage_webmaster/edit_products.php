@@ -9,12 +9,13 @@ if (!isset($_POST['submit']))  {
     $product_name = $_POST['product_name'];
     $category_id = $_POST['category_id'];
     $sub_category_id = $_POST['sub_category_id'];
+    $sub_sub_category_id = $_POST['sub_sub_category_id'];
     $product_price = $_POST['product_price'];
     $price_type = $_POST['price_type'];
     $offer_price = $_POST['offer_price'];
     $selling_price = $_POST['selling_price'];
-    $deal_start_date = $_POST['deal_start_date'];
-    $deal_end_date = $_POST['deal_end_date'];
+    //$deal_start_date = $_POST['deal_start_date'];
+    //$deal_end_date = $_POST['deal_end_date'];
     $quantity = $_POST['quantity'];
     $minimum_order_quantity = $_POST['minimum_order_quantity'];
     $key_features = $_POST['key_features'];
@@ -27,7 +28,7 @@ if (!isset($_POST['submit']))  {
     $created_by = $_SESSION['admin_user_id'];
     //save product images into product_images table    
     
-    $sql1 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',sub_category_id ='$sub_category_id',product_price ='$product_price',price_type ='$price_type',offer_price ='$offer_price',selling_price ='$selling_price', deal_start_date = '$deal_start_date', deal_end_date ='$deal_end_date',quantity = '$quantity',minimum_order_quantity = '$minimum_order_quantity',key_features = '$key_features',product_info = '$product_info',specifications = '$specifications',availability_id = '$availability_id',status = '$status' WHERE id = '$id'"; 
+    $sql1 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',sub_category_id ='$sub_category_id',sub_sub_category_id = '$sub_sub_category_id',product_price ='$product_price',price_type ='$price_type',offer_price ='$offer_price',selling_price ='$selling_price', deal_start_date = '$deal_start_date', deal_end_date ='$deal_end_date',quantity = '$quantity',minimum_order_quantity = '$minimum_order_quantity',key_features = '$key_features',product_info = '$product_info',specifications = '$specifications',availability_id = '$availability_id',status = '$status' WHERE id = '$id'"; 
     
     if ($conn->query($sql1) === TRUE) {
     echo "Record updated successfully";
@@ -81,10 +82,22 @@ if (!isset($_POST['submit']))  {
                   <?php $getSubCategories =  getDataFromTables('sub_categories',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL); ?>
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Select Sub Category</label>
-                    <select id="sub_category_id" name="sub_category_id" class="custom-select" data-error="This field is required." required >
+                    <select id="sub_category_id" name="sub_category_id" class="custom-select" data-error="This field is required." required onChange="getSubSubCategories(this.value);">
                        <option value="">Select Sub Category</option>
                       <?php while($row = $getSubCategories->fetch_assoc()) {  ?>
                       <option <?php if($row['id'] == $getProducts['sub_category_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['sub_category_name']; ?></option>
+                      <?php } ?>
+                   </select>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
+                  <?php $getSubSubCategories =  getDataFromTables('sub_sub_categories',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL); ?>
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Select Sub Sub Category</label>
+                    <select id="sub_sub_category_id" name="sub_sub_category_id" class="custom-select" data-error="This field is required." required >
+                       <option value="">Select Sub Sub Category</option>
+                      <?php while($row = $getSubSubCategories->fetch_assoc()) {  ?>
+                      <option <?php if($row['id'] == $getProducts['sub_sub_category_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['sub_sub_category_name']; ?></option>
                       <?php } ?>
                    </select>
                     <div class="help-block with-errors"></div>
@@ -124,17 +137,17 @@ if (!isset($_POST['submit']))  {
                     <input type="text" class="form-control" readonly id="selling_price" name="selling_price" placeholder="Product Price" data-error="Please enter Selling price." required value="<?php echo $getProducts['selling_price']; ?>">
                     <div class="help-block with-errors"></div>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="form-control-2" class="control-label">Select Deal Start Date</label>
                     <input type="text" class="form-control" id="deal_start_date" name="deal_start_date" placeholder="Select deal start date" data-error="Please enter deal start date." required value="<?php echo $getProducts['deal_start_date']; ?>">
                     <div class="help-block with-errors"></div>
-                  </div>
+                  </div> -->
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="form-control-2" class="control-label">Select Deal End Date</label>
                     <input type="text" class="form-control" id="deal_end_date" name="deal_end_date" placeholder="Select deal end date" data-error="Please enter deal end date." required value="<?php echo $getProducts['deal_end_date']; ?>">
                     <div class="help-block with-errors"></div>
-                  </div>
+                  </div> -->
 
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Quantity</label>
@@ -380,4 +393,25 @@ $(function(){
         
     });
 });
+function getSubCategories(val) {
+    $.ajax({
+    type: "POST",
+    url: "get_sub_categories.php",
+    data:'category_id='+val,
+    success: function(data){
+        $("#sub_category_id").html(data);
+    }
+    });
+}
+
+function getSubSubCategories(val) {
+    $.ajax({
+    type: "POST",
+    url: "get_sub_sub_categories.php",
+    data:'sub_category_id='+val,
+    success: function(data){
+        $("#sub_sub_category_id").html(data);
+    }
+    });
+}
 </script>
