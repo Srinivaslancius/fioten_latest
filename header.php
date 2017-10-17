@@ -75,7 +75,7 @@
 											<ul class="sub-menu">
 												<?php while($getSubCatDet = $getSubCat->fetch_assoc()) {  ?>
 												<li>
-													<a href="#"><?php echo $getSubCatDet['sub_category_name']; ?></a>
+													<a href="products.php?subCatId=<?php echo $getSubCatDet['id']; ?>"><?php echo $getSubCatDet['sub_category_name']; ?></a>
 													<?php $getSubSubCat = getDataFromTables('sub_sub_categories','0','sub_category_id',$getSubCatDet['id'],$activeStatus=NULL,$activeTop=NULL);  ?>
 													<ul class="sub-menu">
 														<?php while($getSubSubDat = $getSubSubCat->fetch_assoc()) {  ?>
