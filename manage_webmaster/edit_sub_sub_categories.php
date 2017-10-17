@@ -13,7 +13,7 @@ $id = $_GET['bid'];
         $fileToUpload1 = $_FILES['fileToUpload1']["name"];
         $status = $_POST['status'];
 
-        if ($frame_type == '2') {
+        if ($frame_type == '1') {
           if($_FILES["fileToUpload"]["name"]!='') {
             $fileToUpload = $_FILES["fileToUpload"]["name"];
             $target_dir = "../uploads/background_images/";
@@ -46,9 +46,9 @@ $id = $_GET['bid'];
           }
         } else {
           if($_FILES["fileToUpload1"]["name"]!='') {
-            $fileToUpload = $_FILES["fileToUpload"]["name"];
-            $target_dir = "../uploads/background_images/";
-            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            //$fileToUpload = $_FILES["fileToUpload"]["name"];
+            //$target_dir = "../uploads/background_images/";
+            //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
             $target_dir1 = "../uploads/sub_sub_banner_images/";
             $target_file1 = $target_dir1 . basename($_FILES["fileToUpload1"]["name"]);
             //$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
