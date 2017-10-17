@@ -3,6 +3,68 @@
       $getAboutUs = $getAboutUsData->fetch_assoc();?>
 <?php $getcontentWhy = getDataFromTables('content_pages',$status=NULL,'id',2,$activeStatus=NULL,$activeTop=NULL);
       $getcontentWhyUs = $getcontentWhy->fetch_assoc();?>
+<?php 
+error_reporting(1);   
+$statusMsg = '';
+$msgClass = '';
+    if(isset($_POST['submit'])){
+        // Get the submitted form data
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $mobile = $_POST['mobile'];
+        $services = $_POST['services'];
+        $message = $_POST['message'];
+        $created_at = date("Y-m-d h:i:s");
+        $sql = "INSERT INTO customer_enqueries (`customer_name`, `customer_email`, `customer_mobile`, `customer_feedback`, `customer_service`,`created_at`) VALUES ('$name', '$email', '$mobile', '$message', '$services','$created_at')";
+        if($conn->query($sql) === TRUE){
+       		echo "<script>alert('Data Updated Successfully');window.location.href='index.php';</script>";
+	    } else {
+	       echo "<script>alert('Data Updated Successfully');window.location.href='index.php';</script>";
+	    }
+        // Check whether submitted data is not empty
+        if(!empty($email) && !empty($name) && !empty($mobile) && !empty($services) &&!empty($message)){
+            
+            if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
+                $statusMsg = 'Please enter your valid email.';
+                $msgClass = 'errordiv';
+            }else{
+                // Recipient email
+                $toEmail = '<?php echo $getSiteSettingsData["email"]; ?>';
+                $emailSubject = 'Contact Request Submitted by '.$name;
+                $htmlContent = '<h2>Contact Request Submitted</h2>
+                    <h4>Name</h4><p>'.$name.'</p>
+                    <h4>Email</h4><p>'.$email.'</p>
+                    <h4>Mobile</h4><p>'.$mobile.'</p>
+
+                    <h4>Services</h4><p>'.$services.'</p>
+                    <h4>Message</h4><p>'.$message.'</p>';
+                
+                // Set content-type header for sending HTML email
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                
+                // Additional headers
+                $headers .= 'From: '.$name.'<'.$email.'>'. "\r\n";
+
+                
+                // Send email
+                if(mail($toEmail,$emailSubject,$htmlContent)){
+                echo "srinu"; die;
+                    $statusMsg = 'Your contact request has been submitted successfully !';
+                    $msgClass = 'succdiv';
+                }else{
+               
+                    $statusMsg = 'Your contact request submission failed, please try again.';
+                    $msgClass = 'errordiv';
+                }
+            }
+        }else{
+            $statusMsg = 'Please fill all the fields.';
+            $msgClass = 'errordiv';
+        }
+    }
+?>
+
 <!DOCTYPE html>
 
 <!--[if IE 7 ]>  <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
@@ -289,7 +351,7 @@
 					<?php echo $getServiceData['description'];?>
 				</div>
 				<?php $getOurSer1 = getDataFromTables('content_pages',$status=NULL,'id',8,$activeStatus=NULL,$activeTop=NULL);
-      $getServiceData1 = $getOurSer1->fetch_assoc();?>
+      			$getServiceData1 = $getOurSer1->fetch_assoc();?>
 				<div class="section-content text-center ">
 					<div class="row">
 						<div class="col-md-4 col-sm-6">
@@ -307,7 +369,7 @@
 						</div>
 
 						<?php $getOurSer2 = getDataFromTables('content_pages',$status=NULL,'id',8,$activeStatus=NULL,$activeTop=NULL);
-      $getServiceData2 = $getOurSer2->fetch_assoc();?>
+      					$getServiceData2 = $getOurSer2->fetch_assoc();?>
                         <div class="col-md-4 col-sm-6">
 							<div class="w3-box m-b30 border-1 hover w3-img-effect off-color">
 								<div class="w3-media">
@@ -322,7 +384,7 @@
 							</div>
 						</div>
 						<?php $getOurSer3 = getDataFromTables('content_pages',$status=NULL,'id',8,$activeStatus=NULL,$activeTop=NULL);
-      $getServiceData3 = $getOurSer3->fetch_assoc();?>
+      					$getServiceData3 = $getOurSer3->fetch_assoc();?>
                         <div class="col-md-4 col-sm-6">
 							<div class="w3-box m-b30 border-1 hover w3-img-effect off-color">
 								<div class="w3-media">
@@ -350,10 +412,10 @@
 					<div class="col-md-7">
 						<div class="p-lr60 p-t50 p-b40 bg-white clearfix mack-an-appointment-2">
 							<div class="dzFormMsg "></div>
-							<form method="post" id="appointment_form" class="dzForm" action="#">
+							<form method="post" id="appointment_form" class="dzForm">
 								<div class="row">
 									<?php $getAnyque = getDataFromTables('content_pages',$status=NULL,'id',5,$activeStatus=NULL,$activeTop=NULL);
-      $getAnyQueries = $getAnyque->fetch_assoc();?>
+      									$getAnyQueries = $getAnyque->fetch_assoc();?>
 									<div class="section-head text-center">
 										<h2 class="h2">Any<span class="text-primary"> Queries</span></h2>
 										<div class="w3-separator-outer "><div class="w3-separator bg-primary style-liner"></div></div>
@@ -361,33 +423,33 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input id="appoinment_firstname" name="first_name" required="" class="form-control" placeholder="Name" type="text">
+											<input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input name="dzEmail" class="form-control" placeholder="Email" type="text">
+											<input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input name="mobile" class="form-control" placeholder="mobile Number" type="text">
+											<input type="text" name="mobile" id="mobile" class="form-control" placeholder="mobile Number" maxlength="10" pattern="[0-9]{10}" required onkeypress="return isNumberKey(event)">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<select class="bs-select-hidden" id="appoinment_service" name="services" required="">
-												<option value="">Services</option>
-												<option value="">Services 2</option>
-												<option value="">Services 3</option>
-												<option value="">Services 4</option>
+											<select class="bs-select-hidden" id="services" name="services" required>
+												<option value="1">Services</option>
+												<option value="2">Services 2</option>
+												<option value="3">Services 3</option>
+												<option value="4">Services 4</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<div class="input-group">
-												<textarea id="appoinment_detail" name="message" rows="4" class="form-control" required=""></textarea>
+												<textarea id="message" name="message" required rows="4" class="form-control"></textarea>
 											</div>
 										</div>
 									</div>
@@ -398,6 +460,8 @@
 										<button name="submit" type="submit" value="Submit" class="site-button skew-secondry">
 											<span>Submit</span>
 										</button>
+										<!-- <div id="error_message" class="ajax_response" style="float:left"></div>
+										<div id="success_message" class="ajax_response" style="float:left"></div> -->
 									</div>
 								</div>
 							</form>
@@ -533,6 +597,12 @@
 		'use strict';
 		dz_rev_slider_4();
 	}); /*ready*/
+	function isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : event.keyCode
+      if (charCode > 31 && (charCode < 48 || charCode > 57))
+        return false;
+    	return true;
+  	}
 </script>
 </body>
 </html>
