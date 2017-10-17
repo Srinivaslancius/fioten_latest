@@ -14,7 +14,8 @@
             //$background_image = $_POST['background_image'];
             $fileToUpload1 = $_FILES['fileToUpload1']["name"];
             $status = $_POST['status'];
-          if($fileToUpload!='') {
+            if ($frame_type == '2') {
+              if($fileToUpload!='') {
 
                 $target_dir = "../uploads/background_images/";
                 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -22,20 +23,41 @@
                 $target_dir1 = "../uploads/sub_sub_banner_images/";
                 $target_file1 = $target_dir1 . basename($_FILES["fileToUpload1"]["name"]);
                 //$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-              move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1);
-               $sql = "INSERT INTO `sub_sub_categories` (`category_id`,`sub_category_id`, `sub_sub_category_name`,`frame_type`,`background_image`,`sub_sub_banner_image`,`status`) VALUES ('$category_id','$sub_category_id','$sub_sub_category_name','$frame_type','$fileToUpload','$fileToUpload1','$status')";
-              if($conn->query($sql) === TRUE){
-                 echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
-              } else {
-                 echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=fail'</script>";
+                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                  move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1);
+                   $sql = "INSERT INTO `sub_sub_categories` (`category_id`,`sub_category_id`, `sub_sub_category_name`,`frame_type`,`background_image`,`sub_sub_banner_image`,`status`) VALUES ('$category_id','$sub_category_id','$sub_sub_category_name','$frame_type','$fileToUpload','$fileToUpload1','$status')";
+                  if($conn->query($sql) === TRUE){
+                     echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
+                  } else {
+                     echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=fail'</script>";
+                  }
+                } else {
+                      echo "Sorry, there was an error uploading your file.";
+                }
               }
-            } else {
-                  echo "Sorry, there was an error uploading your file.";
             }
-          }
-         
+            else {
+              if($fileToUpload1!='') {
 
+                // $target_dir = "../uploads/background_images/";
+                // $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+                $target_dir1 = "../uploads/sub_sub_banner_images/";
+                $target_file1 = $target_dir1 . basename($_FILES["fileToUpload1"]["name"]);
+                //$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                if (move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1)) {
+                  //move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1);
+                   $sql = "INSERT INTO `sub_sub_categories` (`category_id`,`sub_category_id`, `sub_sub_category_name`,`frame_type`,`sub_sub_banner_image`,`status`) VALUES ('$category_id','$sub_category_id','$sub_sub_category_name','$frame_type','$fileToUpload1','$status')";
+                  if($conn->query($sql) === TRUE){
+                     echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
+                  } else {
+                     echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=fail'</script>";
+                  }
+                } else {
+                      echo "Sorry, there was an error uploading your file.";
+                }
+              }
+            }
       }
 ?>
 		<div class="site-content">
@@ -94,19 +116,19 @@
 
                   <div class="radio">
                         <label>
-                          <input name="frame_type" value="1" type="radio" required> Frame1
+                          <input name="frame_type" id="frame1" value="1" type="radio" required > Frame1
                         </label>
                         <label>
-                          <input name="frame_type" value="2" type="radio" required> Frame2
+                          <input name="frame_type" id="frame2" value="2" type="radio" required > Frame2
                         </label>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group" id="background_image">
                     <label for="form-control-4" class="control-label">Background Image</label>
                     <img id="output" height="100" width="100"/>
                     <label class="btn btn-default file-upload-btn">
                       Choose file...
-                        <input id="form-control-22" class="file-upload-input" type="file" accept="image/*" name="fileToUpload" id="fileToUpload"  onchange="loadFile(event)"  multiple="multiple" required >
+                        <input id="form-control-22" class="file-upload-input" type="file" accept="image/*" name="fileToUpload" id="fileToUpload"  onchange="loadFile(event)"  multiple="multiple" >
                       </label>
                   </div>
 
@@ -152,4 +174,15 @@
               }
               });
           }
+      </script>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $("input[name='frame_type']").click(function () {
+            if ($("#frame2").is(":checked")) {
+                $("#background_image").show();
+            } else {
+                $("#background_image").hide();
+            }
+          });
+        });
       </script>

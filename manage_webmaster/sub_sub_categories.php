@@ -27,7 +27,7 @@
                     $getCategory = $getCategories->fetch_assoc(); echo $getCategory['category_name']; ?></td>
                     <td><?php echo $row['sub_sub_category_name'];?></td>
                     <td><img src="<?php echo $base_url . 'uploads/sub_sub_banner_images/'.$row['sub_sub_banner_image'] ?>" height="100" width="100"/></td>
-                    <td><?php if ($row['status']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['status']." data-tbname='sub_categories'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['status']." data-incId=".$row['id']." data-tbname='sub_categories'>In Active</span>" ;} ?></td>
+                    <td><?php if ($row['status']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['status']." data-tbname='sub_sub_categories'>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['status']." data-incId=".$row['id']." data-tbname='sub_sub_categories'>In Active</span>" ;} ?></td>
                     <td> <a href="edit_sub_sub_categories.php?bid=<?php echo $row['id']; ?>"> <i class="zmdi zmdi-edit"></i></a> </td>
                   </tr>
                   <?php  $i++; } ?>                  
