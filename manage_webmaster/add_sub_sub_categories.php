@@ -14,7 +14,7 @@
             //$background_image = $_POST['background_image'];
             $fileToUpload1 = $_FILES['fileToUpload1']["name"];
             $status = $_POST['status'];
-            if ($frame_type == '2') {
+            if ($frame_type == '1') {
               if($fileToUpload!='') {
 
                 $target_dir = "../uploads/background_images/";
@@ -35,8 +35,8 @@
                       echo "Sorry, there was an error uploading your file.";
                 }
               }
-            }
-            else {
+              
+            } else {
               if($fileToUpload1!='') {
 
                 // $target_dir = "../uploads/background_images/";
@@ -178,7 +178,7 @@
       <script type="text/javascript">
         $(document).ready(function () {
           $("input[name='frame_type']").click(function () {
-            if ($("#frame2").is(":checked")) {
+            if ($("#frame1").is(":checked")) {
                 $("#background_image").show();
             } else {
                 $("#background_image").hide();
