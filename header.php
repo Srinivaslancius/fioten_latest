@@ -50,69 +50,65 @@
 					<!-- extra nav -->
 					<div class="extra-nav">
 						<div class="extra-cell">
-                                                    <a href="login.php" class="site-button white skew-secondry hidden-xs">Login</a>
+                            <a href="login.php" class="site-button white skew-secondry hidden-xs">Login</a>
 						</div>
 					</div>
 					<!-- main nav -->
 					<div class="header-nav navbar-collapse collapse">
 						<ul class=" nav navbar-nav">
 							<li class="active"> 
-                                                            <a href="index.php">Home</a>
-								
+                             	<a href="index.php">Home</a>								
 							</li>
-                                                        <li> 
-                                                            <a href="about_us.php">About Us</a>
-								
-							</li>
-                                                        
+                            <li> 
+                                <a href="about_us.php">About Us</a>
+							</li>                     
                                                        
 							<li> 
 								<a href="javascript:;">Products<i class="fa fa-chevron-down"></i></a>
 								<ul class="sub-menu">
+									
 									<li> 
 										<a href="javascript:;">Laptops</a>
 										<ul class="sub-menu">
 											<li><a href="#">HP</a></li>
 											<li><a href="#">Dell</a></li>
 											<li><a href="#">Lenovo</a></li>
-                                                                                        <li><a href="#">Apple</a></li>
-                                                                                        <li><a href="#">Acer</a></li>
+                                            <li><a href="#">Apple</a></li>
+                                            <li><a href="#">Acer</a></li>
 										</ul>
 									</li>
-                                                                        <li> 
+
+                                    <li> 
 										<a href="javascript:;">Laptops</a>
 										<ul class="sub-menu">
 											<li><a href="#">HP</a></li>
 											<li><a href="#">Dell</a></li>
 											<li><a href="#">Lenovo</a></li>
-                                                                                        <li><a href="#">Apple</a></li>
-                                                                                        <li><a href="#">Acer</a></li>
+	                                        <li><a href="#">Apple</a></li>
+	                                        <li><a href="#">Acer</a></li>
 										</ul>
 									</li>
-                                                                        <li> 
+                                    <li> 
 										<a href="javascript:;">Laptops</a>
 										<ul class="sub-menu">
 											<li><a href="#">HP</a></li>
 											<li><a href="#">Dell</a></li>
 											<li><a href="#">Lenovo</a></li>
-                                                                                        <li><a href="#">Apple</a></li>
-                                                                                        <li><a href="#">Acer</a></li>
+                                            <li><a href="#">Apple</a></li>
+                                            <li><a href="#">Acer</a></li>
 										</ul>
 									</li>
 									
 								</ul>
 							</li>
-                                                         <li> 
-                                                             <a href="logistics_partenership.php">Logistics & Partnership</a>
-								
+	                        <li> 
+	                           <a href="logistics_partenership.php">Logistics & Partnership</a>
 							</li>
-                                                        <li> 
-                                                            <a href="banking.php">Banking Information</a>
-								
+                            <li> 
+                                <a href="banking.php">Banking Information</a>
 							</li>
 							<li> 
-                                                            <a href="contact_us.php">Contact Us</a>
-								
+                                <a href="contact_us.php">Contact Us</a>
 							</li>
                                                         
 						</ul>
