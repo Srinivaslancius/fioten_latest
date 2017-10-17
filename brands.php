@@ -14,7 +14,7 @@
 <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
 <!-- Page Title Here -->
-<title>Fioten</title> 
+<title><?php echo $getSiteSettingsData['admin_title'] ?></title>
 <!-- Mobile Specific -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--[if lt IE 9]>
