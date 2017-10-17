@@ -88,7 +88,12 @@
 						<div class="row">
 							<?php while ($getPro = $getProducts->fetch_assoc()) { ?>
 								<div class="col-md-6 col-sm-6 col-xs-6 m-b30">
-	                                <div class="w3-media w3-img-effect rotate"> <img src="<?php echo $base_url . 'uploads/product_images/'.$getPro['product_image'] ?>" alt=""> </div>
+	                                <div class="w3-media w3-img-effect rotate"> 
+	                                	<?php  $getProImg = getDataFromTables('product_images',$status=NULL,'product_id',$getPro['id'],$activeStatus=NULL,$activeTop=NULL); 
+	                                	       $getImg = $getProImg->fetch_assoc(); ?>
+	                                	<img src="<?php echo $base_url . 'uploads/product_images/'.$getImg['product_image'] ?>" alt=""> 
+
+	                            	</div>
 	                                <h3><?php echo $getPro['product_name']; ?></h3>
 								</div>
 							<?php } ?>
