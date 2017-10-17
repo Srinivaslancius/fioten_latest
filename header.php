@@ -70,7 +70,7 @@
 									<?php while($getCat = $getCategory->fetch_assoc()) {  ?>
 
 										<li>
-											<a href="javascript:;"><?php echo $getCat['category_name']; ?></a>
+											<a href="brands.php?catId=<?php echo $getCat['id']; ?>"><?php echo $getCat['category_name']; ?></a>
 											<?php $getSubCat = getDataFromTables('sub_categories','0','category_id',$getCat['id'],$activeStatus=NULL,$activeTop=NULL);  ?>
 											<ul class="sub-menu">
 												<?php while($getSubCatDet = $getSubCat->fetch_assoc()) {  ?>
