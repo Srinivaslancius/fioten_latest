@@ -9,7 +9,7 @@ if($setcon == 1) {
 	$password = "";
 	$dbname = "";
 } else {
-	$servername = "192.168.0.108";	
+	$servername = "192.168.0.100";	
 	$username = "root";
 	$password = "root";
 	$dbname = "fioten_latest";
@@ -22,6 +22,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$base_url = "http://192.168.0.108/fioten_latest/";
+$base_url = "http://192.168.0.100/fioten_latest/";
  
 ?>
