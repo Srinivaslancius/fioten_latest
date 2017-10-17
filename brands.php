@@ -68,15 +68,14 @@
         </div>
         <!-- About Us END -->
 		<!-- Our Classes -->
-		<?php $id = $_GET['catId']; $getProducts = getDataFromTables('products',$status=NULL,'category_id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();  ?>
+		<?php $id = $_GET['catId']; $getProducts = getDataFromTables('products',$status=NULL,'category_id',$id,$activeStatus=NULL,$activeTop=NULL); ?>
 		<div class="section-full text-white bg-img-fix content-inner overlay-gray-dark choose-us" style="background-image:url(images/background/bg1.jpg);">
             <div class="container">
 				<div class="row">
 					<div class="col-md-6 col-sm-6">
 						<div class="bg-primary m-b30">
 							<div class="p-a30 text-white z-index10 relative">
-								<?php $getSubCat = getDataFromTables('sub_categories',$status=NULL,'category_id',$getPro['category_id'],$activeStatus=NULL,$activeTop=NULL); $getSubCat1 = $getSubCat->fetch_assoc();  ?>
-								<h3 class="h3 m-t0"><?php echo $getSubCat1['sub_category_name']; ?></h3>
+								<h3 class="h3 m-t0">Consumer Laptops</h3>
 								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 								<a href="#" class="site-button white">Read More</a>
 							</div>
@@ -87,8 +86,19 @@
 					</div>
 					<div class="col-md-6 col-sm-6">
 						<div class="row">
-							<div class="col-md-6 col-sm-6 col-xs-6 m-b30">
-                                <div class="w3-media w3-img-effect rotate"> <img src="<?php echo $base_url . 'uploads/product_images/'.$getPro['product_image'] ?>" alt=""> </div>
+							<?php while ($getPro = $getProducts->fetch_assoc()) { ?>
+								<div class="col-md-6 col-sm-6 col-xs-6 m-b30">
+	                                <div class="w3-media w3-img-effect rotate"> 
+	                                	<?php  $getProImg = getDataFromTables('product_images',$status=NULL,'product_id',$getPro['id'],$activeStatus=NULL,$activeTop=NULL); 
+	                                	       $getImg = $getProImg->fetch_assoc(); ?>
+	                                	<img src="<?php echo $base_url . 'uploads/product_images/'.$getImg['product_image'] ?>" alt=""> 
+
+	                            	</div>
+	                                <h3><?php echo $getPro['product_name']; ?></h3>
+								</div>
+							<?php } ?>
+							<!-- <div class="col-md-6 col-sm-6 col-xs-6 m-b30">
+                                <div class="w3-media w3-img-effect rotate"> <img src="images/categories/hpspectra360.png" alt=""> </div>
                                 <h3>HP Spectra 360</h3>
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6 m-b30">
@@ -102,7 +112,7 @@
 							<div class="col-md-6 col-sm-6 col-xs-6 m-b10">
                                 <div class="w3-media w3-img-effect rotate"> <img src="images/categories/omen_accessories.png" alt=""> </div>
                                 <h3>HP OMEN Accessories</h3>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
