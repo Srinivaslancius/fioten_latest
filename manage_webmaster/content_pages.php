@@ -14,7 +14,7 @@
                     <th>Id</th>
                     <th>Title</th>
                     <th>Description</th>
-                    <th>Image</th>
+                    <!-- <th>Image</th> -->
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -24,7 +24,7 @@
                     <td><?php echo $i;?></td>
                     <td><?php echo $row['title'];?></td>
                     <td><?php echo substr(strip_tags($row['description']), 0,150);?></td>
-                    <td><img src="<?php echo $base_url . 'uploads/content_images/'.$row['image'] ?>" height="100" width="100"/></td>
+                    <!-- <td><img src="<?php echo $base_url . 'uploads/content_images/'.$row['image'] ?>" height="100" width="100"/></td> -->
                     
                     <td> <a href="edit_content_pages.php?uid=<?php echo $row['id']; ?>"><i class="zmdi zmdi-edit"></i></a> &nbsp; <a href="#"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#<?php echo $row['id']; ?>" class=""></i></a></td>
                     <!-- Open Modal Box  here -->
