@@ -1,69 +1,29 @@
 <?php include_once "main_header_scripts.php"; ?>
+<?php 
+
+if (!isset($_POST['submit']))  {
+            echo "";
+    } else  { 
+    //echo "<pre>";print_r($_POST);
+    $customer_name = $_POST['customer_name'];
+    $customer_email = $_POST['customer_email'];
+    $mobile = $_POST['mobile'];
+    $services = $_POST['services'];
+    $message = $_POST['message'];
+    $created_at = date("Y-m-d h:i:s");
+    $sql = "INSERT INTO customer_enqueries (`customer_name`, `customer_email`, `customer_mobile`, `customer_feedback`, `customer_service`,`created_at`) VALUES ('$customer_name', '$customer_email', '$mobile', '$message', '$services','$created_at')";
+    if($conn->query($sql) === TRUE){
+       echo "<script>alert('Data Updated Successfully');window.location.href='index.php';</script>";
+    } else {
+       echo "<script>alert('Data Updation Failed');window.location.href='index.php';</script>";
+    }
+}
+        
+?>
 <?php $getAboutUsData = getDataFromTables('content_pages',$status=NULL,'id',1,$activeStatus=NULL,$activeTop=NULL);
-      $getAboutUs = $getAboutUsData->fetch_assoc();?>
+      $getAboutUs = $getAboutUsData->fetch_assoc(); ?>
 <?php $getcontentWhy = getDataFromTables('content_pages',$status=NULL,'id',2,$activeStatus=NULL,$activeTop=NULL);
       $getcontentWhyUs = $getcontentWhy->fetch_assoc();?>
-<?php 
-error_reporting(1);   
-$statusMsg = '';
-$msgClass = '';
-    if(isset($_POST['submit'])){
-        // Get the submitted form data
-        $name = $_POST['name'];
-        $email = $_POST['email'];
-        $mobile = $_POST['mobile'];
-        $services = $_POST['services'];
-        $message = $_POST['message'];
-        $created_at = date("Y-m-d h:i:s");
-        $sql = "INSERT INTO customer_enqueries (`customer_name`, `customer_email`, `customer_mobile`, `customer_feedback`, `customer_service`,`created_at`) VALUES ('$name', '$email', '$mobile', '$message', '$services','$created_at')";
-        if($conn->query($sql) === TRUE){
-       		echo "<script>alert('Data Updated Successfully');window.location.href='index.php';</script>";
-	    } else {
-	       echo "<script>alert('Data Updated Successfully');window.location.href='index.php';</script>";
-	    }
-        // Check whether submitted data is not empty
-        if(!empty($email) && !empty($name) && !empty($mobile) && !empty($services) &&!empty($message)){
-            
-            if(filter_var($email, FILTER_VALIDATE_EMAIL) === false){
-                $statusMsg = 'Please enter your valid email.';
-                $msgClass = 'errordiv';
-            }else{
-                // Recipient email
-                $toEmail = '<?php echo $getSiteSettingsData["email"]; ?>';
-                $emailSubject = 'Contact Request Submitted by '.$name;
-                $htmlContent = '<h2>Contact Request Submitted</h2>
-                    <h4>Name</h4><p>'.$name.'</p>
-                    <h4>Email</h4><p>'.$email.'</p>
-                    <h4>Mobile</h4><p>'.$mobile.'</p>
-
-                    <h4>Services</h4><p>'.$services.'</p>
-                    <h4>Message</h4><p>'.$message.'</p>';
-                
-                // Set content-type header for sending HTML email
-                $headers = "MIME-Version: 1.0" . "\r\n";
-                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                
-                // Additional headers
-                $headers .= 'From: '.$name.'<'.$email.'>'. "\r\n";
-
-                
-                // Send email
-                if(mail($toEmail,$emailSubject,$htmlContent)){
-                echo "srinu"; die;
-                    $statusMsg = 'Your contact request has been submitted successfully !';
-                    $msgClass = 'succdiv';
-                }else{
-               
-                    $statusMsg = 'Your contact request submission failed, please try again.';
-                    $msgClass = 'errordiv';
-                }
-            }
-        }else{
-            $statusMsg = 'Please fill all the fields.';
-            $msgClass = 'errordiv';
-        }
-    }
-?>
 
 <!DOCTYPE html>
 
@@ -411,8 +371,11 @@ $msgClass = '';
 				<div class="section-content row">
 					<div class="col-md-7">
 						<div class="p-lr60 p-t50 p-b40 bg-white clearfix mack-an-appointment-2">
-							<div class="dzFormMsg "></div>
-							<form method="post" id="appointment_form" class="dzForm">
+							<!-- <div class="dzFormMsg "></div> -->
+							<?php $getServices = getDataFromTables('lkp_services','0',$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
+
+							<form method="post" id="appointment_form">
+
 								<div class="row">
 									<?php $getAnyque = getDataFromTables('content_pages',$status=NULL,'id',5,$activeStatus=NULL,$activeTop=NULL);
       									$getAnyQueries = $getAnyque->fetch_assoc();?>
@@ -423,26 +386,26 @@ $msgClass = '';
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
+											<input type="text" id="name" name="customer_name" class="form-control" placeholder="Name" required>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+											<input type="email" name="customer_email" id="customer_email" class="form-control" placeholder="Email" required>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<input type="text" name="mobile" id="mobile" class="form-control" placeholder="mobile Number" maxlength="10" pattern="[0-9]{10}" required onkeypress="return isNumberKey(event)">
+											<input type="text" name="mobile" id="mobile" class="form-control" placeholder="Mobile Number" maxlength="10" pattern="[0-9]{10}" required onkeypress="return isNumberKey(event)">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
 											<select class="bs-select-hidden" id="services" name="services" required>
-												<option value="1">Services</option>
-												<option value="2">Services 2</option>
-												<option value="3">Services 3</option>
-												<option value="4">Services 4</option>
+												<option value="">Select Service</option>
+												<?php while($row = $getServices->fetch_assoc()) {  ?>
+                        						<option value="<?php echo $row['id']; ?>"><?php echo $row['service_name']; ?></option>
+                      							<?php } ?>
 											</select>
 										</div>
 									</div>
@@ -454,14 +417,12 @@ $msgClass = '';
 										</div>
 									</div>
 									<div class="col-md-12 text-center">
-										<div class="dzFormMsg ">
+										<!-- <div class="dzFormMsg ">
 											<div class="gen alert alert-success" style="display: none;">Submiting..</div>
-										</div>
+										</div> -->
 										<button name="submit" type="submit" value="Submit" class="site-button skew-secondry">
-											<span>Submit</span>
-										</button>
-										<!-- <div id="error_message" class="ajax_response" style="float:left"></div>
-										<div id="success_message" class="ajax_response" style="float:left"></div> -->
+                                            <span>Submit</span>
+                                        </button>
 									</div>
 								</div>
 							</form>

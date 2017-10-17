@@ -102,6 +102,14 @@
               </a>
             </li> -->
             </li>
+            <li  class="<?php if($page_name == 'services.php' || $page_name == 'add_services.php' || $page_name == 'edit_services.php' || $page_name == 'delete_services.php') { echo "active"; } ?>">
+              <a href="services.php" aria-haspopup="true">
+                <span class="menu-icon">
+                   <i class="zmdi zmdi-account-box-mail zmdi-hc-fw"></i>
+                </span>
+                <span class="menu-text">Services</span>
+              </a>
+            </li>
             <li  class="<?php if($page_name == 'partner_logos.php' || $page_name == 'add_partner_logos.php' || $page_name == 'edit_partner_logos.php' ) { echo "active"; } ?>">
               <a href="partner_logos.php" aria-haspopup="true">
                 <span class="menu-icon">
