@@ -73,110 +73,21 @@
         <div class="content-area">
             <!-- Product -->
             <div class="container">
+                <?php $id = $_GET['subCatId']; $getProducts = getDataFromTables('products','0','sub_category_id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();  ?>
+                <?php $id = $_GET['subCatId']; $getProductsImages = getDataFromTables('product_images','0','sub_category_id',$id,$activeStatus=NULL,$activeTop=NULL); $getProductsImage = $getProductsImages->fetch_assoc();  ?>
                 <div class="row">
                     <div class="col-md-3 col-sm-6 m-b30">
                         <div class="w3-box p-a20 border-1 bg-gray">
-                            <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom"> <img src="images/product/pic1.jpg" alt="">
+                            <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom"> <img src="<?php echo $base_url . '/uploads/product_images/'.$getPro['product_image'] ?>" alt="">
                                 <div class="overlay-bx">
-                                    <div class="overlay-icon"> <a href="javascript:void(0)"> <i class="fa fa-cart-plus icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-search icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-heart icon-bx-xs"></i> </a> </div>
+                                    <div class="overlay-icon"> <a href="javascript:void(0)"> <i class="fa fa-eye icon-bx-xs"></i> </a></div>
                                 </div>
                             </div>
                             <div class="w3-info p-t20 text-center">
-                                <h4 class="w3-title m-t0 text-uppercase"><a href="#">first heading</a></h4>
+                                <h4 class="w3-title m-t0 text-uppercase"><a href="#"><?php echo $getPro['product_name']; ?></a></h4>
                                 <h2 class="m-b0">$20.00 </h2>
                                 <a href="javascript:void(0)" class="site-button  m-t15">Add To Cart</a> </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 m-b30">
-                        <div class="w3-box p-a20 border-1 bg-gray">
-                            <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom"> <img src="images/product/pic2.jpg" alt="">
-                                <div class="overlay-bx">
-                                    <div class="overlay-icon"> <a href="javascript:void(0)"> <i class="fa fa-cart-plus icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-search icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-heart icon-bx-xs"></i> </a> </div>
-                                </div>
-                            </div>
-                            <div class="w3-info p-t20 text-center">
-                                <h4 class="w3-title m-t0 text-uppercase"><a href="#">first heading</a></h4>
-                                <h2 class="m-b0">$20.00 </h2>
-                                <a href="javascript:void(0)" class="site-button  m-t15">Add To Cart</a> </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 m-b30">
-                        <div class="w3-box p-a20 border-1 bg-gray">
-                            <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom"> <img src="images/product/pic3.jpg" alt="">
-                                <div class="overlay-bx">
-                                    <div class="overlay-icon"> <a href="javascript:void(0)"> <i class="fa fa-cart-plus icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-search icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-heart icon-bx-xs"></i> </a> </div>
-                                </div>
-                            </div>
-                            <div class="w3-info p-t20 text-center">
-                                <h4 class="w3-title m-t0 text-uppercase"><a href="#">first heading</a></h4>
-                                <h2 class="m-b0">$20.00 </h2>
-                                <a href="javascript:void(0)" class="site-button  m-t15">Add To Cart</a> </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 m-b30">
-                        <div class="w3-box p-a20 border-1 bg-gray">
-                            <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom"> <img src="images/product/pic6.jpg" alt="">
-                                <div class="overlay-bx">
-                                    <div class="overlay-icon"> <a href="javascript:void(0)"> <i class="fa fa-cart-plus icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-search icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-heart icon-bx-xs"></i> </a> </div>
-                                </div>
-                            </div>
-                            <div class="w3-info p-t20 text-center">
-                                <h4 class="w3-title m-t0 text-uppercase"><a href="#">first heading</a></h4>
-                                <h2 class="m-b0">$20.00 </h2>
-                                <a href="javascript:void(0)" class="site-button  m-t15">Add To Cart</a> </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 m-b30">
-                        <div class="w3-box p-a20 border-1 bg-gray">
-                            <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom"> <img src="images/product/pic4.jpg" alt="">
-                                <div class="overlay-bx">
-                                    <div class="overlay-icon"> <a href="javascript:void(0)"> <i class="fa fa-cart-plus icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-search icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-heart icon-bx-xs"></i> </a> </div>
-                                </div>
-                            </div>
-                            <div class="w3-info p-t20 text-center">
-                                <h4 class="w3-title m-t0 text-uppercase"><a href="#">first heading</a></h4>
-                                <h2 class="m-b0">$20.00 </h2>
-                                <a href="javascript:void(0)" class="site-button  m-t15">Add To Cart</a> </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 m-b30">
-                        <div class="w3-box p-a20 border-1 bg-gray">
-                            <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom"> <img src="images/product/pic5.jpg" alt="">
-                                <div class="overlay-bx">
-                                    <div class="overlay-icon"> <a href="javascript:void(0)"> <i class="fa fa-cart-plus icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-search icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-heart icon-bx-xs"></i> </a> </div>
-                                </div>
-                            </div>
-                            <div class="w3-info p-t20 text-center">
-                                <h4 class="w3-title m-t0 text-uppercase"><a href="#">first heading</a></h4>
-                                <h2 class="m-b0">$20.00 </h2>
-                                <a href="javascript:void(0)" class="site-button  m-t15">Add To Cart</a> </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 m-b30">
-                        <div class="w3-box p-a20 border-1 bg-gray">
-                            <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom"> <img src="images/product/pic7.jpg" alt="">
-                                <div class="overlay-bx">
-                                    <div class="overlay-icon"> <a href="javascript:void(0)"> <i class="fa fa-cart-plus icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-search icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-heart icon-bx-xs"></i> </a> </div>
-                                </div>
-                            </div>
-                            <div class="w3-info p-t20 text-center">
-                                <h4 class="w3-title m-t0 text-uppercase"><a href="#">first heading</a></h4>
-                                <h2 class="m-b0">$20.00 </h2>
-                                <a href="javascript:void(0)" class="site-button  m-t15">Add To Cart</a> </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 m-b30">
-                        <div class="w3-box p-a20 border-1 bg-gray">
-                            <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom"> <img src="images/product/pic8.jpg" alt="">
-                                <div class="overlay-bx">
-                                    <div class="overlay-icon"> <a href="javascript:void(0)"> <i class="fa fa-cart-plus icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-search icon-bx-xs"></i> </a> <a href="javascript:void(0)"> <i class="fa fa-heart icon-bx-xs"></i> </a> </div>
-                                </div>
-                            </div>
-                            <div class="w3-info p-t20 text-center">
-                                <h4 class="w3-title m-t0 text-uppercase"><a href="#">first heading</a></h4>
-                                <h2 class="m-b0">$20.00 </h2>
-                                <a href="javascript:void(0)" class="site-button  m-t15">Add To Cart</a> </div>
-						</div>
                     </div>
                 </div>
             </div>
