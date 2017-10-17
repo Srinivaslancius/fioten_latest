@@ -64,7 +64,7 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
                 <form data-toggle="validator" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Choose your Category</label>
-                    <select id="form-control-3" name="category_id" class="custom-select" data-error="This field is required." required>
+                    <select id="form-control-3" name="category_id" class="custom-select" data-error="This field is required." required onChange="getSubCategories(this.value);">
                       <option value="">Select Category</option>
                       <?php while($row = $getCategories->fetch_assoc()) {  ?>
                         <option value="<?php echo $row['id']; ?>" <?php if($row['id'] == $getSubCategories['category_id']) { echo "selected=selected"; }?> ><?php echo $row['category_name']; ?></option>
@@ -74,15 +74,16 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
                   </div>
                   
                   <div class="form-group">
-                    <label for="form-control-3" class="control-label">Choose your Sub Category</label>
-                    <select id="form-control-3" name="sub_category_id" class="custom-select" data-error="This field is required." required>
-                      <option value="">Select Sub Category</option>
+                    <label for="form-control-3" class="control-label">Select Sub Category</label>
+                    <select id="sub_category_id" name="sub_category_id" class="custom-select" data-error="This field is required." required onChange="getSubSubCategories(this.value);">
+                       <option value="">Select Sub Category</option>
                       <?php while($row = $getsubCategoriesData->fetch_assoc()) {  ?>
-                        <option value="<?php echo $row['id']; ?>"<?php if($row['id'] == $getSubCategories['sub_category_id']) { echo "selected=selected"; }?> ><?php echo $row['sub_category_name']; ?></option>
+                      <option <?php if($row['id'] == $getSubCategories['sub_category_id']) { echo "Selected"; } ?> value="<?php echo $row['id']; ?>"><?php echo $row['sub_category_name']; ?></option>
                       <?php } ?>
                    </select>
                     <div class="help-block with-errors"></div>
                   </div>
+
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Sub Category Name</label>
                     <input type="text" class="form-control" id="form-control-2" name="sub_sub_category_name" required value="<?php echo $getSubCategories['sub_sub_category_name'];?>">
@@ -143,4 +144,16 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
       </div>
       <?php include_once 'admin_includes/footer.php'; ?>
    <script src="js/tables-datatables.min.js"></script>
+    <script type="text/javascript">
+      function getSubCategories(val) {
+          $.ajax({
+          type: "POST",
+          url: "get_sub_categories.php",
+          data:'category_id='+val,
+          success: function(data){
+              $("#sub_category_id").html(data);
+          }
+          });
+      }
+    </script>
 
