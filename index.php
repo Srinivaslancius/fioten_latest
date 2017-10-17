@@ -373,7 +373,9 @@ if (!isset($_POST['submit']))  {
 						<div class="p-lr60 p-t50 p-b40 bg-white clearfix mack-an-appointment-2">
 							<!-- <div class="dzFormMsg "></div> -->
 							<?php $getServices = getDataFromTables('lkp_services','0',$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
-							<form method="post" action="" id="appointment_form">
+
+							<form method="post" id="appointment_form">
+
 								<div class="row">
 									<?php $getAnyque = getDataFromTables('content_pages',$status=NULL,'id',5,$activeStatus=NULL,$activeTop=NULL);
       									$getAnyQueries = $getAnyque->fetch_assoc();?>
