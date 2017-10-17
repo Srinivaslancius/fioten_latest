@@ -13,36 +13,69 @@ $id = $_GET['bid'];
         $fileToUpload1 = $_FILES['fileToUpload1']["name"];
         $status = $_POST['status'];
 
-        if($_FILES["fileToUpload"]["name"]!='') {
-              $fileToUpload = $_FILES["fileToUpload"]["name"];
-              $target_dir = "../uploads/background_images/";
-              $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-              $target_dir1 = "../uploads/sub_sub_banner_images/";
-              $target_file1 = $target_dir1 . basename($_FILES["fileToUpload1"]["name"]);
-              //$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-              $getImgUnlink = getImageUnlink('background_image','sub_sub_categories','id',$id,$target_dir);
-              $getImgUnlink = getImageUnlink('sub_sub_banner_image','sub_sub_categories','id',$id,$target_dir1);
-                //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
-              if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                    move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1);
-                    $sql = "UPDATE `sub_sub_categories` SET category_id = '$category_id', sub_category_id = '$sub_category_id',sub_sub_category_name='$sub_sub_category_name',frame_type='$frame_type',background_image = '$fileToUpload', sub_sub_banner_image='$fileToUpload1', status='$status' WHERE id = '$id' ";
-                    if($conn->query($sql) === TRUE){
-                       echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
-                    } else {
-                       echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=fail'</script>";
-                    }
-                    //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-                } else {
-                    echo "Sorry, there was an error uploading your file.";
-                }
-            }  else {
-                $sql = "UPDATE `sub_sub_categories` SET category_id = '$category_id',sub_category_id = '$sub_category_id',sub_sub_category_name='$sub_sub_category_name',frame_type='$frame_type', status='$status' WHERE id = '$id' ";
-                if($conn->query($sql) === TRUE){
-                   echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
-                } else {
-                   echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=fail'</script>";
-                }
+        if ($frame_type == '2') {
+          if($_FILES["fileToUpload"]["name"]!='') {
+            $fileToUpload = $_FILES["fileToUpload"]["name"];
+            $target_dir = "../uploads/background_images/";
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $target_dir1 = "../uploads/sub_sub_banner_images/";
+            $target_file1 = $target_dir1 . basename($_FILES["fileToUpload1"]["name"]);
+            //$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            $getImgUnlink = getImageUnlink('background_image','sub_sub_categories','id',$id,$target_dir);
+            $getImgUnlink = getImageUnlink('sub_sub_banner_image','sub_sub_categories','id',$id,$target_dir1);
+              //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                  move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1);
+                  $sql = "UPDATE `sub_sub_categories` SET category_id = '$category_id', sub_category_id = '$sub_category_id',sub_sub_category_name='$sub_sub_category_name',frame_type='$frame_type',background_image = '$fileToUpload', sub_sub_banner_image='$fileToUpload1', status='$status' WHERE id = '$id' ";
+                  if($conn->query($sql) === TRUE){
+                     echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
+                  } else {
+                     echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=fail'</script>";
+                  }
+                  //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+              } else {
+                  echo "Sorry, there was an error uploading your file.";
+              }
+          } else {
+              $sql = "UPDATE `sub_sub_categories` SET category_id = '$category_id',sub_category_id = '$sub_category_id',sub_sub_category_name='$sub_sub_category_name',frame_type='$frame_type', status='$status' WHERE id = '$id' ";
+              if($conn->query($sql) === TRUE){
+                 echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
+              } else {
+                 echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=fail'</script>";
             }
+          }
+        } else {
+          if($_FILES["fileToUpload1"]["name"]!='') {
+            $fileToUpload = $_FILES["fileToUpload"]["name"];
+            $target_dir = "../uploads/background_images/";
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            $target_dir1 = "../uploads/sub_sub_banner_images/";
+            $target_file1 = $target_dir1 . basename($_FILES["fileToUpload1"]["name"]);
+            //$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            //$getImgUnlink = getImageUnlink('background_image','sub_sub_categories','id',$id,$target_dir);
+            $getImgUnlink = getImageUnlink('sub_sub_banner_image','sub_sub_categories','id',$id,$target_dir1);
+              //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
+            if (move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1)) {
+                  //move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1);
+                  $sql = "UPDATE `sub_sub_categories` SET category_id = '$category_id', sub_category_id = '$sub_category_id',sub_sub_category_name='$sub_sub_category_name',frame_type='$frame_type', sub_sub_banner_image='$fileToUpload1', status='$status' WHERE id = '$id' ";
+                  if($conn->query($sql) === TRUE){
+                     echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
+                  } else {
+                     echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=fail'</script>";
+                  }
+                  //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+              } else {
+                  echo "Sorry, there was an error uploading your file.";
+              }
+          } else {
+              $sql = "UPDATE `sub_sub_categories` SET category_id = '$category_id',sub_category_id = '$sub_category_id',sub_sub_category_name='$sub_sub_category_name',frame_type='$frame_type', status='$status' WHERE id = '$id' ";
+              if($conn->query($sql) === TRUE){
+                 echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
+              } else {
+                 echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=fail'</script>";
+            }
+          }
+        }
 
       }
 ?>
@@ -100,13 +133,14 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
 
                   <div class="radio">
                         <label>
-                          <input name="frame_type" value="1" type="radio" <?php if($getSubCategories['frame_type']  == 1){ echo "checked=checked"; }?> required> Frame1
+                          <input name="frame_type" id="frame1" value="1" type="radio" <?php if($getSubCategories['frame_type']  == 1){ echo "checked=checked"; }?> required> Frame1
                         </label>
                         <label>
-                          <input name="frame_type" value="2" type="radio" <?php if($getSubCategories['frame_type']  == 2){ echo "checked=checked"; }?> required> Frame2
+                          <input name="frame_type" id="frame2" value="2" type="radio" <?php if($getSubCategories['frame_type']  == 2){ echo "checked=checked"; }?> required> Frame2
                         </label>
                   </div>
-                  <div class="form-group">
+                  <?php if($getSubCategories['frame_type']  == 2){ ?>
+                  <div class="form-group" id="background_image">
                     <label for="form-control-4" class="control-label">Background Image</label>
                     <img src="<?php echo $base_url . 'uploads/background_images/'.$getSubCategories['background_image'] ?>"  id="output" height="100" width="100"/>
                     <label class="btn btn-default file-upload-btn">
@@ -114,6 +148,7 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
                         <input id="form-control-22" class="file-upload-input" type="file" accept="image/*" name="fileToUpload" id="fileToUpload"  onchange="loadFile(event)"  multiple="multiple">
                       </label>
                   </div>
+                  <?php } ?>
                   <div class="form-group">
                     <label for="form-control-4" class="control-label">Sub Sub Banner Image</label>
                     <img src="<?php echo $base_url . 'uploads/sub_sub_banner_images/'.$getSubCategories['sub_sub_banner_image'] ?>"  id="output1" height="100" width="100"/>
@@ -156,4 +191,14 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
           });
       }
     </script>
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+          $("input[name='frame_type']").click(function () {
+            if ($("#frame2").is(":checked")) {
+                $("#background_image").show();
+            } else {
+                $("#background_image").hide();
+            }
+          });
+        });
+      </script>

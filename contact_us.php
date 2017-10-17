@@ -1,4 +1,4 @@
-
+<?php include_once "main_header_scripts.php"; ?>
 <!DOCTYPE html>
 
 <html lang="en">
