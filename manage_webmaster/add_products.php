@@ -8,6 +8,7 @@ if (!isset($_POST['submit']))  {
     $product_name = $_POST['product_name'];
     $category_id = $_POST['category_id'];
     $sub_category_id = $_POST['sub_category_id'];
+    $sub_sub_category_id = $_POST['sub_sub_category_id'];
     $product_price = $_POST['product_price'];
     $price_type = $_POST['price_type'];
     $offer_price = $_POST['offer_price'];
@@ -26,7 +27,7 @@ if (!isset($_POST['submit']))  {
     $created_by = $_SESSION['admin_user_id'];
     //save product images into product_images table    
     
-    $sql1 = "INSERT INTO products (`product_name`,`category_id`,`sub_category_id`,`product_price`,`price_type`,`offer_price`,`selling_price`, `deal_start_date`, `deal_end_date`, `quantity`, `minimum_order_quantity`, `key_features`,`product_info`,`specifications`,`availability_id`,`status`,`created_by`,`created_at`) VALUES ('$product_name','$category_id','$sub_category_id','$product_price','$price_type','$offer_price','$selling_price', '$deal_start_date', '$deal_end_date', '$quantity', '$minimum_order_quantity', '$key_features','$product_info','$specifications','$availability_id','$status','$created_by','$created_at')";
+    $sql1 = "INSERT INTO products (`product_name`,`category_id`,`sub_category_id`,`sub_sub_category_id`,`product_price`,`price_type`,`offer_price`,`selling_price`,`quantity`, `minimum_order_quantity`, `key_features`,`product_info`,`specifications`,`availability_id`,`status`,`created_by`,`created_at`) VALUES ('$product_name','$category_id','$sub_category_id','$sub_sub_category_id','$product_price','$price_type','$offer_price','$selling_price','$quantity', '$minimum_order_quantity', '$key_features','$product_info','$specifications','$availability_id','$status','$created_by','$created_at')";
     $result1 = $conn->query($sql1);
     $last_id = $conn->insert_id;
 
@@ -72,8 +73,16 @@ if (!isset($_POST['submit']))  {
 
                   <div class="form-group">
                     <label for="form-control-3" class="control-label">Select Sub Category</label>
-                    <select id="sub_category_id" name="sub_category_id" class="custom-select" data-error="This field is required." required >
+                    <select id="sub_category_id" name="sub_category_id" class="custom-select" data-error="This field is required." required onChange="getSubSubCategories(this.value);">
                       <option value="">Select Sub Category</option>
+                   </select>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="form-control-3" class="control-label">Select Sub Sub Category</label>
+                    <select id="sub_sub_category_id" name="sub_sub_category_id" class="custom-select" data-error="This field is required." required >
+                      <option value="">Select Sub Sub Category</option>
                    </select>
                     <div class="help-block with-errors"></div>
                   </div>
@@ -112,17 +121,17 @@ if (!isset($_POST['submit']))  {
                     <input type="text" class="form-control" readonly id="selling_price" name="selling_price" placeholder="Product Price" data-error="Please enter Selling price." required onkeypress="return isNumberKey(event)">
                     <div class="help-block with-errors"></div>
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="form-control-2" class="control-label">Select Deal Start Date</label>
                     <input type="text" class="form-control" id="deal_start_date" name="deal_start_date" placeholder="Select deal start date" data-error="Please enter deal start date." required>
                     <div class="help-block with-errors"></div>
-                  </div>
+                  </div> -->
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="form-control-2" class="control-label">Select Deal End Date</label>
                     <input type="text" class="form-control" id="deal_end_date" name="deal_end_date" placeholder="Select deal end date" data-error="Please enter deal end date." required>
                     <div class="help-block with-errors"></div>
-                  </div>
+                  </div> -->
 
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Quantity</label>
@@ -304,6 +313,17 @@ function getSubCategories(val) {
     data:'category_id='+val,
     success: function(data){
         $("#sub_category_id").html(data);
+    }
+    });
+}
+
+function getSubSubCategories(val) {
+    $.ajax({
+    type: "POST",
+    url: "get_sub_sub_categories.php",
+    data:'sub_category_id='+val,
+    success: function(data){
+        $("#sub_sub_category_id").html(data);
     }
     });
 }

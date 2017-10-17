@@ -34,7 +34,7 @@ if($setcon == 1) {
 	$password = "";
 	$dbname = "";
 } else {
-	$servername = "192.168.0.106";	
+	$servername = "192.168.0.100";	
 	$username = "root";
 	$password = "root";
 	$dbname = "fioten_latest";
