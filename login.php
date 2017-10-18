@@ -51,7 +51,7 @@
                 $user_password = encryptPassword($_POST['user_password']);
                 $created_admin_id = $_SESSION['admin_user_id'];
                 $created_at = date("Y-m-d h:i:s");
-                  $sql = "INSERT INTO users (`user_full_name`, `user_email`, `user_address`, `user_city_id`, `user_name`, `user_password`, `created_admin_id`, `created_at`, `status`) VALUES ('$user_full_name', '$user_email', '$user_address', '$user_city_id', '$user_name', '$user_password', '$created_admin_id', '$created_at', 1)";
+                  $sql = "INSERT INTO users (`user_full_name`, `user_email`, `user_address`, `user_city_id`, `user_name`, `user_password`, `created_admin_id`, `created_at`, `status`) VALUES ('$user_full_name', '$user_email', '$user_address', '$user_city_id', '$user_name', '$user_password', '$created_admin_id', '$created_at', 0)";
                 if($conn->query($sql) === TRUE){
                    echo "<script type='text/javascript'>alert('Data Added Successfully');window.location='login.php'</script>";
                 } else {
@@ -69,8 +69,8 @@
                 if($row = $result->fetch_assoc())
                 {
                     $_SESSION['user_login_session_id'] =  $row['id'];
-                    $_SESSION['user_login_name'] = $row['user_full_name'];
-                    $_SESSION['user_login_email'] = $row['user_email'];
+                    $_SESSION['user_login_session_name'] = $row['user_full_name'];
+                    $_SESSION['user_login_session_email'] = $row['user_email'];
                     header('Location: index.php');
                 } else {
                     header('Location: login.php?fmsg=fail');
@@ -103,10 +103,7 @@
                         </div>
                         <div class="form-group text-left">
                             <button class="site-button" name="login">login</button>
-                            <label>
-                            <input type="checkbox"/>
-                            <label> Remember me</label>
-                            </label>
+                            
                             <a data-toggle="tab" href="#forgot-password" class="m-l15"><i class="fa fa-unlock-alt"></i> Forgot Password</a> </div>
                     </form>
                     <div class="bg-primary p-a15 "> <a data-toggle="tab" href="#developement-1" class="text-white">Create an account</a> </div>
@@ -235,3 +232,8 @@ function checkPasswordMatch() {
 
 </body>
 </html>
+ <?php 
+    if($_GET['fmsg']!='') {
+        echo "<script>alert('The Email or Password you entered is incorrect!');</script>";
+    }
+    ?>

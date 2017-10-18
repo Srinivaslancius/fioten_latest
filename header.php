@@ -53,11 +53,19 @@
 						<span class="icon-bar"></span> 
 					</button>
 					<!-- extra nav -->
+					<?php if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id']!='') { ?>
+					<div class="extra-nav" style="position:relative; top:10px; font-weight:bold">
+						<div class="extra-cell">
+							<a href="#">Srinu </a>  | <a href="logout.php"> Logout </a>
+						</div>
+					</div>
+					<?php } else { ?>
 					<div class="extra-nav">
 						<div class="extra-cell">
                             <a href="login.php" class="site-button white skew-secondry hidden-xs">Login</a>
 						</div>
 					</div>
+					<?php } ?>
 					<!-- main nav -->
 					<div class="header-nav navbar-collapse collapse">
 						<ul class=" nav navbar-nav">
