@@ -184,7 +184,50 @@ padding:0px !important;}
                     <div class="blog-post blog-md date-style-2">
                         <div class="col-md-4 col-sm-4 m-b30">
                         	<?php $id = $_GET['proId']; $getProductsImages = getDataFromTables('product_images','0','product_id',$id,$activeStatus=NULL,$activeTop=NULL); $getProductsImage = $getProductsImages->fetch_assoc();  ?>  
-                        	<a href="#"><img src="<?php echo $base_url . 'uploads/product_images/'.$getProductsImage['product_image'] ?>" alt=""></a> 
+                        	<a href="#"><img src="<?php echo $base_url . 'uploads/product_images/'.$getProductsImage['product_image'] ?>" alt=""></a>
+
+                        	<?php if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id']!='') { ?>
+                        	<div class="col-md-4 col-sm-4 m-b30">
+							  <!-- Trigger the modal with a button -->
+							  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="margin-top: 50px;">Place Order</button>
+
+							  <!-- Modal -->
+							  <div class="modal fade" id="myModal" role="dialog">
+							    <div class="modal-dialog">
+							    
+							      <!-- Modal content-->
+							      <div class="modal-content">
+							        <div class="modal-header">
+							          <button type="button" class="close" data-dismiss="modal">&times;</button>
+							          <h4 class="modal-title">Modal Header</h4>
+							        </div>
+
+							        <div class="modal-body">
+							          <div class="row">
+			                              <div class="col-sm-2"></div>
+			                              <div class="col-sm-4">Name: </div>
+			                              <div class="col-sm-6"><?php echo $_SESSION['user_login_session_name'];?></div>
+			                            </div>
+			                            <div class="row">
+			                              <div class="col-sm-2"></div>
+			                              <div class="col-sm-4">Email: </div>
+			                              <div class="col-sm-6"><?php echo $_SESSION['user_login_session_email'];?></div>
+			                            </div>
+			                            <div class="row">
+			                            	<?php $id = $_GET['proId']; $getProducts = getDataFromTables('products','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();?>
+			                              <div class="col-sm-2"></div>
+			                              <div class="col-sm-4">Quantiy: </div>
+			                              <div class="col-sm-6"><input type="number" min="<?php echo $getPro['minimum_order_quantity'];?>" max="<?php echo $getPro['quantity'];?>" value="<?php echo $getPro['quantity'];?>" /></div>
+			                            </div>
+							        </div>
+							        <div class="modal-footer">
+							          <button type="button" value="submit" name="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+							        </div>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+							<?php } ?>
                         </div>
 						<div class="clearfix">
                         <div class="col-md-8 col-sm-8">
