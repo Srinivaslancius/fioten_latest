@@ -216,17 +216,17 @@ padding:0px !important;}
 			                            <?php $id = $_GET['proId']; $getProducts = getDataFromTables('products','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();?>
 			                            <div class="form-group">
 						                    <label for="form-control-2" class="control-label">Product Id</label>
-						                    <input type="text" class="form-control" name="product_id" value="<?php echo $getPro['id'];?>" required>
+						                    <input type="hidden" class="form-control" name="product_id" value="<?php echo $getPro['id'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 						                <div class="form-group">
 						                    <label for="form-control-2" class="control-label">Product Name</label>
-						                    <input type="text" class="form-control" name="product_name" value="<?php echo $getPro['product_name'];?>" required>
+						                    <input type="hidden" class="form-control" name="product_name" value="<?php echo $getPro['product_name'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 						                <div class="form-group">
 						                    <label for="form-control-2" class="control-label">Product Price</label>
-						                    <input type="text" class="form-control" name="product_price" value="<?php echo $getPro['product_price'];?>" required>
+						                    <input type="hidden" class="form-control" name="product_price" value="<?php echo $getPro['product_price'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 			                            <div class="form-group">
