@@ -51,7 +51,8 @@
     <!-- Content -->
     <div class="page-content">
         <!-- inner page banner -->
-        <div class="w3-bnr-inr overlay-black-middle" style="background-image:url(images/background/bg4.jpg);">
+        <?php $id = $_GET['subCatId']; $getSubcat = getDataFromTables('sub_categories','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getSubcat1 = $getSubcat->fetch_assoc(); ?>
+        <div class="w3-bnr-inr overlay-black-middle" style="background-image:url(<?php echo $base_url . 'uploads/sub_category_images/'.$getSubcat1['sub_category_image'] ?>);">
             <div class="container">
                 <div class="w3-bnr-inr-entry">
                     <h1 class="text-white">Products</h1>
