@@ -56,7 +56,7 @@ $res1 = $res->fetch_array();
     <!-- Content -->
     <div class="page-content">
         <!-- inner page banner -->
-        <div class="w3-bnr-inr overlay-black-middle" style="background-image:url(images/about_us_banner.png);">
+        <div class="w3-bnr-inr overlay-black-middle" style="background-image:url(images/background/bg4.jpg);">
             <div class="container">
                 <div class="w3-bnr-inr-entry">
                     <h1 class="text-white">Thank You</h1>
