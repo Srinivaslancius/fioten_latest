@@ -233,306 +233,82 @@ padding:0px !important;}
                         <div class="col-md-8 col-sm-8">
                             
 							  <div class="row">
+							  	<?php $id = $_GET['proId']; $getProducts = getDataFromTables('products','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();?>
                             <table class="table table-bordered" >
                                 <tr>
-                                    <td><h4 class="post-title"><b>Specifications</b></h4></td>
+                                    <td><h4 class="post-title"><b><?php echo $getPro['product_name'];?></b></h4></td>
                                    
                                 </tr>
                                 <tr>
-                                	<?php $id = $_GET['proId']; $getProducts = getDataFromTables('products','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();?>
-                                    <td><h5 class="post-title"><b>General</b></h5>
-									<div class="row">
-									<div class="col-sm-3">
-									<p class="m-tb10">Sales Package</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10"><?php echo $getPro['specifications'];?></p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Product Name</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10"><?php echo $getPro['product_name'];?></p>
-
-									</div>
+                                	
+                                    <td><!-- <h5 class="post-title"><b><?php echo $getPro['product_name'];?></b></h5> -->
+									
 									<div class="col-sm-3">
 									<p class="m-tb10">Price</p>
 									</div>
 									<div class="col-sm-9">
-									<p class="m-tb10">RS. <?php echo $getPro['product_price'];?></p>
-
+										<strike style="color:red"><p class="m-tb10">RS. <?php echo $getPro['product_price'];?></p></strike>
 									</div>
 									
 									<div class="col-sm-3">
-									<p class="m-tb10">Type</p>
+									<p class="m-tb10">Selling Price</p>
 									</div>
 									<div class="col-sm-9">
-									<p class="m-tb10"><?php echo $getPro['product_info'];?></p>
-
+										<p class="m-tb10">RS. <?php echo $getPro['selling_price'];?></p>
 									</div>
 									<div class="col-sm-3">
-									<p class="m-tb10">Suitable For</p>
+									<p class="m-tb10">Availability</p>
 									</div>
 									<div class="col-sm-9">
-									<p class="m-tb10"><?php echo $getPro['key_features'];?></p>
-
+										<p class="m-tb10"><?php if($getPro['availability_id'] == 0 ){ echo "In Stock";} else{ echo "Out Of Stock";}?></p>
 									</div>
+									
 									</div></td>
                                     
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td><h5 class="post-title">Processor And Memory Features</h5></td>
                                    
-                                </tr>
-								<tr>
+                                </tr> -->
+                                <tr>
                                     <td>
 									<a data-toggle="tab" href="#graphic-design-1"><div id="example">
-									<h5 class="post-title"><b>Read More</b></h5></div></a>
+									<h5 class="post-title"><b>More Info</b></h5></div></a>
 							 <div class="tab-content">
 							 <div id="graphic-design-1" class="tab-pane">
                                     <table class="table table-bordered-N" >
-                                        <tr>
-										<td style="border-top:0px"><h5 class="post-title"><b>Operating System</b></h5>
+                                    <tr>
+										<td style="border-top:0px"><h5 class="post-title"><b>Key Features</b></h5>
 										<div class="row">
-									<div class="col-sm-3">
-									<p class="m-tb10">OS Architecture</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">64 bit</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Operating System</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Windows 10 Home</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">System Architecture</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">64 bit</p>
-
-									</div>
-									
-									</div>
-									</td>
+											<!-- <div class="col-sm-3"> -->
+												<!-- <p class="m-tb10">Key Features</p> -->
+											<!-- </div> -->
+											<div class="col-sm-12">
+												<p class="m-tb10"><?php echo $getPro['key_features'];?></p>
+											</div>
+										</div>
+										</td>
 									</tr>
-									  <tr>
-										<td><h5 class="post-title"><b>Port And Slot Features</b></h5>
+									 <tr>
+										<td><h5 class="post-title"><b>Specifications</b></h5>
 										<div class="row">
-									<div class="col-sm-3">
-									<p class="m-tb10">Mic In</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Yes</p>
+										<div class="col-sm-12">
+										<p class="m-tb10"><?php echo $getPro['specifications'];?></p>
 
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">RJ45</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Yes</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">USB Port</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">2 x USB 3.0, 1 x USB 2.0</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">HDMI Port</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">1 x HDMI Port</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Multi Card Slot</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">4-in-1 Card Reader (SD, SDHC, SDXC, MMC)</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Hardware Interface</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">SATA</p>
-
-									</div>
-									
+										</div>
 									</div>
 									</td>
 									</tr>
 									<tr>
-										<td><h5 class="post-title"><b>Display And Audio Features</b></h5>
-										<div class="row">
-									<div class="col-sm-3">
-									<p class="m-tb10">Touchscreen</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Yes</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Screen Size</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">14 inch</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Screen Resolution</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">1920 x 1080 pixel</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Screen Type</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Full HD LED Backlit Display</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Speakers</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Dual Speakers</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Internal Mic</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Built-in Microphone</p>
-
-									</div>
-									
+										<td><h5 class="post-title"><b>Product Info</b></h5>
+									<div class="row">		
+										<div class="col-sm-12">
+										<p class="m-tb10"><?php echo $getPro['product_info'];?></p>
+										</div>
 									</div>
 									</td>
 									</tr>
-									<tr>
-										<td><h5 class="post-title"><b>Connectivity Features</b></h5>
-										<div class="row">
-									<div class="col-sm-3">
-									<p class="m-tb10">Wireless LAN</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">IEEE 802.11ac</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Bluetooth</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">v4.0</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Ethernet</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Gigabit Ethernet</p>
-
-									</div>
-									
-									
-									</div>
-									</td>
-									</tr>
-										<tr>
-										<td><h5 class="post-title"><b>Additional Features</b></h5>
-										<div class="row">
-									<div class="col-sm-3">
-										<p class="m-tb10">Disk Drive</p>
-									</div>
-									<div class="col-sm-9">
-										<p class="m-tb10">Not Available</p>
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Web Camera</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">HD Webcam</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Keyboard</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Standard Keyboard</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Pointer Device</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Touchpad</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Additional Features</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Li-ion Battery</p>
-
-									</div>
-									
-									
-									</div>
-									</td>
-									</tr>
-										<tr>
-										<td><h5 class="post-title"><b>Warranty</b></h5>
-										<div class="row">
-									<div class="col-sm-3">
-									<p class="m-tb10">Warranty Summary</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">1 Year Onsite Warranty</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Warranty Service Type</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Onsite</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Covered in Warranty</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Manufacturing Defects</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Not Covered in Warranty</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Warranty does not cover any physical damage. Accesories is also not covered under warranty:- adapter, battery. Software Damage is Also not covered</p>
-
-									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Domestic Warranty</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">1 Year</p>
-
-									</div>
-									
-									
-									</div>
-									</td>
-									</tr>
-                                    </table>
+                                </table>
                                 </div>
 								</div>
 								</div></td>

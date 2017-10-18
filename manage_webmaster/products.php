@@ -88,16 +88,6 @@
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Start Date: </div>
-                            <div class="col-sm-6"><?php echo $row['deal_start_date'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">End Date: </div>
-                            <div class="col-sm-6"><?php echo $row['deal_end_date'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
                             <div class="col-sm-4">Quantity: </div>
                             <div class="col-sm-6"><?php echo $row['quantity'];?></div>
                           </div>
@@ -105,21 +95,6 @@
                             <div class="col-sm-2"></div>
                             <div class="col-sm-4">Minimum Order Quantity: </div>
                             <div class="col-sm-6"><?php echo $row['minimum_order_quantity'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Key Features: </div>
-                            <div class="col-sm-6"><?php echo $row['key_features'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Product Inforamtion: </div>
-                            <div class="col-sm-6"><?php echo $row['product_info'];?></div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-2"></div>
-                            <div class="col-sm-4">Specifications: </div>
-                            <div class="col-sm-6"><?php echo $row['specifications'];?></div>
                           </div>
                           <div class="row">
                             <div class="col-sm-2"></div>
