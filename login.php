@@ -40,11 +40,9 @@
     <header class="site-header header-style-1 dark style-2">
 		<!-- Main Header -->
 		<?php include_once 'header.php';
-            if (!isset($_POST['submit']))  {
-                //If fail
-                echo "fail";
-            } else  { 
-                  // //If success
+
+            if (isset($_POST['submit']))  {
+                //If success
                 $user_full_name = $_POST['user_full_name'];
                 $user_email = $_POST['user_email'];
                 $user_address = $_POST['user_address'];
@@ -53,13 +51,36 @@
                 $user_password = encryptPassword($_POST['user_password']);
                 $created_admin_id = $_SESSION['admin_user_id'];
                 $created_at = date("Y-m-d h:i:s");
-                  $sql = "INSERT INTO users (`user_full_name`, `user_email`, `user_address`, `user_city_id`, `user_name`, `user_password`, `created_admin_id`, `created_at`, `status`) VALUES ('$user_full_name', '$user_email', '$user_address', '$user_city_id', '$user_name', '$user_password', '$created_admin_id', '$created_at', 1)";
+                  $sql = "INSERT INTO users (`user_full_name`, `user_email`, `user_address`, `user_city_id`, `user_name`, `user_password`, `created_admin_id`, `created_at`, `status`) VALUES ('$user_full_name', '$user_email', '$user_address', '$user_city_id', '$user_name', '$user_password', '$created_admin_id', '$created_at', 0)";
                 if($conn->query($sql) === TRUE){
                    echo "<script type='text/javascript'>alert('Data Added Successfully');window.location='login.php'</script>";
                 } else {
                    echo "<script type='text/javascript'>alert('Data Added failed');window.location='login.php'</script>";
                 }
+
+            } else if(isset($_POST['login']))  { 
+
+                //Login here
+                $user_name = $_POST['login_name'];
+                $user_password = encryptPassword($_POST['login_password']);
+                $sql = "SELECT * FROM users WHERE user_name = '$user_name' AND user_password = '$user_password' AND status= 0 ";
+                $result = $conn->query($sql);
+                //Set variable for session
+                if($row = $result->fetch_assoc())
+                {
+                    $_SESSION['user_login_session_id'] =  $row['id'];
+                    $_SESSION['user_login_session_name'] = $row['user_full_name'];
+                    $_SESSION['user_login_session_email'] = $row['user_email'];
+                    header('Location: index.php');
+                } else {
+                    header('Location: login.php?fmsg=fail');
+                }
+            } else {
+                //Fail
+                //echo "fail";
             }
+
+            
         ?>
 		<!-- Main Header END -->
 	</header>
@@ -68,24 +89,21 @@
         <div class="login-form">
             <div class="tab-content">
                 <div id="login" class="tab-pane active text-center">
-                    <form class="p-a30 w3-form  m-t100">
+                    <form class="p-a30 w3-form  m-t100" method="post">
                         <h3 class="form-title m-t0">Sign In</h3>
                         <div class="w3-separator-outer m-b5">
                             <div class="w3-separator bg-primary style-liner"></div>
                         </div>
                         <p>Enter your e-mail address and your password. </p>
                         <div class="form-group">
-                            <input name="dzName" required="" class="form-control" placeholder="User Name" type="text"/>
+                            <input name="login_name" required="" class="form-control" placeholder="User Name" type="text"/>
                         </div>
                         <div class="form-group">
-                            <input name="dzName" required="" class="form-control " placeholder="Type Password" type="password"/>
+                            <input name="login_password" required="" class="form-control " placeholder="Type Password" type="password"/>
                         </div>
                         <div class="form-group text-left">
-                            <button class="site-button">login</button>
-                            <label>
-                            <input type="checkbox"/>
-                            <label> Remember me</label>
-                            </label>
+                            <button class="site-button" name="login">login</button>
+                            
                             <a data-toggle="tab" href="#forgot-password" class="m-l15"><i class="fa fa-unlock-alt"></i> Forgot Password</a> </div>
                     </form>
                     <div class="bg-primary p-a15 "> <a data-toggle="tab" href="#developement-1" class="text-white">Create an account</a> </div>
@@ -128,14 +146,14 @@
                         <div class="form-group">
                             <input name="user_name" id="user_name" required="" class="form-control" placeholder="User Name" type="text" onkeyup="checkUserName()"/>
                         </div>
-                        <span id="name_status"></span>
+                        <span id="name_status" style="color:red"></span>
                         <div class="form-group">
                             <input name="user_password" id="user_password" required="" class="form-control" placeholder="Password" type="password"/>
                         </div>
                         <div class="">
                             <input name="user_password1" id="user_password1" required="" class="form-control" placeholder="Re-type Your Password" type="password"/ onChange="checkPasswordMatch();">
                         </div>
-                        <div id="divCheckPasswordMatch"></div>
+                        <div id="divCheckPasswordMatch" style="color:red"></div>
                         <label class="m-b30">
                         <input type="checkbox"/>
                         <label>I agree to the <a href="#">Terms of Service </a>& <a href="#">Privacy Policy </a></label>
@@ -205,8 +223,8 @@ function checkPasswordMatch() {
     var confirmPassword = $("#user_password1").val();
     if (confirmPassword != password) {
         $("#divCheckPasswordMatch").html("Passwords do not match!");
-    }
-    else {
+        $("#user_password1").val("");
+    } else {
         $("#divCheckPasswordMatch").html("Passwords match.");
     }
 }
@@ -215,3 +233,8 @@ function checkPasswordMatch() {
 
 </body>
 </html>
+ <?php 
+    if($_GET['fmsg']!='') {
+        echo "<script>alert('The Email or Password you entered is incorrect!');</script>";
+    }
+    ?>

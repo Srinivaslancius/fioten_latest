@@ -1,3 +1,8 @@
+<?php
+    $currentFile = $_SERVER["PHP_SELF"];
+    $parts = Explode('/', $currentFile);
+    $page_name = $parts[count($parts) - 1];
+?>
 <div class="top-bar">
                 <div class="container">
                     <div class="row">
@@ -48,22 +53,30 @@
 						<span class="icon-bar"></span> 
 					</button>
 					<!-- extra nav -->
+					<?php if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id']!='') { ?>
+					<div class="extra-nav" style="position:relative; top:10px; font-weight:bold">
+						<div class="extra-cell">
+							<a href="#"><?php echo $_SESSION['user_login_session_name']; ?> </a>  | <a href="logout.php"> Logout </a>
+						</div>
+					</div>
+					<?php } else { ?>
 					<div class="extra-nav">
 						<div class="extra-cell">
                             <a href="login.php" class="site-button white skew-secondry hidden-xs">Login</a>
 						</div>
 					</div>
+					<?php } ?>
 					<!-- main nav -->
 					<div class="header-nav navbar-collapse collapse">
 						<ul class=" nav navbar-nav">
-							<li class="active"> 
+							<li class="<?php if($page_name == 'index.php') { echo "active"; } ?>"> 
                              	<a href="index.php">Home</a>								
 							</li>
-                            <li> 
+                            <li class="<?php if($page_name == 'about_us.php') { echo "active"; } ?>"> 
                                 <a href="about_us.php">About Us</a>
 							</li>                     
                                                        
-							<li> 
+							<li class="<?php if($page_name == 'brands.php') { echo "active"; } ?>"> 
 								<a href="javascript:;">Products<i class="fa fa-chevron-down"></i></a>
 									<ul class="sub-menu">
 									<?php $getCategory = getDataFromTables('categories','0',$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
@@ -92,13 +105,13 @@
 									</ul>
 							</li>
 
-	                        <li> 
+	                        <li class="<?php if($page_name == 'logistics_partenership.php') { echo "active"; } ?>"> 
 	                           <a href="logistics_partenership.php">Logistics & Partnership</a>
 							</li>
-                            <li> 
+                            <li class="<?php if($page_name == 'banking.php') { echo "active"; } ?>"> 
                                 <a href="banking.php">Banking Information</a>
 							</li>
-							<li> 
+							<li class="<?php if($page_name == 'contact_us.php') { echo "active"; } ?>"> 
                                 <a href="contact_us.php">Contact Us</a>
 							</li>
                                                         
