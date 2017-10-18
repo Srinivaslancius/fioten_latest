@@ -239,7 +239,7 @@ padding:0px !important;}
 						                    <div class="help-block with-errors"></div>
 						                </div>
 						                <?php
-						                	$order_total = $getPro['selling_price'] * $getPro['quantity'];
+						                	$order_total = $getPro['selling_price'];
 						                ?>
 						                <div class="form-group">
 						                	<label for="form-control-2" class="control-label">Order Total</label>
@@ -249,7 +249,7 @@ padding:0px !important;}
 							        </div>
 							        <div class="modal-footer">
 
-							          <button type="submit" class="site-button" value="submit" name="submit"  data-dismiss="modal">Submit</button>
+							          <button type="submit" class="site-button" value="submit" name="submit">Submit</button>
 
 							        </div>
 							      </div>
