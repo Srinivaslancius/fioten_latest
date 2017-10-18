@@ -189,9 +189,10 @@ padding:0px !important;}
                         	<div class="col-md-4 col-sm-4 m-b30">
 							  <!-- Trigger the modal with a button -->
 							  <?php if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id']!='') { ?>
-							  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="margin-top: 50px;">Place Order</button>
+							  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="margin-top: 50px; background-color: #56529c">Place Order</button>
 
 							  <!-- Modal -->
+							  <form method="post" action="save_orders.php">
 							  <div class="modal fade" id="myModal" role="dialog">
 							    <div class="modal-dialog">
 							    
@@ -201,9 +202,8 @@ padding:0px !important;}
 							          <button type="button" class="close" data-dismiss="modal">&times;</button>
 							          <h4 class="modal-title">Modal Header</h4>
 							        </div>
-
+							        
 							        <div class="modal-body">
-							        	<form method="post" action="save_orders.php">
 							        	<div class="form-group">
 						                    <label for="form-control-2" class="control-label">Name</label>
 						                    <input type="text" class="form-control" name="name" value="<?php echo $_SESSION['user_login_session_name'];?>" required>
@@ -244,14 +244,14 @@ padding:0px !important;}
 						                    <input type="text" class="form-control" name="order_total" value="<?php echo $order_total;?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
-						                </form>
 							        </div>
 							        <div class="modal-footer">
-							          <button type="button" value="submit" name="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+							          <button type="submit" value="submit" name="submit" class="btn btn-default" >Submit</button>
 							        </div>
 							      </div>
 							    </div>
 							  </div>
+							</form>
 							<?php } else { ?>
 							  <div class="extra-nav">
 								<div class="extra-cell">
