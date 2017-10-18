@@ -15,7 +15,7 @@ $id = $_GET['bid'];
         $status = $_POST['status'];
 
         if ($frame_type == '1') {
-          if($_FILES["fileToUpload"]["name"]!='') {
+          if($_FILES["fileToUpload"]["name"]!='' || $_FILES["fileToUpload1"]["name"]!='') {
             $fileToUpload = $_FILES["fileToUpload"]["name"];
             $target_dir = "../uploads/background_images/";
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -160,7 +160,7 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
                   </div>
                   
                   <div class="form-group">
-                    <label for="form-control-4" class="control-label">Sub Sub Banner Image</label>
+                    <label for="form-control-4" class="control-label">Banner Image</label>
                     <img src="<?php echo $base_url . 'uploads/sub_sub_banner_images/'.$getSubCategories['sub_sub_banner_image'] ?>"  id="output1" height="100" width="100"/>
                     <label class="btn btn-default file-upload-btn">
                       Choose file...
