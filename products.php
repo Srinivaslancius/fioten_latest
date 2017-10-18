@@ -25,7 +25,7 @@
 <!--[if lt IE 9]>
         <script src="js/html5shiv.min.js"></script>
         <script src="js/respond.min.js"></script>
-	<![endif]-->
+    <![endif]-->
 <!-- Stylesheets -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/fontawesome/css/font-awesome.min.css" />
@@ -73,24 +73,26 @@
         <div class="content-area">
             <!-- Product -->
             <div class="container">
-                <?php $id = $_GET['subCatId']; $getProducts = getDataFromTables('products','0','sub_category_id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();  ?>
-                <?php $id = $_GET['subCatId']; $getProductsImages = getDataFromTables('product_images','0','sub_category_id',$id,$activeStatus=NULL,$activeTop=NULL); $getProductsImage = $getProductsImages->fetch_assoc();  ?>
                 <div class="row">
-                    <?php while ($getPro = $getProducts->fetch_assoc()) { ?>
+
+                     <?php $id = $_GET['subCatId']; $getProducts = getDataFromTables('products','0','sub_category_id',$id,$activeStatus=NULL,$activeTop=NULL); ?>
+                     <?php while ($getPro = $getProducts->fetch_assoc()) { ?>
                     <div class="col-md-3 col-sm-6 m-b30">
                         <div class="w3-box p-a20 border-1 bg-gray">
-                            <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom"> <img src="<?php echo $base_url . '/uploads/product_images/'.$getPro['product_image'] ?>" alt="">
+                            <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom">
+                                <?php $id = $_GET['subCatId']; $getProductsImages = getDataFromTables('product_images','0','product_id',$getPro['id'],$activeStatus=NULL,$activeTop=NULL); $getProductsImage = $getProductsImages->fetch_assoc();  ?> 
+                                <img src="<?php echo $base_url . 'uploads/product_images/'.$getProductsImage['product_image'] ?>" alt="">
                                 <div class="overlay-bx">
-                                    <div class="overlay-icon"> <a href="javascript:void(0)"> <i class="fa fa-eye icon-bx-xs"></i> </a></div>
+                                    <div class="overlay-icon"> <a href="product_details.php?proId=<?php echo $getPro['id']; ?>"> <i class="fa fa-eye icon-bx-xs"></i> </a></div>
                                 </div>
                             </div>
                             <div class="w3-info p-t20 text-center">
-                                <h4 class="w3-title m-t0 text-uppercase"><a href="#"><?php echo $getPro['product_name']; ?></a></h4>
-                                <h2 class="m-b0">$20.00 </h2>
+                                <h4 class="w3-title m-t0 text-uppercase"><a href="#"><?php echo $getPro['product_name'];?></a></h4>
+                                <h2 class="m-b0">Price <?php echo $getPro['product_price'];?></h2>
                                 <a href="javascript:void(0)" class="site-button  m-t15">Add To Cart</a> </div>
                         </div>
                     </div>
-                    
+                    <?php } ?>
                 </div>
             </div>
             <!-- Product END -->

@@ -182,98 +182,13 @@ padding:0px !important;}
             <div class="container woo-entry">
                 <div class="row m-b30">
                     <div class="blog-post blog-md date-style-2">
-                        <div class="col-md-4 col-sm-4 m-b30"> <a href="#"><img src="images/product/pic7.jpg" alt=""></a> </div>
+                        <div class="col-md-4 col-sm-4 m-b30">
+                        	<?php $id = $_GET['proId']; $getProductsImages = getDataFromTables('product_images','0','product_id',$id,$activeStatus=NULL,$activeTop=NULL); $getProductsImage = $getProductsImages->fetch_assoc();  ?>  
+                        	<a href="#"><img src="<?php echo $base_url . 'uploads/product_images/'.$getProductsImage['product_image'] ?>" alt=""></a> 
+                        </div>
 						<div class="clearfix">
                         <div class="col-md-8 col-sm-8">
-                            <div class="w3-post-title ">
-                                <h4 class="post-title"><a href="#">Lenovo APU Dual Core A9 7th Gen - (4 GB/1 TB HDD/Windows 10 Home) Yoga 510 2 in 1 Laptop  (14 inch, Black)</a></h4>
-                            </div>
-                            <h5 class="m-tb10">#OnlyOnFlipkart</h5>
-							<div class="hGSR34 _2beYZw" data-reactid="175"><!-- react-text: 176 -->4.1<!-- /react-text --><!-- react-text: 177 --> ★<!-- /react-text -->113 Ratings & 27 Reviews</div>
-							  <h4 class="m-tb10"><b>₹33,990</b> <img src="images/1.png" style="width:100px;"> <span class="question" data-reactid="193">?</span></h4>
-							  <h6 class="m-tb10"><img src="images/2.svg"> No Cost EMIs from ₹5,665/month. Other EMIs from ₹1,162/month <a href="#"> view plans>></a></h6>
-							   <h6 class="m-tb10"><img src="images/3.svg"> Bank OfferExtra 5% off* with Axis Bank Buzz Credit Card <a href="#"> T&C </a></h6>
-						
-							<div class="row">
-							<div class="col-md-2 col-sm-2"><p class="m-tb10"><b>Delivery</b></p></div>
-                            <div class="col-md-4 col-sm-4">
-							<div class="row">
-							<div class="col-md-1 col-sm-1">
-							<form action="#">
-								<span class="glyphicon glyphicon-map-marker"></span>
-								</form>
-								</div>
-								
-								<div class="col-md-8 col-sm-8">
-								
-								<form autocomplete="off" class="EJrIpC"><input type="text" class="_3X4tVa" placeholder="Enter Delivery Pincode" value="" maxlength="6" id="pincodeInputId" style="border:0px"></form>
-								</div>
-								<div class="col-md-1 col-sm-1">
-						
-								<span class="_2aK_gu"><!-- react-text: 9332 --><b>Check</b><!-- /react-text --><div class="_11cw91 _2jiIfZ E753YP _3fm5As S3vLVv _1udgbK"><div class="_2h52bo _15sV4W _3sqwCr"><!-- react-text: 9335 --><!-- /react-text --></div></div></span>
-								
-								</div>
-								</div>
-								<hr class="green-line">
-								<p class="m-b10"><b>Usually delivered in3-4 days</b><span class="question" data-reactid="193">?</span></p>
-								 <p class="m-b10">Enter pincode for exact delivery dates/charges</p>
-								 <a href="#"><p class="m-b10" data-toggle="modal" data-target="#myModal"><b>View Details</b></p></a>
-								 <div class="modal fade" id="myModal" role="dialog">
-									<div class="modal-dialog modal-md">
-										<div class="modal-content">
-										<!--<div class="modal-header">
-										  <h4 class="modal-title">Delivery & Installation details</h4>
-										</div>-->
-										<div class="modal-body">
-										<center><h4 class="modal-title">Delivery & Installation details</h4></center>
-										 <p class="m-tb10">Usually delivered in</p>
-										<p><b>3-4 days</b></p>
-										<p>Enter pincode for exact delivery dates/charges</p>
-									   <p><b>Installation Details</b></p>
-									   <li>This product doesn't require installation</li>
-									   <p><b>Flipkart Assured</b></p>
-									   <p>The 'Flipkart Assured' badge is a seal of quality and speed. Products with this badge meet our extensive quality & packaging guidelines along with having faster delivery times.</p>
-									   <p><b>*Free Delivery on F-Assured purchases over ₹500</b></p>
-										</div>
-									   
-									  </div>
-									</div>
-								  </div>
-								</div>
-                              <div class="col-md-6 col-sm-6"></div>
-							  </div>
-							  <div class="row">
-							  <div class="col-md-2 col-sm-2">
-							  <p class="m-tb10"><b>Highlights</b></p>
-							  </div>
-							   <div class="col-md-4 col-sm-4">
-							  <ul>
-							  <li>One Year Accidental Damage Protection(On Redemption)</li>
-							  <li>McAfee Live Safe 1 Year Subscription</li>
-							  <li>AMD APU Dual Core A9 Processor (7th Gen)</li>
-							  <li>4 GB DDR4 RAM</li>
-							  <li>64 bit Windows 10 Operating System</li>
-							  <li>1 TB HDD</li>
-							  <li>14 inch Touchscreen Display</li>
-							  </ul>
-							  </div>
-							   <div class="col-md-2 col-sm-2">
-								<p class="m-tb10"><b>Services</b></p>
-							   </div>
-							    <div class="col-md-4 col-sm-4">
-								<p class="m-tb10"><span class="glyphicon glyphicon-ok-circle"></span> 1 Year Onsite Warranty<span class="question" data-reactid="193">?</span></p>
-								<p class="m-tb10"><span class="glyphicon glyphicon-refresh"></span> 10 Days Replacement Policy<span class="question" data-reactid="193">?</span></p>
-								<p class="m-tb10"><span class="fa fa-inr"></span> Cash on Delivery available<span class="question" data-reactid="193">?</span></p>
-							   </div>
-							  </div>
-							   <div class="row">
-							  <div class="col-md-2 col-sm-2">
-							   <p class="m-tb10"><b>Seller</b></p>
-							  </div>
-							   <div class="col-md-4 col-sm-4">
-								<a href="#"><p class="m-tb10">RetailNet (4.1)</p></a>
-								</div>
-							  </div>
+                            
 							  <div class="row">
                             <table class="table table-bordered" >
                                 <tr>
@@ -281,48 +196,43 @@ padding:0px !important;}
                                    
                                 </tr>
                                 <tr>
+                                	<?php $id = $_GET['proId']; $getProducts = getDataFromTables('products','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();?>
                                     <td><h5 class="post-title"><b>General</b></h5>
 									<div class="row">
 									<div class="col-sm-3">
 									<p class="m-tb10">Sales Package</p>
 									</div>
 									<div class="col-sm-9">
-									<p class="m-tb10">2 in 1 Laptop, Battery, Power Adaptor, User Guide, Warranty Documents</p>
+									<p class="m-tb10"><?php echo $getPro['specifications'];?></p>
 
 									</div>
 									<div class="col-sm-3">
-									<p class="m-tb10">Model Number</p>
+									<p class="m-tb10">Product Name</p>
 									</div>
 									<div class="col-sm-9">
-									<p class="m-tb10">Yoga 510</p>
+									<p class="m-tb10"><?php echo $getPro['product_name'];?></p>
 
 									</div>
 									<div class="col-sm-3">
-									<p class="m-tb10">Part Number</p>
+									<p class="m-tb10">Price</p>
 									</div>
 									<div class="col-sm-9">
-									<p class="m-tb10">80S9002QIH</p>
+									<p class="m-tb10">RS. <?php echo $getPro['product_price'];?></p>
 
 									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Color</p>
-									</div>
-									<div class="col-sm-9">
-									<p class="m-tb10">Black</p>
-
-									</div>
+									
 									<div class="col-sm-3">
 									<p class="m-tb10">Type</p>
 									</div>
 									<div class="col-sm-9">
-									<p class="m-tb10">2 in 1 Laptop</p>
+									<p class="m-tb10"><?php echo $getPro['product_info'];?></p>
 
 									</div>
 									<div class="col-sm-3">
 									<p class="m-tb10">Suitable For</p>
 									</div>
 									<div class="col-sm-9">
-									<p class="m-tb10">Processing & Multitasking, Travel & Business</p>
+									<p class="m-tb10"><?php echo $getPro['key_features'];?></p>
 
 									</div>
 									</div></td>
@@ -498,11 +408,10 @@ padding:0px !important;}
 										<td><h5 class="post-title"><b>Additional Features</b></h5>
 										<div class="row">
 									<div class="col-sm-3">
-									<p class="m-tb10">Disk Drive</p>
+										<p class="m-tb10">Disk Drive</p>
 									</div>
 									<div class="col-sm-9">
-									<p class="m-tb10">Not Available</p>
-
+										<p class="m-tb10">Not Available</p>
 									</div>
 									<div class="col-sm-3">
 									<p class="m-tb10">Web Camera</p>
