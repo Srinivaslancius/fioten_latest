@@ -173,7 +173,7 @@ mail($to,$subject,$message,$headers);
                         $getUSAEmil1 = $getUSAEmil->fetch_assoc();?>
                         <?php $getChinaPhone = getDataFromTables('content_pages',$status=NULL,'id',16,$activeStatus=NULL,$activeTop=NULL);
                         $getChinaPhone1 = $getChinaPhone->fetch_assoc();?>
-                        <h4>China Office</h4>
+                        <h4>Australia Office</h4>
                         <div class="p-a30 bg-white m-b30">
                             <ul class="no-margin">
                                 <li class="icon-bx-wraper left m-b30">
