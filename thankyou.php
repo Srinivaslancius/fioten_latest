@@ -86,7 +86,11 @@ $res1 = $res->fetch_array();
                         <hr class="message-inner-separator">
                         <p>Thank you for your purchase</p>
                         <p>Your Order#is:<strong><?php echo $orderId; ?></strong></p>
-                        <p>Billing&Shipping Information:</p>                       
+                        <?php $sql = "SELECT * FROM orders WHERE order_id = '$orderId'";
+                            $result = $conn->query($sql);
+                            $row = $result->fetch_assoc();
+                        ?>
+                        <p>Billing&Shipping Information:<strong><?php echo $row['address1']; ?></strong></p>
                         <p>You will be redirected to the Home in 10 seconds.</p>
                     </div>
                 </div>

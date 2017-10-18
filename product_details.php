@@ -190,7 +190,7 @@ padding:0px !important;}
                         	<div class="col-md-4 col-sm-4 m-b30">
 							  <!-- Trigger the modal with a button -->
 							  <?php if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id']!='') { ?>
-							  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="margin-top: 50px; background-color: #56529c">Place Order</button>
+							  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="margin-top: 50px; background-color: #56529c; border: none">Place Order</button>
 
 							  <!-- Modal -->
 							  <form method="post" action="save_orders.php">
@@ -206,6 +206,10 @@ padding:0px !important;}
 							        </div>
 							        
 							        <div class="modal-body">
+							        	<?php $id = $_SESSION['user_login_session_id']; $sql = "SELECT * FROM users WHERE id = '$id' AND status= 0 ";
+                							$result = $conn->query($sql);
+                							$row = $result->fetch_assoc();
+                						?>
 							        	<div class="form-group">
 						                    <label for="form-control-2" class="control-label">Name</label>
 						                    <input type="text" class="form-control" name="name" value="<?php echo $_SESSION['user_login_session_name'];?>" required>
@@ -214,6 +218,10 @@ padding:0px !important;}
 						                <div class="form-group">
 						                    <label for="form-control-2" class="control-label">Email</label>
 						                    <input type="text" class="form-control" name="email" value="<?php echo $_SESSION['user_login_session_email'];?>" required>
+						                    <div class="help-block with-errors"></div>
+						                </div>
+						                <div class="form-group">
+						                    <input type="hidden" class="form-control" name="address" value="<?php echo $row['user_address'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 			                            <?php $id = $_GET['proId']; $getProducts = getDataFromTables('products','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();?>
@@ -259,7 +267,7 @@ padding:0px !important;}
 							<?php } else { ?>
 							  <div class="extra-nav">
 								<div class="extra-cell">
-		                            <a href="login.php"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="margin-top: 50px;">Place Order</button></a>
+		                            <a href="login.php"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="background-color: #56529c; border: none">Place Order</button></a>
 								</div>
 							  </div>
 							<?php } ?>
