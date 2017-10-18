@@ -92,7 +92,7 @@
 	                                <div class="w3-media w3-img-effect rotate"> 
 	                                	<?php  $getProImg = getDataFromTables('product_images','0','product_id',$getPro['id'],$activeStatus=NULL,$activeTop=NULL); 
 	                                	       $getImg = $getProImg->fetch_assoc(); ?>
-	                                	<a href="product_details.php?proid=<?php echo $getPro['id'];?>" ><img src="<?php echo $base_url . 'uploads/product_images/'.$getImg['product_image'] ?>" alt=""> </a>
+	                                	<a href="product_details.php?proId=<?php echo $getPro['id'];?>" ><img src="<?php echo $base_url . 'uploads/product_images/'.$getImg['product_image'] ?>" alt=""> </a>
 
 	                            	</div>
 	                                <h3><?php echo $getPro['product_name']; ?></h3>
