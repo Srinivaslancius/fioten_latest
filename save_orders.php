@@ -19,10 +19,8 @@ if(isset($_POST["submit"]) && $_POST["submit"]!="") {
 	$order_id = $contstr.$random1.$random2;
 
 	$productsCount = count($_POST["product_id"]);
-	for($i=0;$i<$productsCount;$i++) {
 		$sql = "INSERT INTO orders (`first_name`, `mobile`,`email`, `address1`,`product_id`,`product_name`,`product_price`,`product_total_price`, `order_total`,`order_date`,`product_quantity`,`payment_status`,`order_status`,`order_id`) VALUES ('$name','$mobile','$email','$address','" . $_POST["product_id"]. "','" . $_POST["product_name"]. "','" . $_POST["product_price"]. "','" . $_POST["product_total_price"]"','$order_total','$order_date','" . $_POST["product_quantity"]. "','1','1','$order_id')";
 	    $res = $conn->query($sql);
-	}	
 
     header("Location: thankyou.php?odi=".$order_id."");
 

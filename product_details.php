@@ -186,9 +186,9 @@ padding:0px !important;}
                         	<?php $id = $_GET['proId']; $getProductsImages = getDataFromTables('product_images','0','product_id',$id,$activeStatus=NULL,$activeTop=NULL); $getProductsImage = $getProductsImages->fetch_assoc();  ?>  
                         	<a href="#"><img src="<?php echo $base_url . 'uploads/product_images/'.$getProductsImage['product_image'] ?>" alt=""></a>
 
-                        	<?php if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id']!='') { ?>
                         	<div class="col-md-4 col-sm-4 m-b30">
 							  <!-- Trigger the modal with a button -->
+							  <?php if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id']!='') { ?>
 							  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="margin-top: 50px;">Place Order</button>
 
 							  <!-- Modal -->
@@ -203,22 +203,37 @@ padding:0px !important;}
 							        </div>
 
 							        <div class="modal-body">
-							          <div class="row">
-			                              <div class="col-sm-2"></div>
-			                              <div class="col-sm-4">Name: </div>
-			                              <div class="col-sm-6"><?php echo $_SESSION['user_login_session_name'];?></div>
-			                            </div>
-			                            <div class="row">
-			                              <div class="col-sm-2"></div>
-			                              <div class="col-sm-4">Email: </div>
-			                              <div class="col-sm-6"><?php echo $_SESSION['user_login_session_email'];?></div>
-			                            </div>
-			                            <div class="row">
-			                            	<?php $id = $_GET['proId']; $getProducts = getDataFromTables('products','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();?>
-			                              <div class="col-sm-2"></div>
-			                              <div class="col-sm-4">Quantiy: </div>
-			                              <div class="col-sm-6"><input type="number" min="<?php echo $getPro['minimum_order_quantity'];?>" max="<?php echo $getPro['quantity'];?>" value="<?php echo $getPro['quantity'];?>" /></div>
-			                            </div>
+							        	<div class="form-group">
+						                    <label for="form-control-2" class="control-label">Name</label>
+						                    <input type="text" class="form-control" name="name" value="<?php echo $_SESSION['user_login_session_name'];?>" required>
+						                    <div class="help-block with-errors"></div>
+						                </div>
+						                <div class="form-group">
+						                    <label for="form-control-2" class="control-label">Email</label>
+						                    <input type="text" class="form-control" name="email" value="<?php echo $_SESSION['user_login_session_email'];?>" required>
+						                    <div class="help-block with-errors"></div>
+						                </div>
+			                            <?php $id = $_GET['proId']; $getProducts = getDataFromTables('products','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();?>
+			                            <div class="form-group">
+						                    <label for="form-control-2" class="control-label">Product Id</label>
+						                    <input type="hidden" class="form-control" name="product_id" value="<?php echo $getPro['id'];?>" required>
+						                    <div class="help-block with-errors"></div>
+						                </div>
+						                <div class="form-group">
+						                    <label for="form-control-2" class="control-label">Product Name</label>
+						                    <input type="hidden" class="form-control" name="product_name" value="<?php echo $getPro['product_name'];?>" required>
+						                    <div class="help-block with-errors"></div>
+						                </div>
+						                <div class="form-group">
+						                    <label for="form-control-2" class="control-label">Product Price</label>
+						                    <input type="hidden" class="form-control" name="product_price" value="<?php echo $getPro['product_price'];?>" required>
+						                    <div class="help-block with-errors"></div>
+						                </div>
+			                            <div class="form-group">
+						                    <label for="form-control-2" class="control-label">Product Quantity</label>
+						                    <input type="number" class="form-control" name="product_quantity" min="<?php echo $getPro['minimum_order_quantity'];?>" max="<?php echo $getPro['quantity'];?>" value="<?php echo $getPro['quantity'];?>" required>
+						                    <div class="help-block with-errors"></div>
+						                </div>
 							        </div>
 							        <div class="modal-footer">
 							          <button type="button" value="submit" name="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
@@ -226,8 +241,14 @@ padding:0px !important;}
 							      </div>
 							    </div>
 							  </div>
-							</div>
+							<?php } else { ?>
+							  <div class="extra-nav">
+								<div class="extra-cell">
+		                            <a href="login.php"><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="margin-top: 50px;">Place Order</button></a>
+								</div>
+							  </div>
 							<?php } ?>
+							</div>
                         </div>
 						<div class="clearfix">
                         <div class="col-md-8 col-sm-8">
