@@ -51,7 +51,7 @@
        
 		
 		<!-- About Us -->
-		<?php $id = $_GET['catId']; $getCategory = getDataFromTables('categories',$status=NULL,'id',$id,$activeStatus=NULL,$activeTop=NULL); $getCat = $getCategory->fetch_assoc();  ?>
+		<?php $id = $_GET['catId']; $getCategory = getDataFromTables('categories','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getCat = $getCategory->fetch_assoc();  ?>
         <div class="section-full bg-white">
             <div class="container">
                 <div class="section-content">
@@ -68,19 +68,20 @@
         </div>
         <!-- About Us END -->
 		<!-- Our Classes -->
-		<?php $id = $_GET['catId']; $getProducts = getDataFromTables('products',$status=NULL,'category_id',$id,$activeStatus=NULL,$activeTop=NULL); ?>
-		<div class="section-full text-white bg-img-fix content-inner overlay-gray-dark choose-us" style="background-image:url(images/background/bg1.jpg);">
+		<?php $id = $_GET['catId']; $getProducts = getDataFromTables('products','0','category_id',$id,$activeStatus=NULL,$activeTop=NULL); ?>
+		<?php $id = $_GET['catId']; $getSubcat = getDataFromTables('sub_sub_categories','0','category_id',$id,$activeStatus=NULL,$activeTop=NULL); $getSubcat1 = $getSubcat->fetch_assoc(); ?>
+		<div class="section-full text-white bg-img-fix content-inner overlay-gray-dark choose-us" style="background-image:url(<?php echo $base_url . 'uploads/background_images/'.$getSubcat1['background_image'] ?>);">
             <div class="container">
 				<div class="row">
 					<div class="col-md-6 col-sm-6">
 						<div class="bg-primary m-b30">
 							<div class="p-a30 text-white z-index10 relative">
-								<h3 class="h3 m-t0">Consumer Laptops</h3>
-								<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+								<h3 class="h3 m-t0"><?php echo $getSubcat1['sub_sub_category_name']; ?></h3>
+								<p><?php echo $getSubcat1['description']; ?></p>
 								<a href="#" class="site-button white">Read More</a>
 							</div>
 							<div class="our-classes-block">
-								<img src="images/gym.png" alt=""/>
+								<img src="<?php echo $base_url . 'uploads/sub_sub_banner_images/'.$getSubcat1['sub_sub_banner_image'] ?>" alt=""/>
 							</div>	
 						</div>
 					</div>
@@ -89,7 +90,7 @@
 							<?php while ($getPro = $getProducts->fetch_assoc()) { ?>
 								<div class="col-md-6 col-sm-6 col-xs-6 m-b30">
 	                                <div class="w3-media w3-img-effect rotate"> 
-	                                	<?php  $getProImg = getDataFromTables('product_images',$status=NULL,'product_id',$getPro['id'],$activeStatus=NULL,$activeTop=NULL); 
+	                                	<?php  $getProImg = getDataFromTables('product_images','0','product_id',$getPro['id'],$activeStatus=NULL,$activeTop=NULL); 
 	                                	       $getImg = $getProImg->fetch_assoc(); ?>
 	                                	<img src="<?php echo $base_url . 'uploads/product_images/'.$getImg['product_image'] ?>" alt=""> 
 

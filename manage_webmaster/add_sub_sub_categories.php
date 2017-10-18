@@ -10,12 +10,13 @@
             $sub_category_id = $_POST['sub_category_id'];
             $sub_sub_category_name = $_POST['sub_sub_category_name'];
             $frame_type = $_POST['frame_type'];
+            $description = $_POST['description'];
             $fileToUpload = $_FILES["fileToUpload"]["name"];
             //$background_image = $_POST['background_image'];
             $fileToUpload1 = $_FILES['fileToUpload1']["name"];
             $status = $_POST['status'];
             if ($frame_type == '1') {
-              if($fileToUpload!='') {
+              if($fileToUpload!='' || $fileToUpload1!='') {
 
                 $target_dir = "../uploads/background_images/";
                 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -25,7 +26,7 @@
                 //$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                   move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1);
-                   $sql = "INSERT INTO `sub_sub_categories` (`category_id`,`sub_category_id`, `sub_sub_category_name`,`frame_type`,`background_image`,`sub_sub_banner_image`,`status`) VALUES ('$category_id','$sub_category_id','$sub_sub_category_name','$frame_type','$fileToUpload','$fileToUpload1','$status')";
+                   $sql = "INSERT INTO `sub_sub_categories` (`category_id`,`sub_category_id`, `sub_sub_category_name`,`frame_type`,`description`,`background_image`,`sub_sub_banner_image`,`status`) VALUES ('$category_id','$sub_category_id','$sub_sub_category_name','$frame_type','$description','$fileToUpload','$fileToUpload1','$status')";
                   if($conn->query($sql) === TRUE){
                      echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
                   } else {
@@ -47,7 +48,7 @@
                 //$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
                 if (move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1)) {
                   //move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1);
-                   $sql = "INSERT INTO `sub_sub_categories` (`category_id`,`sub_category_id`, `sub_sub_category_name`,`frame_type`,`sub_sub_banner_image`,`status`) VALUES ('$category_id','$sub_category_id','$sub_sub_category_name','$frame_type','$fileToUpload1','$status')";
+                   $sql = "INSERT INTO `sub_sub_categories` (`category_id`,`sub_category_id`, `sub_sub_category_name`,`frame_type`,`description`,`sub_sub_banner_image`,`status`) VALUES ('$category_id','$sub_category_id','$sub_sub_category_name','$frame_type','$description','$fileToUpload1','$status')";
                   if($conn->query($sql) === TRUE){
                      echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
                   } else {
@@ -114,6 +115,12 @@
                       </label>
                   </div> -->
 
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Area</label>
+                    <textarea name="description" class="form-control" id="description" placeholder="Description" data-error="This field is required." required></textarea>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
                   <div class="radio">
                         <label>
                           <input name="frame_type" id="frame1" value="1" type="radio" required > Frame1
@@ -133,7 +140,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="form-control-4" class="control-label">Sub Sub Banner Image</label>
+                    <label for="form-control-4" class="control-label">Banner Image</label>
                     <img id="output1" height="100" width="100"/>
                     <label class="btn btn-default file-upload-btn">
                       Choose file...
@@ -163,6 +170,7 @@
       </div>
       <?php include_once 'admin_includes/footer.php'; ?>
       <script src="js/tables-datatables.min.js"></script>
+      <script src="//cdn.ckeditor.com/4.7.0/full/ckeditor.js"></script>
       <script type="text/javascript">
           function getSubCategories(val) {
               $.ajax({
@@ -185,4 +193,7 @@
             }
           });
         });
+      </script>
+      <script>
+        CKEDITOR.replace('description'); 
       </script>

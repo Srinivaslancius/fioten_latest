@@ -7,6 +7,7 @@ $id = $_GET['bid'];
         $category_id = $_POST['category_id'];
         $sub_category_id = $_POST['sub_category_id'];
         $sub_sub_category_name = $_POST['sub_sub_category_name'];
+        $description = $_POST['description'];
         $frame_type = $_POST['frame_type'];
         $fileToUpload = $_FILES["fileToUpload"]["name"];
         //$background_image = $_POST['background_image'];
@@ -14,7 +15,7 @@ $id = $_GET['bid'];
         $status = $_POST['status'];
 
         if ($frame_type == '1') {
-          if($_FILES["fileToUpload"]["name"]!='') {
+          if($_FILES["fileToUpload"]["name"]!='' || $_FILES["fileToUpload1"]["name"]!='') {
             $fileToUpload = $_FILES["fileToUpload"]["name"];
             $target_dir = "../uploads/background_images/";
             $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -26,7 +27,7 @@ $id = $_GET['bid'];
               //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                   move_uploaded_file($_FILES["fileToUpload1"]["tmp_name"], $target_file1);
-                  $sql = "UPDATE `sub_sub_categories` SET category_id = '$category_id', sub_category_id = '$sub_category_id',sub_sub_category_name='$sub_sub_category_name',frame_type='$frame_type',background_image = '$fileToUpload', sub_sub_banner_image='$fileToUpload1', status='$status' WHERE id = '$id' ";
+                  $sql = "UPDATE `sub_sub_categories` SET category_id = '$category_id', sub_category_id = '$sub_category_id',sub_sub_category_name='$sub_sub_category_name',description = '$description',frame_type='$frame_type',background_image = '$fileToUpload', sub_sub_banner_image='$fileToUpload1', status='$status' WHERE id = '$id' ";
                   if($conn->query($sql) === TRUE){
                      echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
                   } else {
@@ -37,7 +38,7 @@ $id = $_GET['bid'];
                   echo "Sorry, there was an error uploading your file.";
               }
           } else {
-              $sql = "UPDATE `sub_sub_categories` SET category_id = '$category_id',sub_category_id = '$sub_category_id',sub_sub_category_name='$sub_sub_category_name',frame_type='$frame_type', status='$status' WHERE id = '$id' ";
+              $sql = "UPDATE `sub_sub_categories` SET category_id = '$category_id',sub_category_id = '$sub_category_id',sub_sub_category_name='$sub_sub_category_name',description = '$description',frame_type='$frame_type', status='$status' WHERE id = '$id' ";
               if($conn->query($sql) === TRUE){
                  echo "<script type='text/javascript'>window.location='sub_sub_categories.php?msg=success'</script>";
               } else {
@@ -131,6 +132,12 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
                       </label>
                   </div> -->
 
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Description</label>
+                    <textarea name="description" class="form-control" id="description" data-error="This field is required." required><?php echo $getSubCategories['description'];?></textarea>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
                   <div class="radio">
                         <label>
                           <input name="frame_type" id="frame1" value="1" type="radio" <?php if($getSubCategories['frame_type']  == 1){ echo "checked=checked"; }?> required> Frame1
@@ -153,7 +160,7 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
                   </div>
                   
                   <div class="form-group">
-                    <label for="form-control-4" class="control-label">Sub Sub Banner Image</label>
+                    <label for="form-control-4" class="control-label">Banner Image</label>
                     <img src="<?php echo $base_url . 'uploads/sub_sub_banner_images/'.$getSubCategories['sub_sub_banner_image'] ?>"  id="output1" height="100" width="100"/>
                     <label class="btn btn-default file-upload-btn">
                       Choose file...
@@ -213,3 +220,8 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
 
         });
       </script>
+<!-- ckeditor for description -->
+<script src="//cdn.ckeditor.com/4.7.0/full/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'description' ); 
+</script>
