@@ -223,6 +223,7 @@ function checkPasswordMatch() {
     var confirmPassword = $("#user_password1").val();
     if (confirmPassword != password) {
         $("#divCheckPasswordMatch").html("Passwords do not match!");
+        $("#user_password1").val("");
     } else {
         $("#divCheckPasswordMatch").html("Passwords match.");
     }
