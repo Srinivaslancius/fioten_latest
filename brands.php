@@ -95,7 +95,7 @@
 	                                	<a href="product_details.php?proId=<?php echo $getPro['id'];?>" ><img src="<?php echo $base_url . 'uploads/product_images/'.$getImg['product_image'] ?>" alt=""> </a>
 
 	                            	</div>
-	                                <h3><?php echo $getPro['product_name']; ?></h3>
+	                                <a href="product_details.php?proId=<?php echo $getPro['id'];?>" ><h3><?php echo $getPro['product_name']; ?></h3></a>
 								</div>
 							<?php } ?>
 							<!-- <div class="col-md-6 col-sm-6 col-xs-6 m-b30">

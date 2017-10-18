@@ -158,7 +158,8 @@ padding:0px !important;}
     <!-- Content -->
     <div class="page-content bg-white">
         <!-- inner page banner -->
-        <div class="w3-bnr-inr overlay-black-middle" style="background-image:url(images/background/bg4.jpg);">
+        <?php $id = $_GET['proId']; $getSubcat = getDataFromTables('sub_categories','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getSubcat1 = $getSubcat->fetch_assoc(); ?>
+        <div class="w3-bnr-inr overlay-black-middle" style="background-image:url(<?php echo $base_url . 'uploads/sub_category_images/'.$getSubcat1['sub_category_image'] ?>);">
             <div class="container">
                 <div class="w3-bnr-inr-entry">
                     <h1 class="text-white">Product Details</h1>
@@ -198,11 +199,13 @@ padding:0px !important;}
 							      <!-- Modal content-->
 							      <div class="modal-content">
 							        <div class="modal-header">
+							          	
 							          <button type="button" class="close" data-dismiss="modal">&times;</button>
-							          <h4 class="modal-title">Modal Header</h4>
+							          <h4 class="modal-title" style="color:black;text-align:center;">Place Order</h4>
 							        </div>
 
 							        <div class="modal-body">
+							        	<form method="post" action="save_orders.php">
 							        	<div class="form-group">
 						                    <label for="form-control-2" class="control-label">Name</label>
 						                    <input type="text" class="form-control" name="name" value="<?php echo $_SESSION['user_login_session_name'];?>" required>
@@ -215,18 +218,19 @@ padding:0px !important;}
 						                </div>
 			                            <?php $id = $_GET['proId']; $getProducts = getDataFromTables('products','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();?>
 			                            <div class="form-group">
-						                    <label for="form-control-2" class="control-label">Product Id</label>
 						                    <input type="hidden" class="form-control" name="product_id" value="<?php echo $getPro['id'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 						                <div class="form-group">
-						                    <label for="form-control-2" class="control-label">Product Name</label>
 						                    <input type="hidden" class="form-control" name="product_name" value="<?php echo $getPro['product_name'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 						                <div class="form-group">
-						                    <label for="form-control-2" class="control-label">Product Price</label>
-						                    <input type="hidden" class="form-control" name="product_price" value="<?php echo $getPro['product_price'];?>" required>
+						                    <input type="hidden" class="form-control" name="product_price" value="<?php echo $getPro['selling_price'];?>" required>
+						                    <div class="help-block with-errors"></div>
+						                </div>
+						                <div class="form-group">
+						                    <input type="hidden" class="form-control" name="product_total_price" value="<?php echo $getPro['selling_price'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 			                            <div class="form-group">
@@ -234,9 +238,18 @@ padding:0px !important;}
 						                    <input type="number" class="form-control" name="product_quantity" min="<?php echo $getPro['minimum_order_quantity'];?>" max="<?php echo $getPro['quantity'];?>" value="<?php echo $getPro['quantity'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
+						                <?php
+						                	$order_total = $getPro['selling_price'] * $getPro['quantity'];
+						                ?>
+						                <div class="form-group">
+						                	<label for="form-control-2" class="control-label">Order Total</label>
+						                    <input type="text" class="form-control" name="order_total" value="<?php echo $order_total;?>" required>
+						                    <div class="help-block with-errors"></div>
+						                </div>
+						                </form>
 							        </div>
 							        <div class="modal-footer">
-							          <button type="button" value="submit" name="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+							          <button type="button" class="site-button" value="submit" name="submit"  data-dismiss="modal">Submit</button>
 							        </div>
 							      </div>
 							    </div>
@@ -263,7 +276,12 @@ padding:0px !important;}
                                 <tr>
                                 	
                                     <td><!-- <h5 class="post-title"><b><?php echo $getPro['product_name'];?></b></h5> -->
-									
+									<div class="col-sm-3">
+									<p class="m-tb10">Availability</p>
+									</div>
+									<div class="col-sm-9">
+										<p class="m-tb10" style="color:#12e812;"><?php if($getPro['availability_id'] == 0 ){ echo "In Stock";} else{ echo "Out Of Stock";}?></p>
+									</div>
 									<div class="col-sm-3">
 									<p class="m-tb10">Price</p>
 									</div>
@@ -277,12 +295,7 @@ padding:0px !important;}
 									<div class="col-sm-9">
 										<p class="m-tb10">RS. <?php echo $getPro['selling_price'];?></p>
 									</div>
-									<div class="col-sm-3">
-									<p class="m-tb10">Availability</p>
-									</div>
-									<div class="col-sm-9">
-										<p class="m-tb10"><?php if($getPro['availability_id'] == 0 ){ echo "In Stock";} else{ echo "Out Of Stock";}?></p>
-									</div>
+									
 									
 									</div></td>
                                     
