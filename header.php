@@ -42,7 +42,7 @@
 					<!-- website logo -->
 					<div class="logo-header mostion">
 						<a href="index.php">
-							<img src="images/logo2.png" width="193" height="89" alt="">
+							<img src="uploads/logo/<?php echo $getSiteSettingsData['logo']; ?>" width="193" height="89" alt="">
 						</a>
 					</div>
 					<!-- nav toggle button -->
