@@ -76,6 +76,7 @@
                 <?php $id = $_GET['subCatId']; $getProducts = getDataFromTables('products','0','sub_category_id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();  ?>
                 <?php $id = $_GET['subCatId']; $getProductsImages = getDataFromTables('product_images','0','sub_category_id',$id,$activeStatus=NULL,$activeTop=NULL); $getProductsImage = $getProductsImages->fetch_assoc();  ?>
                 <div class="row">
+                    <?php while ($getPro = $getProducts->fetch_assoc()) { ?>
                     <div class="col-md-3 col-sm-6 m-b30">
                         <div class="w3-box p-a20 border-1 bg-gray">
                             <div class="w3-thum-bx w3-img-overlay1 w3-img-effect zoom"> <img src="<?php echo $base_url . '/uploads/product_images/'.$getPro['product_image'] ?>" alt="">
@@ -89,6 +90,7 @@
                                 <a href="javascript:void(0)" class="site-button  m-t15">Add To Cart</a> </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
             <!-- Product END -->
