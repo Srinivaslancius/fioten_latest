@@ -89,7 +89,7 @@
                             <div class="w3-info p-t20 text-center">
                                 <h4 class="w3-title m-t0 text-uppercase"><a href="#"><?php echo $getPro['product_name'];?></a></h4>
                                 <h2 class="m-b0">Price <?php echo $getPro['product_price'];?></h2>
-                                <a href="javascript:void(0)" class="site-button  m-t15">Add To Cart</a> </div>
+                                <a href="product_details.php?proId=<?php echo $getPro['id']; ?>" class="site-button  m-t15">View</a> </div>
                         </div>
                     </div>
                     <?php } ?>
