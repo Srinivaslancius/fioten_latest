@@ -1,6 +1,7 @@
 <?php include_once 'admin_includes/main_header.php'; ?>
 
 <?php 
+error_reporting(0);
 $id = $_GET['pid'];
 if (!isset($_POST['submit']))  {
             echo "";
@@ -24,7 +25,7 @@ if (!isset($_POST['submit']))  {
     $availability_id = $_POST['availability_id'];
     $status = $_POST['status'];
     $created_at = date("Y-m-d h:i:s");
-    $t = time();
+    //$t = time();
     $created_by = $_SESSION['admin_user_id'];
     //save product images into product_images table    
     
