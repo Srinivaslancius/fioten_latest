@@ -8,5 +8,5 @@ $product_quantity = $_POST['product_quantity'];
 $sql = "SELECT * FROM orders WHERE product_id = '$product_id'";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-echo $row["product_price"] * $_POST["product_quantity"];
+echo $_POST["product_price"] * $_POST["product_quantity"];
 ?>

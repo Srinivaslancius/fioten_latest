@@ -14,9 +14,9 @@
     $gplus_link = $_POST['gplus_link'];
     $mobile = $_POST['mobile'];
     $footer_text = $_POST['footer_text'];
+    $open_timings = $_POST['open_timings'];
     $address = $_POST['address'];
     $inst_link = $_POST['inst_link'];
-
     $active_experts = $_POST['active_experts'];
     $happy_clients = $_POST['happy_clients'];
     $developer_hand = $_POST['developer_hand'];
@@ -37,7 +37,7 @@
         $getImgUnlink = getImageUnlink('logo','site_settings','id',$id,$target_dir);
         //Send parameters for img val,tablename,clause,id,imgpath for image ubnlink from folder
         if (move_uploaded_file($_FILES["logo"]["tmp_name"], $target_file)) {
-            $sql = "UPDATE `site_settings` SET admin_title = '$admin_title', email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link',inst_link='$inst_link', mobile='$mobile', logo = '$logo', footer_text='$footer_text', address='$address', active_experts='$active_experts',happy_clients='$happy_clients',developer_hand='$developer_hand',completed_project='$completed_project' WHERE id = '$id' ";
+            $sql = "UPDATE `site_settings` SET admin_title = '$admin_title', email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link',inst_link='$inst_link', mobile='$mobile', logo = '$logo', footer_text='$footer_text', open_timings='$open_timings', address='$address', active_experts='$active_experts',happy_clients='$happy_clients',developer_hand='$developer_hand',completed_project='$completed_project' WHERE id = '$id' ";
             if($conn->query($sql) === TRUE){
                echo "<script type='text/javascript'>window.location='site_settings.php?msg=success'</script>";
             } else {
@@ -48,7 +48,7 @@
             echo "Sorry, there was an error uploading your file.";
         }
     }  else {
-        $sql = "UPDATE `site_settings` SET admin_title = '$admin_title', email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link',inst_link='$inst_link', mobile='$mobile',footer_text='$footer_text', address='$address', active_experts='$active_experts',happy_clients='$happy_clients',developer_hand='$developer_hand',completed_project='$completed_project' WHERE id = '$id' ";
+        $sql = "UPDATE `site_settings` SET admin_title = '$admin_title', email='$email', fb_link='$fb_link', twitter_link='$twitter_link', gplus_link='$gplus_link',inst_link='$inst_link', mobile='$mobile',footer_text='$footer_text', open_timings='$open_timings', address='$address', active_experts='$active_experts',happy_clients='$happy_clients',developer_hand='$developer_hand',completed_project='$completed_project' WHERE id = '$id' ";
         if($conn->query($sql) === TRUE){
            echo "<script type='text/javascript'>window.location='site_settings.php?msg=success'</script>";
         } else {
@@ -126,6 +126,12 @@
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Footer Text</label>
                     <input type="text" name="footer_text" class="form-control" id="form-control-2" placeholder="Footer Text" data-error="Please enter valid Footer text." value="<?php echo $getSiteSettingsData['footer_text'];?>" required>
+                    <div class="help-block with-errors"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="form-control-2" class="control-label">Open Timings</label>
+                    <input type="text" name="open_timings" class="form-control" id="form-control-2" placeholder="Open Timings" data-error="Please enter valid Open Timings." value="<?php echo $getSiteSettingsData['open_timings'];?>" required>
                     <div class="help-block with-errors"></div>
                   </div>
 

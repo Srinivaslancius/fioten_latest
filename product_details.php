@@ -243,11 +243,11 @@ padding:0px !important;}
 						                </div>
 			                            <div class="form-group">
 						                    <label for="form-control-2" class="control-label">Product Quantity</label>
-						                    <input type="number" id="product_quantity" class="form-control" name="product_quantity" min="<?php echo $getPro['minimum_order_quantity'];?>" max="<?php echo $getPro['quantity'];?>" value="<?php echo $getPro['quantity'];?>" required>
+						                    <input type="number" id="product_quantity" class="form-control" name="product_quantity" min="<?php echo $getPro['minimum_order_quantity'];?>" max="<?php echo $getPro['quantity'];?>" value="<?php echo $getPro['minimum_order_quantity'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 						                <?php
-						                	$order_total = $getPro['selling_price']*$getPro['quantity'];
+						                	$order_total = $getPro['selling_price']*$getPro['minimum_order_quantity'];
 						                ?>
 						                <div class="form-group">
 						                	<label for="form-control-2" class="control-label">Order Total</label>

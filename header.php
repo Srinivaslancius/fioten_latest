@@ -12,7 +12,7 @@
                                 </li>
                                 <li><a href="javascript:void(0);"><i class="fa fa-clock-o"></i> <span><?php echo $getSiteSettingsData['email'] ?></span></a>
                                 </li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-envelope-o"></i> <span>Mon - Fri: 08.00 - 17.00</span></a>
+                                <li><a href="javascript:void(0);"><i class="fa fa-envelope-o"></i> <span><?php echo $getSiteSettingsData['open_timings'] ?></span></a>
                                 </li>
                             </ul>
                         </div>
