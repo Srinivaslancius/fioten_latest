@@ -30,8 +30,8 @@ if(isset($_POST["submit"]) && $_POST["submit"]!="") {
 	<h4>Product Name: </h4><p>".$_POST['product_name']."</p>
 	<h4>Product Quantity: </h4><p>".$_POST['product_quantity']."</p>
 	<h4>Product Price: </h4><p>".$_POST['product_price']."</p>
-	<h4>Order Total: </h4><p>"$order_total"</p>
-	<h4>Date: </h4><p>"$order_date"</p>
+	<h4>Order Total: </h4><p>'$order_total'</p>
+	<h4>Date: </h4><p>'$order_date'</p>
 	</body>
 	</html>
 	";
