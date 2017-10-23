@@ -71,7 +71,7 @@
                     $_SESSION['user_login_session_id'] =  $row['id'];
                     $_SESSION['user_login_session_name'] = $row['user_full_name'];
                     $_SESSION['user_login_session_email'] = $row['user_email'];
-                    header('Location: index.php');
+                    echo "<script>history.go(-2);</script>";
                 } else {
                     header('Location: login.php?fmsg=fail');
                 }
