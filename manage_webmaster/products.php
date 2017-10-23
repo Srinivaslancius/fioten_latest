@@ -48,7 +48,7 @@
                     <td><?php $getSubSubCategories = getDataFromTables('sub_sub_categories',$status=NULL,'id',$row['sub_sub_category_id'],$activeStatus=NULL,$activeTop=NULL);
                     $getSubSubCategory = $getSubSubCategories->fetch_assoc(); echo $getSubSubCategory['sub_sub_category_name']; ?></td>
 
-                    <td><?php echo $row['product_price'];?></td>
+                    <td><?php echo $row['selling_price'];?></td>
                                        
                     <td><?php if ($row['status']==0) { echo "<span class='label label-outline-success check_active open_cursor' data-incId=".$row['id']." data-status=".$row['status']." data-tbname='products
                     '>Active</span>" ;} else { echo "<span class='label label-outline-info check_active open_cursor' data-status=".$row['status']." data-incId=".$row['id']." data-tbname='products'>In Active</span>" ;} ?></td>
