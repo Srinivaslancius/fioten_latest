@@ -185,37 +185,20 @@ padding:0px !important;}
                     <div class="blog-post blog-md date-style-2">
                         <div class="col-md-4 col-sm-4 m-b30">
                         	<section id="gallery" class="simplegallery">
+                        		<?php $id = $_GET['proId']; $getProductsImages = getDataFromTables('product_images','0','product_id',$id,$activeStatus=NULL,$activeTop=NULL);  ?>
+                        		<?php  while ($getPro1 = $getProductsImages->fetch_assoc()) { ?>
 					            <div class="content">
-					                <img src="images/bigs/1.jpg" class="image_1" alt="" />
-					                <img src="images/bigs/2.jpg" class="image_2" style="display:none" alt="" />
-					                <img src="images/bigs/3.jpg" class="image_3" style="display:none" alt="" />
-					                <img src="images/bigs/4.jpg" class="image_4" style="display:none" alt="" />
+					                <img style="width:90%" src="<?php echo $base_url . 'uploads/product_images/'.$getPro1['product_image'] ?>" class="image_<?php $getPro1['id']; ?>" alt="" />
 					            </div>
-
 					            <div class="clear"></div>
-
 					            <div class="thumbnail">
 					                <div class="thumb">
-					                    <a href="#" rel="1">
-					                        <img src="images/thumbs/1.jpg" id="thumb_1" alt="" />
-					                    </a>
-					                </div>
-					                <div class="thumb">
-					                    <a href="#" rel="2">
-					                        <img src="images/thumbs/2.jpg" id="thumb_2" alt="" />
-					                    </a>
-					                </div>
-					                <div class="thumb">
-					                    <a href="#" rel="3">
-					                        <img src="images/thumbs/3.jpg" id="thumb_3" alt="" />
-					                    </a>
-					                </div>
-					                <div class="thumb last">
-					                    <a href="#" rel="4">
-					                        <img src="images/thumbs/4.jpg" id="thumb_4" alt="" />
+					                    <a href="#" rel="">
+					                        <img src="<?php echo $base_url . 'uploads/product_images/'.$getPro1['product_image'] ?>" id="thumb_<?php $getPro1['id']; ?>" alt="" />
 					                    </a>
 					                </div>
 					            </div>
+					            <?php }?>
 					        </section>
 
                         	<div class="col-md-4 col-sm-4 m-b30">
@@ -439,8 +422,8 @@ padding:0px !important;}
 <!-- masonry  -->
 <script type="text/javascript"  src="js/owl.carousel.js"></script>
 <!-- OWL  Slider  -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_YEzHx_YCQvqQSB_xuSC18BT81BlKVvI&amp;sensor=false"></script>
-<!-- google map  -->
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_YEzHx_YCQvqQSB_xuSC18BT81BlKVvI&amp;sensor=false"></script>
+ --><!-- google map  -->
 <script type="text/javascript"  src="js/custom.min.js"></script>
 <!-- custom fuctions  -->
 <script type="text/javascript"  src="js/dz.carousel.js"></script>
