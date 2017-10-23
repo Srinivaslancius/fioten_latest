@@ -226,7 +226,7 @@ padding:0px !important;}
 						                </div>
 			                            <?php $id = $_GET['proId']; $getProducts = getDataFromTables('products','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getPro = $getProducts->fetch_assoc();?>
 			                            <div class="form-group">
-						                    <input type="hidden" class="form-control" name="product_id" value="<?php echo $getPro['id'];?>" required>
+						                    <input type="hidden" class="form-control" name="product_id" id="product_id" value="<?php echo $getPro['id'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 						                <div class="form-group">
@@ -234,7 +234,7 @@ padding:0px !important;}
 						                    <div class="help-block with-errors"></div>
 						                </div>
 						                <div class="form-group">
-						                    <input type="hidden" class="form-control" name="product_price" value="<?php echo $getPro['selling_price'];?>" required>
+						                    <input type="hidden" class="form-control" name="product_price" id="product_price" value="<?php echo $getPro['selling_price'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 						                <div class="form-group">
@@ -243,15 +243,15 @@ padding:0px !important;}
 						                </div>
 			                            <div class="form-group">
 						                    <label for="form-control-2" class="control-label">Product Quantity</label>
-						                    <input type="number" class="form-control" name="product_quantity" min="<?php echo $getPro['minimum_order_quantity'];?>" max="<?php echo $getPro['quantity'];?>" value="<?php echo $getPro['quantity'];?>" required>
+						                    <input type="number" id="product_quantity" class="form-control" name="product_quantity" min="<?php echo $getPro['minimum_order_quantity'];?>" max="<?php echo $getPro['quantity'];?>" value="<?php echo $getPro['quantity'];?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 						                <?php
-						                	$order_total = $getPro['selling_price'];
+						                	$order_total = $getPro['selling_price']*$getPro['quantity'];
 						                ?>
 						                <div class="form-group">
 						                	<label for="form-control-2" class="control-label">Order Total</label>
-						                    <input type="text" class="form-control" name="order_total" value="<?php echo $order_total;?>" required>
+						                    <input type="text" readonly class="form-control" id="order_total" name="order_total" value="<?php echo $order_total;?>" required>
 						                    <div class="help-block with-errors"></div>
 						                </div>
 							        </div>
@@ -419,6 +419,24 @@ $(document).ready(function(){
 			});		
 		});
 		</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+        $("#product_quantity").change(function(){
+        	var product_price=$("#product_price").val();
+        	var product_id=$("#product_id").val();
+        	var product_quantity=$("#product_quantity").val();
+        	$.ajax({
+                  type:"post",
+                  url:"get_pricing.php",
+                  data:"&product_price="+product_price+"&product_id="+product_id+"&product_quantity="+product_quantity,
+                  success:function(result){
+                      $('#order_total').val(result);
+                  }
+
+                });
+        });
+    });
+</script>
 <div id="loading-area"></div>
 
 </body>
