@@ -243,10 +243,54 @@ mail($to,$subject,$message,$headers);
                     <div class="col-md-12">
                         <!-- Map part start -->
                         <h4>Our Location</h4>
-                        <div id="gmap_canvas">
-                        <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2912.977839896567!2d-87.91356848468456!3d43.1049805957248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88051eedab1d2321%3A0x22c9d93d12fb4c4b!2s4848+N+Lydell+Ave%2C+Milwaukee%2C+WI+53217%2C+USA!5e0!3m2!1sen!2sin!4v1505902149319" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+                        <!-- <div id="gmap_canvas">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2912.977839896567!2d-87.91356848468456!3d43.1049805957248!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88051eedab1d2321%3A0x22c9d93d12fb4c4b!2s4848+N+Lydell+Ave%2C+Milwaukee%2C+WI+53217%2C+USA!5e0!3m2!1sen!2sin!4v1505902149319" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2912.9795346934648!2d-87.91344268485466!3d43.10494497914389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88051eed0e11be0f%3A0x6d33635e7b7bfebc!2sParkside+At+Estabrook+Apartments!5e0!3m2!1sen!2sin!4v1508240610254" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe>
-                        </div>
+                        </div> -->
+                        <!DOCTYPE html>
+                        <html> 
+                        <head> 
+                          <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+                          <title>Google Maps Multiple Markers</title>
+                          <script src="http://maps.google.com/maps/api/js?key=AIzaSyA04qekzxWtnZq6KLkabMN_4abcJt9nCDk"
+                                                        type="text/javascript"></script>
+                        </head> 
+                        <body>
+                          <div id="map" style="display:block; height: 350px;"></div>
+
+                          <script type="text/javascript">
+                            var locations = [
+                              ['Fioten USA Limited', 43.104945, -87.911254],
+                              ['Fioten Nigeria Limited', 6.597341, 3.354311],
+                              ['Fioten Australia Limited ', -37.817274, 144.955709],
+                            ];
+
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                              zoom: 2,
+                              center: new google.maps.LatLng(6.597341, 3.354311),
+                              mapTypeId: google.maps.MapTypeId.ROADMAP
+                            });
+
+                            var infowindow = new google.maps.InfoWindow();
+
+                            var marker, i;
+
+                            for (i = 0; i < locations.length; i++) {  
+                              marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                map: map
+                              });
+
+                              google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                                return function() {
+                                  infowindow.setContent(locations[i][0]);
+                                  infowindow.open(map, marker);
+                                }
+                              })(marker, i));
+                            }
+                          </script>
+                        </body>
+                        </html>
                         <!-- Map part END -->
                     </div>
                 </div>
@@ -286,7 +330,7 @@ mail($to,$subject,$message,$headers);
 <!-- masonry  -->
 <script type="text/javascript"  src="js/owl.carousel.js"></script>
 <!-- OWL  Slider  -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_YEzHx_YCQvqQSB_xuSC18BT81BlKVvI&sensor=false"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_YEzHx_YCQvqQSB_xuSC18BT81BlKVvI&sensor=false"></script> -->
 <!-- google map  -->
 <script type="text/javascript"  src="js/custom.js"></script>
 <!-- custom fuctions  -->
