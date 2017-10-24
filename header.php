@@ -56,7 +56,7 @@
 					<?php if(isset($_SESSION['user_login_session_id']) && $_SESSION['user_login_session_id']!='') { ?>
 					<div class="extra-nav" style="position:relative; top:10px; font-weight:bold">
 						<div class="extra-cell">
-							<a href="#"><?php echo $_SESSION['user_login_session_name']; ?> </a>  | <a href="logout.php"> Logout </a>
+							<a href="my_dashboard.php"><?php echo $_SESSION['user_login_session_name']; ?> </a>  | <a href="logout.php"> Logout </a>
 						</div>
 					</div>
 					<?php } else { ?>
