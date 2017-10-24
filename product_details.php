@@ -188,7 +188,7 @@ padding:0px !important;}
                         		<?php $id = $_GET['proId']; $getProductsImages = getDataFromTables('product_images','0','product_id',$id,$activeStatus=NULL,$activeTop=NULL);  ?>
 					            <div class="content">
 					            	<?php while  ($getPro1 = $getProductsImages->fetch_assoc()) { ?>
-					                <img src="<?php echo $base_url . 'uploads/product_images/'.$getPro1['product_image'] ?>" class="image_<?php echo $getPro1['id'];?>" alt="" />
+					                <img style="width:382px;height:295px;" src="<?php echo $base_url . 'uploads/product_images/'.$getPro1['product_image'] ?>" class="image_<?php echo $getPro1['id'];?>" alt="" />
 					                <?php }?>
 					            </div>
 					            <div class="clear"></div>
@@ -197,7 +197,7 @@ padding:0px !important;}
 					            	<?php  while ($getPro2 = $getProductsImages2->fetch_assoc()) { ?>
 					                <div class="thumb">
 					                    <a href="#" rel="">
-					                        <img src="<?php echo $base_url . 'uploads/product_images/'.$getPro2['product_image'] ?>" id="thumb_<?php echo $getPro2['id']; ?>" alt="Product Images" />
+					                        <img style="width:100px;height:100px;" src="<?php echo $base_url . 'uploads/product_images/'.$getPro2['product_image'] ?>" id="thumb_<?php echo $getPro2['id']; ?>" alt="Product Images" />
 					                    </a>
 					                </div>
 					                <?php }?>
