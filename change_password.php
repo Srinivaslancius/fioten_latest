@@ -1,7 +1,29 @@
 <?php error_reporting(1);
-
 include_once "main_header_scripts.php"; ?>
+<?php 
 
+//echo "<pre>"; print_r($_REQUEST); die;
+if(isset($_POST["submit"]) && $_POST["submit"]!="") {
+        // echo "<pre>"; print_r($_POST); die;  
+        $id = $_SESSION["user_login_session_id"];
+        $sql = "SELECT * FROM users WHERE id = '$id'";
+        $result = $conn->query($sql);
+        $getUserPwd = $result->fetch_assoc();
+
+        if($_POST['currentPassword'] == decryptPassword($getUserPwd['user_password'])){
+            
+            $sql1 = "UPDATE users SET user_password = '" . encryptPassword($_POST["confirmPassword"]) . "' WHERE  id = '$id'";
+            if($conn->query($sql1) === TRUE){                
+                header("location: change_password.php?msg=Password Changed Successfully");
+                //echo "<script>alert('Password Changed Successfully');window.location.href='my_dashboard.php';</script>";
+            }               
+        } else {               
+            //$message = "Current Password is not correct";
+            echo "<script type='text/javascript'>window.location='change_password.php?msg=Current Password is not correct'</script>";
+           // echo "<script>alert('Current Password is not correct');window.location.href='my_dashboard.php';</script>";
+        }
+}
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -60,7 +82,7 @@ include_once "main_header_scripts.php"; ?>
         </div>
         <!-- Breadcrumb row END -->
         <!-- contact area -->
-        <!-- <div class="message"><?php if(isset($_GET['msg'])) { echo $_GET['msg']; } ?></div> -->
+        <div class="message"><?php if(isset($_GET['msg'])) { echo $_GET['msg']; } ?></div>
         <div class="section-full content-area bg-white">
             <!-- Services -->
             <div class="container">
@@ -71,7 +93,7 @@ include_once "main_header_scripts.php"; ?>
                 $getUserOrder = $result->fetch_assoc();
             ?>
             <!-- <div class="col-xs-12 bhoechie-tab-container"> -->
-            <div class="message"><?php if(isset($message)) { echo $message; } ?></div>
+            <!-- <div class="message"><?php if(isset($message)) { echo $message; } ?></div> -->
             <div class="col-xs-4">
                 <div class="bhoechie-tab-menu">
                     <div class="list-group">
@@ -84,8 +106,10 @@ include_once "main_header_scripts.php"; ?>
                         <a href="#" class="list-group-item sub">
                             <p>Personal Information</p>
                         </a>
+                        <a href="change_password.php" class="list-group-item sub">
+                            <p>Change Password</p>
+                        </a>
                     </div>
-                    <a href="change_password.php" class="list-group-item"><p>Change Password</p></a>
                 </div>
             </div>
             <div class="col-xs-8 bhoechie-tab">
@@ -190,7 +214,7 @@ include_once "main_header_scripts.php"; ?>
                     </form>
                 </div>
                 <!-- Change password section -->
-                <!-- <div class="bhoechie-tab-content">
+                <div class="bhoechie-tab-content">
 
                     <div class="row">
                         <div class="col-sm-3">
@@ -223,7 +247,9 @@ include_once "main_header_scripts.php"; ?>
                             </div>
                         </div>
                     </div>
-                </div> -->
+
+
+                </div>
             </div>
             <!-- </div> -->
         </div>
