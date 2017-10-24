@@ -27,7 +27,7 @@ if(isset($_POST["submit"]) && $_POST["submit"]!="") {
 	$message = "<html><head><title>Place Order Information</title></head>
 	<body>
 		<table rules='all' style='border-color: #666;' cellpadding='10'>
-			<tr style='background: #eee;'><td><strong>>Product Name:</strong> </td><td>" . strip_tags($_POST['product_name']) . "</td></tr>
+			<tr style='background: #eee;'><td><strong>Product Name:</strong> </td><td>" . strip_tags($_POST['product_name']) . "</td></tr>
 			<tr><td><strong>Product Price:</strong> </td><td>" . strip_tags($_POST['product_price']) . "</td></tr>
 			<tr><td><strong>Product Quantity:</strong> </td><td>" . strip_tags($_POST['product_quantity']) . "</td></tr>
 			<tr><td><strong>Order Total:</strong> </td><td>'$order_total'</td></tr>

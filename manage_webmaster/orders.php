@@ -73,7 +73,7 @@
                     <td><?php echo $res1['mobile'];?></td>
                     <td><?php echo $res1['order_date'];?></td>                 
                     <td><?php if ($res1['order_status']==1) { echo "Pending" ;} elseif($res1['order_status']==2) { echo "Completed" ;} else{ echo "Cancelled";}?></td>
-                    <td><a href="edit_orders.php?oid=<?php echo $res1['id'];?>"><i class="zmdi zmdi-edit"></i></a> &nbsp;<a href="#" class="click_view" data-modalId="<?php echo $res1['id']?>"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#successModal2" class=""></i></a></td>
+                    <td><a href="edit_orders.php?oid=<?php echo $res1['id'];?>"><i class="zmdi zmdi-edit"></i></a> &nbsp;<a href="#" class="click_view" data-modalId="<?php echo $res1['id']?>"><i class="zmdi zmdi-eye zmdi-hc-fw" data-toggle="modal" data-target="#successModal2" class=""></i></a> &nbsp;<a href="TCPDF/examples/view_order_pdf.php?uid=<?php echo $res1['id'];?>" target="_blank"><i class="zmdi zmdi-local-printshop"></i></a></td>
                      <!-- Open Modal Box  here -->
                     <div id="myModal_<?php echo $res1['id']; ?>" class="modal fade" >
                           <div class="modal-dialog" Style="margin-top:10%;">
