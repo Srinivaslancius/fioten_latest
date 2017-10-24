@@ -24,14 +24,15 @@ if(isset($_POST["submit"]) && $_POST["submit"]!="") {
 	//$to = "$dataem";
 	$subject = "User Place Order Information";
 
-	$message = "<html><head><title>Place Order</title></head>
+	$message = "<html><head><title>Place Order Information</title></head>
 	<body>
-	<p>Order Information!</p>
-	<h4>Product Name: </h4><p>".$_POST['product_name']."</p>
-	<h4>Product Quantity: </h4><p>".$_POST['product_quantity']."</p>
-	<h4>Product Price: </h4><p>".$_POST['product_price']."</p>
-	<h4>Order Total: </h4><p>'$order_total'</p>
-	<h4>Date: </h4><p>'$order_date'</p>
+		<table rules='all' style='border-color: #666;' cellpadding='10'>
+			<tr style='background: #eee;'><td><strong>>Product Name:</strong> </td><td>" . strip_tags($_POST['product_name']) . "</td></tr>
+			<tr><td><strong>Product Price:</strong> </td><td>" . strip_tags($_POST['product_price']) . "</td></tr>
+			<tr><td><strong>Product Quantity:</strong> </td><td>" . strip_tags($_POST['product_quantity']) . "</td></tr>
+			<tr><td><strong>Order Total:</strong> </td><td>'$order_total'</td></tr>
+			<tr><td><strong>Date:</strong> </td><td>'$order_date'</td></tr>
+		</table>
 	</body>
 	</html>
 	";
