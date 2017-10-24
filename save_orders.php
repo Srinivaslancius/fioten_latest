@@ -5,6 +5,9 @@ include "manage_webmaster/admin_includes/common_functions.php";
 if(isset($_POST["submit"]) && $_POST["submit"]!="") {
 	// echo "<pre>"; print_r($_POST); die;	
 	$name = $_POST["name"];
+	$user_id = $_POST["user_id"];
+	$user_email = $_POST["user_email"];
+	$user_name = $_POST["user_name"];
 	$mobile = $_POST["mobile"];
 	$address = $_POST["address"];
 	$city = $_POST["city"];
@@ -49,7 +52,7 @@ if(isset($_POST["submit"]) && $_POST["submit"]!="") {
 
 	//Saving Orders
 	$productsCount = count($_POST["product_id"]);
-	$sql = "INSERT INTO orders (`first_name`, `mobile`,`email`, `address1`,`product_id`,`product_name`,`product_price`,`product_total_price`, `order_total`,`order_date`,`product_quantity`,`payment_status`,`order_status`,`order_id`) VALUES ('$name','$mobile','$email','$address','" . $_POST["product_id"]. "','" . $_POST["product_name"]. "','" . $_POST["product_price"]. "','" . $_POST["product_total_price"]."','$order_total','$order_date','" . $_POST["product_quantity"]. "','1','1','$order_id')";
+	$sql = "INSERT INTO orders (`first_name`,`user_name`,`user_email`,`user_id`, `mobile`,`email`, `address1`,`product_id`,`product_name`,`product_price`,`product_total_price`, `order_total`,`order_date`,`product_quantity`,`payment_status`,`order_status`,`order_id`) VALUES ('$name','$user_name','$user_email','$user_id','$mobile','$email','$address','" . $_POST["product_id"]. "','" . $_POST["product_name"]. "','" . $_POST["product_price"]. "','" . $_POST["product_total_price"]."','$order_total','$order_date','" . $_POST["product_quantity"]. "','1','1','$order_id')";
 	$res = $conn->query($sql);
 
     header("Location: thankyou.php?odi=".$order_id."");
