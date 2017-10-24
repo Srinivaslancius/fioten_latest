@@ -12,17 +12,12 @@ include_once "main_header_scripts.php"; ?>
         if($_POST['currentPassword'] == decryptPassword($getUserPwd['user_password'])){
             
             $sql1 = "UPDATE users SET user_password = '" . encryptPassword($_POST["confirmPassword"]) . "' WHERE  id = '$id'";
-            if($conn->query($sql1) === TRUE){
-                //$message = "Password Changed Successfully";
-                //echo "success"; die;
-                //echo "<script type='text/javascript'>window.location='my_dashboard.php?msg=Password Changed Successfully'</script>";
+            if($conn->query($sql1) === TRUE){                
                 header("location: my_dashboard.php?msg=Password Changed Successfully");
-              } else {
-                echo "fail"; die;
-                //$message = "Current Password is not correct";
-                echo "<script type='text/javascript'>window.location='my_dashboard.php?msg=Current Password is not correct'</script>";
-              }
-              //header("location: my_dashboard.php");
+            }               
+        } else {               
+            //$message = "Current Password is not correct";
+            echo "<script type='text/javascript'>window.location='my_dashboard.php?msg=Current Password is not correct'</script>";
         }
 }
 ?>
@@ -428,6 +423,7 @@ function checkPasswordMatch() {
     } else {
         $("#divCheckPasswordMatch").html("Passwords match.");
     }
+}
 </script>
 </body>
 </html>
