@@ -186,19 +186,23 @@ padding:0px !important;}
                         <div class="col-md-4 col-sm-4 m-b30">
                         	<section id="gallery" class="simplegallery">
                         		<?php $id = $_GET['proId']; $getProductsImages = getDataFromTables('product_images','0','product_id',$id,$activeStatus=NULL,$activeTop=NULL);  ?>
-                        		<?php  while ($getPro1 = $getProductsImages->fetch_assoc()) { ?>
 					            <div class="content">
-					                <img style="width:90%" src="<?php echo $base_url . 'uploads/product_images/'.$getPro1['product_image'] ?>" class="image_<?php $getPro1['id']; ?>" alt="" />
+					            	<?php while  ($getPro1 = $getProductsImages->fetch_assoc()) { ?>
+					                <img src="<?php echo $base_url . 'uploads/product_images/'.$getPro1['product_image'] ?>" class="image_<?php echo $getPro1['id'];?>" alt="" />
+					                <?php }?>
 					            </div>
 					            <div class="clear"></div>
 					            <div class="thumbnail">
+					            	 <?php $id = $_GET['proId']; $getProductsImages2 = getDataFromTables('product_images','0','product_id',$id,$activeStatus=NULL,$activeTop=NULL);  ?>
+					            	<?php  while ($getPro2 = $getProductsImages2->fetch_assoc()) { ?>
 					                <div class="thumb">
 					                    <a href="#" rel="">
-					                        <img src="<?php echo $base_url . 'uploads/product_images/'.$getPro1['product_image'] ?>" id="thumb_<?php $getPro1['id']; ?>" alt="" />
+					                        <img src="<?php echo $base_url . 'uploads/product_images/'.$getPro2['product_image'] ?>" id="thumb_<?php echo $getPro2['id']; ?>" alt="Product Images" />
 					                    </a>
 					                </div>
+					                <?php }?>
 					            </div>
-					            <?php }?>
+					            
 					        </section>
 
                         	<div class="col-md-4 col-sm-4 m-b30">
