@@ -158,7 +158,7 @@ padding:0px !important;}
     <!-- Content -->
     <div class="page-content bg-white">
         <!-- inner page banner -->
-        <?php $id = $_GET['proId']; $getSubcat = getDataFromTables('sub_categories','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getSubcat1 = $getSubcat->fetch_assoc(); ?>
+        <?php $id = $_GET['proId']; $getSubcat = getDataFromTables('orders','0','id',$id,$activeStatus=NULL,$activeTop=NULL); $getSubcat1 = $getSubcat->fetch_assoc(); ?>
         <div class="w3-bnr-inr overlay-black-middle" style="background-image:url(<?php echo $base_url . 'uploads/sub_category_images/'.$getSubcat1['sub_category_image'] ?>);">
             <div class="container">
                 <div class="w3-bnr-inr-entry">
