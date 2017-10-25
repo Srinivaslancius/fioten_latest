@@ -354,17 +354,6 @@ $(document).ready(function() {
     });
 });
 </script>
-<script type="text/javascript">
-function checkPasswordMatch() {
-    var password = $("#newPassword").val();
-    var confirmPassword = $("#confirmPassword").val();
-    if (confirmPassword != password) {
-        $("#divCheckPasswordMatch").html("Passwords do not match!");
-        $("#confirmPassword").val("");
-    } else {
-        $("#divCheckPasswordMatch").html("Passwords match.");
-    }
-}
-</script>
+
 </body>
 </html>

@@ -135,7 +135,7 @@ if(isset($_POST["submit"]) && $_POST["submit"]!="") {
                                             <label for="new-password">New password</label>
                                         </div>
                                         <div class="form-group has-float-label">
-                                            <input type="password" name="confirmPassword" required class="form-control" id="confirmPassword" placeholder="********" autocomplete="off"/ onChange="checkPasswordMatch();">
+                                            <input type="password" name="confirmPassword" required class="form-control" id="confirmPassword" placeholder="********" autocomplete="off"/ onBlur="checkPasswordMatch();">
                                             <label for="new-repassword">Repeat password</label>
                                         </div>
                                         <div id="divCheckPasswordMatch" style="color:red"></div>
@@ -309,9 +309,7 @@ function checkPasswordMatch() {
     if (confirmPassword != password) {
         $("#divCheckPasswordMatch").html("Passwords do not match!");
         $("#confirmPassword").val("");
-    } else {
-        $("#divCheckPasswordMatch").html("Passwords match.");
-    }
+    } 
 }
 </script>
 </body>
