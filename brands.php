@@ -68,7 +68,9 @@
         </div>
         <!-- About Us END -->
 		<!-- Our Classes -->
-		<?php $id = $_GET['catId']; $getProducts = getDataFromTables('products','0','category_id',$id,$activeStatus=NULL,$activeTop=NULL); ?>
+		
+		<?php $pro_id=$_GET['catId']; $sql = "SELECT * FROM `products` where status='0' AND category_id = '$id' LIMIT 4";
+		$getProducts = $conn->query($sql); ?>
 		<?php $id = $_GET['catId']; $getSubcat = getDataFromTables('sub_sub_categories','0','category_id',$id,$activeStatus=NULL,$activeTop=NULL); $getSubcat1 = $getSubcat->fetch_assoc(); ?>
 		<div class="section-full text-white bg-img-fix content-inner overlay-gray-dark choose-us" style="background-image:url(<?php echo $base_url . 'uploads/background_images/'.$getSubcat1['background_image'] ?>);">
             <div class="container">
@@ -98,22 +100,9 @@
 	                                <a href="product_details.php?proId=<?php echo $getPro['id'];?>" ><h3><?php echo $getPro['product_name']; ?></h3></a>
 								</div>
 							<?php } ?>
-							<!-- <div class="col-md-6 col-sm-6 col-xs-6 m-b30">
-                                <div class="w3-media w3-img-effect rotate"> <img src="images/categories/hpspectra360.png" alt=""> </div>
-                                <h3>HP Spectra 360</h3>
-							</div>
-							<div class="col-md-6 col-sm-6 col-xs-6 m-b30">
-                                <div class="w3-media w3-img-effect rotate"> <img src="images/categories/hp_omen.png" alt=""> </div>
-                                <h3>HP OMEN</h3>
-							</div>
-							<div class="col-md-6 col-sm-6 col-xs-6 m-b10">
-                                <div class="w3-media w3-img-effect rotate"> <img src="images/categories/omen_desktop.png" alt=""> </div>
-                                <h3>HP OMEN Desktop</h3>
-							</div>
-							<div class="col-md-6 col-sm-6 col-xs-6 m-b10">
-                                <div class="w3-media w3-img-effect rotate"> <img src="images/categories/omen_accessories.png" alt=""> </div>
-                                <h3>HP OMEN Accessories</h3>
-							</div> -->
+						</div>
+						<div class="row">
+							<a href="all_products.php?catId=<?php echo $id;?>" ><h3 style="text-align:center">View All</h3></a>
 						</div>
 					</div>
 				</div>
