@@ -20,7 +20,7 @@
 <!--[if lt IE 9]>
         <script src="js/html5shiv.min.js"></script>
         <script src="js/respond.min.js"></script>
-	<![endif]-->
+    <![endif]-->
 <!-- Stylesheets -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/fontawesome/css/font-awesome.min.css" />
@@ -38,8 +38,8 @@
 <body id="bg">
 <div class="page-wrapers">
     <header class="site-header header-style-1 dark style-2">
-		<!-- Main Header -->
-		<?php include_once 'header.php';
+        <!-- Main Header -->
+        <?php include_once 'header.php';
 
             if (isset($_POST['submit']))  {
                 //If success
@@ -75,15 +75,55 @@
                 } else {
                     header('Location: login.php?fmsg=fail');
                 }
-            } else {
+            } else if(isset($_POST['forgot'])){
+                $forgot_email = $_POST["forgot_email"];
+                $string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
+                $random1 = substr($string1,0,3);
+                $string2 = str_shuffle('1234567890');
+                $random2 = substr($string2,0,3);
+                $contstr = "uSr";
+                $pwd = $contstr.$random1.$random2;
+                $sql="SELECT * FROM users where user_email = '".$_POST["forgot_email"]."' ";
+                $result = $conn->query($sql);
+                if($result->num_rows>0){
+                    //echo "count";
+                    $to = "$forgot_email";
+                //$to = "$dataem";
+                $subject = "User Forgot Password";
+
+                $message = "<html><head><title>User New Password</title></head>
+                <body>
+                    <table rules='all' style='border-color: #666;' cellpadding='10'>
+                        <tr><td><strong>Your New Password:</strong> </td><td>'$pwd'</td></tr>
+                    </table>
+                </body>
+                </html>
+                ";
+
+                // Always set content-type when sending HTML email
+                $headers = "MIME-Version: 1.0" . "\r\n";
+                $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+                // More headers
+                $headers .= 'From: <info@fioten.com>' . "\r\n";
+                // $headers .= 'Cc: myboss@example.com' . "\r\n";
+
+                mail($to,$subject,$message,$headers);
+                }  else{
+                    echo "<script>alert('Your Enterd Email Not Found');</script>";
+                    
+                    //echo "<script>history.go(-1);</script>";
+                }
+            }
+             else {
                 //Fail
                 //echo "fail";
             }
 
             
         ?>
-		<!-- Main Header END -->
-	</header>
+        <!-- Main Header END -->
+    </header>
     <!-- Content -->
     <div class="page-content w3-login p-t50">
         <div class="login-form">
@@ -109,17 +149,17 @@
                     <div class="bg-primary p-a15 "> <a data-toggle="tab" href="#developement-1" class="text-white">Create an account</a> </div>
                 </div>
                 <div id="forgot-password" class="tab-pane fade ">
-                    <form class="p-a30 w3-form m-t100 text-center">
+                    <form class="p-a30 w3-form m-t100 text-center" method="post">
                         <h3 class="form-title m-t0">Forget Password ?</h3>
                         <div class="w3-separator-outer m-b5">
                             <div class="w3-separator bg-primary style-liner"></div>
                         </div>
                         <p>Enter your e-mail address below to reset your password. </p>
                         <div class="form-group">
-                            <input name="dzName" required="" class="form-control" placeholder="Email Id" type="text"/>
+                            <input type="email" id="forgot_email" name="forgot_email" required="" class="form-control" placeholder="Email Id" />
                         </div>
                         <div class="form-group text-left"> <a class="site-button outline gray" data-toggle="tab" href="#login">Back</a>
-                            <button class="site-button pull-right">Submit</button>
+                            <button type="submit" name="forgot" class="site-button pull-right">Submit</button>
                         </div>
                     </form>
                 </div>
