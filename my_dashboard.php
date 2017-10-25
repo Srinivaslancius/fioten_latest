@@ -85,7 +85,7 @@ include_once "main_header_scripts.php"; ?>
                             <p>Personal Information</p>
                         </a>
                     </div>
-                    <a href="change_password.php" class="list-group-item"><p>Change Password</p></a>
+                    <a href="change_password.php" class="list-group-item sub"><p>Change Password</p></a>
                 </div>
             </div>
             <div class="col-xs-8 bhoechie-tab">
@@ -182,48 +182,12 @@ include_once "main_header_scripts.php"; ?>
                                     <input type="text" readonly class="form-control" value="<?php echo $getUserOrder['mobile'];?>" id="mobile" placeholder="9876543210">
                                 </div>
                             </div>
-                            <!-- <div class="col-sm-6">
-                                <br>
-                                <button type="submit" class="btn btn-primary" style="background-color:#56529c">Submit</button>
-                            </div> -->
+                            
                         </div>
                     </form>
                 </div>
-                <!-- Change password section -->
-                <!-- <div class="bhoechie-tab-content">
-
-                    <div class="row">
-                        <div class="col-sm-3">
-                            
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h4><b>Change Password</b></h4>
-                                </div>
-                                <div class="col-sm-12">
-                                    <form autocomplete="off" action="change_password.php" method="POST">
-                                        
-                                        <div class="form-group has-float-label">
-                                            <input type="password" name="currentPassword" required class="form-control" id="cur-password" placeholder="*******" autocomplete="off">
-                                            <label for="cur-password">Current password</label>
-                                        </div>
-                                        <div class="form-group has-float-label">
-                                            <input type="password" name="newPassword" required class="form-control" id="newPassword" placeholder="*********" autocomplete="off">
-                                            <label for="new-password">New password</label>
-                                        </div>
-                                        <div class="form-group has-float-label">
-                                            <input type="password" name="confirmPassword" required class="form-control" id="confirmPassword" placeholder="********" autocomplete="off"/ onChange="checkPasswordMatch();">
-                                            <label for="new-repassword">Repeat password</label>
-                                        </div>
-                                        <div id="divCheckPasswordMatch" style="color:red"></div>
-                                        <input type="submit" value="Submit" name="submit" class="btn btn-primary" style="background-color:#56529c">
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+              
+                
             </div>
             <!-- </div> -->
         </div>

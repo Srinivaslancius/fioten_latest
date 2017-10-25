@@ -97,136 +97,34 @@ if(isset($_POST["submit"]) && $_POST["submit"]!="") {
             <div class="col-xs-4">
                 <div class="bhoechie-tab-menu">
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">
-                            <h5><b><i class="fa fa-first-order" aria-hidden="true"></i>MY ORDERS</b><i class="fa fa-chevron-right pull-right" aria-hidden="true"></i></h5>
+                        <a href="my_dashboard.php" class="list-group-item ">
+                            <h5><b><i class="fa fa-first-order" aria-hidden="true"></i>MY ORDERS</b><i class="fa fa-chevron-right pull-right" ></i></h5>
                         </a>
-                        <a href="javascript:void(0);" class="list-group-item">
-                            <h5><b><i class="fa fa-user-circle-o" aria-hidden="true"></i>ACCOUNT SETTINGS</b></h5>
+                        <a href="my_dashboard.php" class="list-group-item">
+                            <h5><b><i class="fa fa-user-circle-o"></i>ACCOUNT SETTINGS</b></h5>
                         </a>
-                        <a href="#" class="list-group-item sub">
+                        <a href="my_dashboard.php" class="list-group-item sub">
                             <p>Personal Information</p>
                         </a>
-                        <a href="change_password.php" class="list-group-item sub">
+                        <a href="change_password.php" class="list-group-item sub active">
                             <p>Change Password</p>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="col-xs-8 bhoechie-tab">
-                <!-- My orders section -->
-                <div class="bhoechie-tab-content active">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p>ORDER PLACED<br><?php echo $getUserOrder['order_date'];?></p>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <p>TOTAL<br>&#x20b9;<?php echo $getUserOrder['order_total'];?></p>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <p>SHIP TO<br><a href="javascript:void(0);"><?php echo $getUserOrder['first_name'];?></a></p>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <p>ORDER #<?php echo $getUserOrder['order_id'];?><br><a href="javascript:void(0);"></a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <?php $id = $_SESSION["user_login_session_id"];?>
-                                            <?php $sql1 = "SELECT * FROM product_images where id = '$id' ";
-                                                $result1 = $conn->query($sql1);
-                                                $getUserOrderImage = $result1->fetch_assoc();
-                                        ?>
-                                        <div class="col-sm-3">
-                                            <img src="<?php echo $base_url . 'uploads/product_images/'.$getUserOrderImage['product_image'] ?>" class="img-responsive">
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <h5 style="margin-bottom:0;"><?php echo $getUserOrder['product_name'];?></h5>
-                                            
-                                            <p><b style="color:brown; font-size: 14px;">&#x20b9;<?php echo $getUserOrder['product_price'];?></b> </p>
-                                            
-                                            
-                                        </div>
-                                        <!-- <div class="col-sm-1"></div>
-                                        <div class="col-sm-4">
-                                            <p style="font-size: 30px; font-weight: bold;"><span style="color: gold;">&#9733;&#9733;&#9733;&#9733;</span>&#9734;</p>
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Account settings section -->
-                <div class="bhoechie-tab-content">
-                </div>
-                <!-- Personal info section -->
-                <div class="bhoechie-tab-content">
-                    <form>
-                        <div class="row">
-                            <?php $id = $_SESSION["user_login_session_id"]; $sql = "SELECT * FROM users where id = '$id' AND status= 0  ";
-                                $userData = $conn->query($sql);
-                                $getUserData = $userData->fetch_assoc();
-                            ?>
-                            <div class="col-sm-12" style="margin-bottom: 10px;">
-                                <h4><b>Personal Information</b></h4>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="first-name">Name</label>
-                                    <input type="text" readonly class="form-control" value="<?php echo $_SESSION['user_login_session_name'];?>" id="first-name" placeholder="Name">
-                                </div>
-                            </div>
-                            
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" readonly class="form-control" id="email" value="<?php echo $getUserData['user_email'];?>" placeholder="abc@gmail.com">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" readonly class="form-control" id="user_address" value="<?php echo $getUserData['user_address'];?>" placeholder="abc@gmail.com">
-                                </div>
-                            </div>
-                             <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="address">City</label>
-                                    <input type="text" readonly class="form-control" id="user_city_id" value="<?php echo $getUserData['user_city_id'];?>" placeholder="abc@gmail.com">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="mobile">Mobile</label>
-                                    <input type="text" readonly class="form-control" value="<?php echo $getUserOrder['mobile'];?>" id="mobile" placeholder="9876543210">
-                                </div>
-                            </div>
-                            <!-- <div class="col-sm-6">
-                                <br>
-                                <button type="submit" class="btn btn-primary" style="background-color:#56529c">Submit</button>
-                            </div> -->
-                        </div>
-                    </form>
-                </div>
+        
                 <!-- Change password section -->
                 <div class="bhoechie-tab-content">
 
                     <div class="row">
-                        <div class="col-sm-3">
-                            
-                        </div>
+                      
                         <div class="col-sm-6">
                             <div class="row">
                                 <div class="col-sm-12">
                                     <h4><b>Change Password</b></h4>
                                 </div>
                                 <div class="col-sm-12">
-                                    <form autocomplete="off" action="change_password.php" method="POST">
+                                    <form autocomplete="off" method="POST">
                                         
                                         <div class="form-group has-float-label">
                                             <input type="password" name="currentPassword" required class="form-control" id="cur-password" placeholder="*******" autocomplete="off">
@@ -250,8 +148,7 @@ if(isset($_POST["submit"]) && $_POST["submit"]!="") {
 
 
                 </div>
-            </div>
-            <!-- </div> -->
+         
         </div>
             </div>
             <!-- Services END -->
@@ -404,18 +301,7 @@ width: 100%;
      top: 0.6em !important;
  }
 </style>
-<script>
-$(document).ready(function() {
-    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
-        e.preventDefault();
-        $(this).siblings('a.active').removeClass("active");
-        $(this).addClass("active");
-        var index = $(this).index();
-        $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-        $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-    });
-});
-</script>
+
 <script type="text/javascript">
 function checkPasswordMatch() {
     var password = $("#newPassword").val();
