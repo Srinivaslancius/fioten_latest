@@ -26,8 +26,8 @@ $headers .= 'From: <info@fioten.com>' . "\r\n";
 // $headers .= 'Cc: myboss@example.com' . "\r\n";
 
 if(mail($to,$subject,$message,$headers)) {
-                      echo  "<script>alert('Message Sent To Your Email,Please Check.');window.location.href('contact_us.php');</script>";
-                    }
+    echo  "<script>alert('Message Sent To Your Email,Please Check.');window.location.href('contact_us.php');</script>";
+}
 
 }?><!DOCTYPE html>
 
