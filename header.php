@@ -10,7 +10,7 @@
                             <ul class="social-line text-center pull-right">
                                 <li><a href="Tel:<?php echo $getSiteSettingsData['mobile']; ?>"><i class="fa fa-phone"></i> <span><?php echo $getSiteSettingsData['mobile'] ?></span> </a>
                                 </li>
-                                <li><a href="javascript:void(0);"><i class="fa fa-clock-o"></i> <span><?php echo $getSiteSettingsData['email'] ?></span></a>
+                                <li><a href="mailto:<?php echo $getSiteSettingsData['email'] ?>"><i class="fa fa-clock-o"></i> <span><?php echo $getSiteSettingsData['email'] ?></span></a>
                                 </li>
                                 <li><a href="javascript:void(0);"><i class="fa fa-envelope-o"></i> <span><?php echo $getSiteSettingsData['open_timings'] ?></span></a>
                                 </li>

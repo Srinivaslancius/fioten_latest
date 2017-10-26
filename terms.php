@@ -51,7 +51,7 @@
         <div class="w3-bnr-inr overlay-black-middle" style="background-image:url(images/about_us_banner.png);">
             <div class="container">
                 <div class="w3-bnr-inr-entry">
-                    <h1 class="text-white">About Us</h1>
+                    <h1 class="text-white">Terms Of Service</h1>
                 </div>
             </div>
         </div>
@@ -61,7 +61,7 @@
             <div class="container">
                 <ul class="list-inline">
                     <li><a href="#">Home</a></li>
-                    <li>Aboout us</li>
+                    <li>Terms Of Service</li>
                 </ul>
             </div>
         </div>

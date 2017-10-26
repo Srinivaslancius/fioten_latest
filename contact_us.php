@@ -109,21 +109,21 @@ mail($to,$subject,$message,$headers);
                         <div class="p-a30 bg-white m-b30">
                             <ul class="no-margin">
                                 <li class="icon-bx-wraper left m-b30">
-                                    <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
+                                    <div class="icon-bx-xs bg-primary"> <a  class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte">Corporate Office Address</h6>
                                         <?php echo $getUSAAddress1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left  m-b30">
-                                    <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
+                                    <div class="icon-bx-xs bg-primary"> <a href="mailto:<?php echo $getEmail1['description'] ?>" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte">EMAIL</h6>
                                         <?php echo $getEmail1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left">
-                                    <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
+                                    <div class="icon-bx-xs bg-primary"> <a href="Tel:<?php echo $getUSAPhone1['description']; ?>" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte">PHONE</h6>
                                         <?php echo $getUSAPhone1['description'];?>
@@ -143,21 +143,21 @@ mail($to,$subject,$message,$headers);
                         <div class="p-a30 bg-white m-b30">
                             <ul class="no-margin">
                                 <li class="icon-bx-wraper left m-b30">
-                                    <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
+                                    <div class="icon-bx-xs bg-primary"> <a  class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte">ADDRESS</h6>
                                         <?php echo $getNigeriaAddress1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left  m-b30">
-                                    <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
+                                    <div class="icon-bx-xs bg-primary"> <a href="mailto:<?php echo $getEmail1['description'] ?>" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte">EMAIL</h6>
                                         <?php echo $getEmail1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left">
-                                    <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
+                                    <div class="icon-bx-xs bg-primary"> <a href="Tel:<?php echo $getUSAPhone1['description']; ?>" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte">PHONE</h6>
                                         <?php echo $getUSAPhone1['description'];?>
@@ -177,21 +177,21 @@ mail($to,$subject,$message,$headers);
                         <div class="p-a30 bg-white m-b30">
                             <ul class="no-margin">
                                 <li class="icon-bx-wraper left m-b30">
-                                    <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
+                                    <div class="icon-bx-xs bg-primary"> <a class="icon-cell"><i class="fa fa-map-marker"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getChinaAddress1['title'];?></h6>
                                         <?php echo $getChinaAddress1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left  m-b30">
-                                    <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
+                                    <div class="icon-bx-xs bg-primary"> <a href="mailto:<?php echo $getEmail1['description'] ?>" class="icon-cell"><i class="fa fa-envelope"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getEmail1['title'];?></h6>
                                         <?php echo $getEmail1['description'];?>
                                     </div>
                                 </li>
                                 <li class="icon-bx-wraper left">
-                                    <div class="icon-bx-xs bg-primary"> <a href="#" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
+                                    <div class="icon-bx-xs bg-primary"> <a href="Tel:<?php echo $getChinaPhone1['description'] ?>" class="icon-cell"><i class="fa fa-phone"></i></a> </div>
                                     <div class="icon-content">
                                         <h6 class="text-uppercase m-b0 w3-tilte"><?php echo $getChinaPhone1['title'];?></h6>
                                         <?php echo $getChinaPhone1['description'];?>
