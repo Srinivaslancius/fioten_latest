@@ -86,6 +86,7 @@
                 $sql="SELECT * FROM users where user_email = '".$_POST["forgot_email"]."' ";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
+                $userName = $row['user_name'];
                 $pwd = decryptPassword($row['user_password']);
                 if($result->num_rows>0){
                     $to = "$forgot_email";
@@ -95,7 +96,8 @@
                 $message = "<html><head><title>User New Password</title></head>
                 <body>
                     <table rules='all' style='border-color: #666;' cellpadding='10'>
-                        <tr><td><strong>Your Password:  </strong>$pwd</td></tr>
+                        <tr><td><strong>User Name:  </strong>$pwd</td></tr>
+                        <tr><td><strong>User Password:  </strong>$userName</td></tr>
                     </table>
                 </body>
                 </html>
@@ -108,6 +110,8 @@
                 // $headers .= 'Cc: myboss@example.com' . "\r\n";
                     if(mail($to,$subject,$message,$headers)) {
                       echo  "<script>alert('Password Sent To Your Email,Please Check.');window.location.href('login.php');</script>";
+                    }else{
+                        echo "fail";
                     }
                 }  else{
                     echo "<script>alert('Your Entered Email Not Found');</script>";
