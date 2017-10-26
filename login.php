@@ -77,16 +77,17 @@
                 }
             } else if(isset($_POST['forgot'])){
                 $forgot_email = $_POST["forgot_email"];
-                $string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
+                /*$string1 = str_shuffle('abcdefghijklmnopqrstuvwxyz');
                 $random1 = substr($string1,0,3);
                 $string2 = str_shuffle('1234567890');
                 $random2 = substr($string2,0,3);
                 $contstr = "uSr";
-                $pwd = $contstr.$random1.$random2;
+                $pwd = $contstr.$random1.$random2;*/
                 $sql="SELECT * FROM users where user_email = '".$_POST["forgot_email"]."' ";
                 $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+                $pwd = decryptPassword($row['user_password']);
                 if($result->num_rows>0){
-                    //echo "count";
                     $to = "$forgot_email";
                 //$to = "$dataem";
                 $subject = "User Forgot Password";
@@ -94,26 +95,26 @@
                 $message = "<html><head><title>User New Password</title></head>
                 <body>
                     <table rules='all' style='border-color: #666;' cellpadding='10'>
-                        <tr><td><strong>Your New Password:</strong> </td><td>'$pwd'</td></tr>
+                        <tr><td><strong>Your Password:  </strong>$pwd</td></tr>
                     </table>
                 </body>
                 </html>
                 ";
-
                 // Always set content-type when sending HTML email
                 $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
                 // More headers
                 $headers .= 'From: <info@fioten.com>' . "\r\n";
                 // $headers .= 'Cc: myboss@example.com' . "\r\n";
-
-                mail($to,$subject,$message,$headers);
+                    if(mail($to,$subject,$message,$headers)) {
+                      echo  "<script>alert('Password Sent To Your Email,Please Check.');window.location.href('login.php');</script>";
+                    }
                 }  else{
-                    echo "<script>alert('Your Enterd Email Not Found');</script>";
-                    
-                    //echo "<script>history.go(-1);</script>";
+                    echo "<script>alert('Your Entered Email Not Found');</script>";
                 }
+                /*$updatePassword = encryptPassword($pwd);
+                $sql = "UPDATE users SET user_password = '$updatePassword' WHERE user_email='".$_POST["forgot_email"]."'";
+                $res = $conn->query($sql);*/
             }
              else {
                 //Fail
