@@ -36,8 +36,9 @@
 
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Email</label>
-                    <input type="email" name="admin_email" class="form-control" id="form-control-2" placeholder="Email" data-error="Please enter valid email address." required>
+                    <input type="email" name="admin_email" class="form-control" id="admin_email" onkeyup="checkemail();" placeholder="Email" data-error="Please enter valid email address." required>
                     <div class="help-block with-errors"></div>
+                    <span id="email_status" style="color: red;"></span>
                   </div>
 
                   <div class="form-group">
@@ -68,3 +69,24 @@
       </div>
   
 <?php include_once 'admin_includes/footer.php'; ?>
+<!-- Checking for email availability -->
+<script>
+function checkemail() {
+    var email1 = document.getElementById("admin_email").value;
+    if (email1){
+      $.ajax({
+      type: "POST",
+      url: "check_email_avail_admin_users.php",
+      data: {
+        admin_email:email1,
+      },
+      success: function (response) {
+        $( '#email_status' ).html(response);
+        if (response == "Email Already Exist"){
+          $("#admin_email").val("");
+        }        
+        }
+       });          
+    }
+  }
+</script>
