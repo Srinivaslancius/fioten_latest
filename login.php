@@ -197,7 +197,7 @@
                         <div id="divCheckPasswordMatch" style="color:red"></div>
                         <label class="m-b30">
                         <input type="checkbox"/>
-                        <label>I agree to the <a href="#">Terms of Service </a>& <a href="#">Privacy Policy </a></label>
+                        <label>I agree to the <a href="terms.php">Terms of Service </a>& <a href="privacy.php">Privacy Policy </a></label>
                         </label>
                         <div class="form-group text-left "> <a class="site-button outline gray" data-toggle="tab" href="#login">Back</a>
                             <button class="site-button pull-right" type="submit" name="submit" value="Submit">Submit</button>
