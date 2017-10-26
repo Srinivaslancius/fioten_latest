@@ -42,7 +42,8 @@
 
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Email</label>
-                    <input type="email" name="user_email" class="form-control" id="user_email" placeholder="Email" data-error="Please enter valid email address." required>
+                    <input type="email" name="user_email" class="form-control" id="user_email" placeholder="Email" onkeyup="checkemail();" data-error="Please enter valid email address." required>
+                    <span id="email_status" style="color: red;"></span>
                     <div class="help-block with-errors"></div>
                   </div>
 

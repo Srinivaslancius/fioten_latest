@@ -102,7 +102,7 @@
 							<?php } ?>
 						</div>
 						<div class="row">
-							<a href="all_products.php?catId=<?php echo $id;?>" ><h3 style="text-align:center">View All</h3></a>
+							<center><a href="all_products.php?catId=<?php echo $id;?>" ><button type="button" class="btn btn-info btn-lg"  style="background-color: #56529c; border: none">View All</button></a></center>
 						</div>
 					</div>
 				</div>
