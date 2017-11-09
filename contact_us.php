@@ -25,7 +25,9 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 $headers .= 'From: <info@fioten.com>' . "\r\n";
 // $headers .= 'Cc: myboss@example.com' . "\r\n";
 
-mail($to,$subject,$message,$headers);
+if(mail($to,$subject,$message,$headers)) {
+    echo  "<script>alert('Message Sent To Your Email,Please Check.');window.location.href('contact_us.php');</script>";
+}
 
 }?><!DOCTYPE html>
 

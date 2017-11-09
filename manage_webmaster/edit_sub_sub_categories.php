@@ -160,7 +160,7 @@ $getsubCategoriesData = getDataFromTables('sub_categories','0',$clause=NULL,$id=
                   </div>
                   
                   <div class="form-group">
-                    <label for="form-control-4" class="control-label">Banner Image</label>
+                    <label for="form-control-4" class="control-label">Banner Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                     <img src="<?php echo $base_url . 'uploads/sub_sub_banner_images/'.$getSubCategories['sub_sub_banner_image'] ?>"  id="output1" height="100" width="100"/>
                     <label class="btn btn-default file-upload-btn">
                       Choose file...

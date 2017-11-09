@@ -17,7 +17,7 @@
     $user_address = $_POST['user_address'];
     $created_admin_id = $_SESSION['admin_user_id'];
     $created_at = date("Y-m-d h:i:s");
-      $sql = "INSERT INTO users (`user_name`, `user_email`, `user_mobile`, `user_country_id`, `user_state_id`, `user_city_id`, `user_location_id`, `user_password`, `user_address`,`created_admin_id`, `created_at`, `status`) VALUES ('$user_name', '$user_email', '$user_mobile', '$user_country_id', '$user_state_id', '$user_city_id', '$user_location_id', '$user_password', '$user_address', '$created_admin_id', '$created_at', 1)";
+      $sql = "INSERT INTO users (`user_name`, `user_email`, `user_mobile`, `user_country_id`, `user_state_id`, `user_city_id`, `user_location_id`, `user_password`, `user_address`,`created_admin_id`, `created_at`, `status`) VALUES ('$user_name', '$user_email', '$user_mobile', '$user_country_id', '$user_state_id', '$user_city_id', '$user_location_id', '$user_password', '$user_address', '$created_admin_id', '$created_at', 0)";
     if($conn->query($sql) === TRUE){
        echo "<script type='text/javascript'>window.location='users.php?msg=success'</script>";
     } else {
