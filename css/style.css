@@ -2,7 +2,7 @@
 
 body {
     background-color: #FFF;
-    font-family: 'Open Sans', sans-serif;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
     font-size: 14px;
     font-weight: 400;
     color: #6f6f6f;
@@ -73,7 +73,7 @@ ol,
 dl,
 dd,
 table {
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
 }
 .overflow-hide {
     overflow: hidden;
@@ -152,7 +152,8 @@ h6 {
 
 p {
     line-height: 24px;
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
+    font-family: Roboto,Helvetica,Arial,sans-serif;
 }
 strong {
     font-weight: 600;
@@ -291,8 +292,8 @@ dl dd {
 }
 /*---------------------------------------------------------------
 5. BOX SPACING (inner & outer)
-	>padding
-	>marging
+    >padding
+    >marging
 ---------------------------------------------------------------*/
 /*== >padding (around) ======*/
 
@@ -1023,8 +1024,8 @@ dl dd {
 }
 /*---------------------------------------------------------------
 8. COLOR (text & background)
-	>text color
-	>background color
+    >text color
+    >background color
 ---------------------------------------------------------------*/
 /*=== >text color ===*/
 
@@ -1086,22 +1087,22 @@ dl dd {
     background-color: #F0F52E;
 }
 .bg-perpal{
-	background-color:#7F87E6;
+    background-color:#7F87E6;
 }
 .bg-pink-light{
-	background-color:#FF67BC;
+    background-color:#FF67BC;
 }
 .bg-yellow-light{
-	background-color:#F4C71F;
+    background-color:#F4C71F;
 }
 .bg-blue-light{
-	background-color:#58FEE2;
+    background-color:#58FEE2;
 }
 .bg-red-light{
-	background-color:#FF5C59;
+    background-color:#FF5C59;
 }
 .bg-green-light{
-	background-color:#23FE74;
+    background-color:#23FE74;
 }
 /*=== >background image ===*/
 
@@ -1382,20 +1383,20 @@ dl dd {
 }
 /*---------------------------------------------------------------
 10. IMAGES EFFECTS (image animation in images)
-	 >image-opacity
-	 >image-zoom
-	 >image-zoom-slow
-	 >image-shrink
-	 >image-side-pan
-	 >image-vertical-pan
-	 >image-fade-in
-	 >image-fade-out 
-	 >image-rotate
-	 >image-sepia
-	 >image-blurr
-	 >image-blurr-invert
-	 >image off color
-	 >image on color
+     >image-opacity
+     >image-zoom
+     >image-zoom-slow
+     >image-shrink
+     >image-side-pan
+     >image-vertical-pan
+     >image-fade-in
+     >image-fade-out 
+     >image-rotate
+     >image-sepia
+     >image-blurr
+     >image-blurr-invert
+     >image off color
+     >image on color
 ---------------------------------------------------------------*/
 
 .w3-img-effect {
@@ -2466,9 +2467,9 @@ blockquote:before {
 }
 /*---------------------------------------------------------------
 18. NAVIGATIONS
-	>mena-menu
-	>mobile-menu
-	>footer-menu
+    >mena-menu
+    >mobile-menu
+    >footer-menu
 ---------------------------------------------------------------*/
 /*== >mena-menu ==*/
 
@@ -2847,9 +2848,9 @@ blockquote:before {
     .is-fixed .header-nav .nav > li > a {
         padding: 12px 15px;
     }
-	.is-fixed .extra-nav {
-		padding: 15px 5px 15px 0px;
-	}
+    .is-fixed .extra-nav {
+        padding: 15px 5px 15px 0px;
+    }
 }
 @media only screen and (max-width: 767px) {
     .is-fixed .header-nav .nav {
@@ -2908,7 +2909,7 @@ blockquote:before {
 }
 .header-style-1.dark .top-bar {
     background-color: #232333;
-	color:#cfcfcf;
+    color:#cfcfcf;
 }
 .header-style-1 .top-bar .fa {
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -2921,7 +2922,7 @@ blockquote:before {
     color: #ABABAB;
 }
 .header-style-1 .top-bar {
-	color:#909090;
+    color:#909090;
 }
 /* responsive */
 
@@ -2943,7 +2944,7 @@ blockquote:before {
     display: none;
 }
 .header-style-2 .top-bar {
-	padding:0;
+    padding:0;
 }
 .header-style-2 .top-btn a {
     background: #f0ba22;
@@ -2988,7 +2989,7 @@ blockquote:before {
     border-color: #424242;
 }
 .header-style-2.dark .header-nav .nav > li > a{
-	color:#afafaf;
+    color:#afafaf;
 }
 /* header style dark 1 End */
 /* Responsive CSS */
@@ -3569,8 +3570,8 @@ blockquote:before {
 }
 /*---------------------------------------------------------------
 20. SLIDER
-	>rs slider
-	>owl slider
+    >rs slider
+    >owl slider
 ---------------------------------------------------------------*/
 /*== >rs slider ==*/
 
@@ -4521,7 +4522,7 @@ ol.comment-list li.comment .comment-respond .comment-form p {
     position: relative;
     margin-bottom: 0;
     line-height: 20px;
-	
+    
 }
 .widget.widget_about ul li i {
     margin-right: 10px;
@@ -4825,9 +4826,9 @@ ol.comment-list li.comment .comment-respond .comment-form p {
 }
 /*---------------------------------------------------------------
 23. CUSTOMIZE CSS
-	>set-radius
-	>transition
-	>float-clearfix
+    >set-radius
+    >transition
+    >float-clearfix
 ---------------------------------------------------------------*/
 /*== >set-radius ==*/
 
@@ -4944,22 +4945,22 @@ a,
 }
 /*---------------------------------------------------------------
 24. SORTCODES 
-	>Buttons
-	>Title separators		
-	>Deviders	
-	>Lists & bullets	
-	>Tabs
-	>Accordians		
-	>Carousels
-	>Testimonials	
-	>Pricing table
-	>Alert box	
-	>Modal pop
-	>Social icons
-	>Breadcrumb
-	>Tables
-	>Image effects
-	>Icon boxes
+    >Buttons
+    >Title separators       
+    >Deviders   
+    >Lists & bullets    
+    >Tabs
+    >Accordians     
+    >Carousels
+    >Testimonials   
+    >Pricing table
+    >Alert box  
+    >Modal pop
+    >Social icons
+    >Breadcrumb
+    >Tables
+    >Image effects
+    >Icon boxes
 ---------------------------------------------------------------*/
 /*== >Buttons ======= */
 /* owl slider button */
@@ -6694,7 +6695,7 @@ a,
 
 .w3-social-icon.border li {
     padding: 0 3px;
-	border: 0 !important;
+    border: 0 !important;
 }
 .w3-social-icon.border li a {
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -6866,7 +6867,7 @@ a,
 .overlay-gray-dark:after,
 .overlay-gray-middle:after,
 .overlay-gray-light:after {
-	background: #193037;
+    background: #193037;
 }
 .overlay-gradient-light:after,
 .overlay-gradient-middle:after,
@@ -7734,8 +7735,8 @@ button.scroltop {
     line-height: 26px;
     text-align: center;
     z-index: 999;
-	border-radius:50%;
-	font-size:16px;
+    border-radius:50%;
+    font-size:16px;
 }
 .trans-footer .footer-top .saf-footer {
     padding: 50px 30px 20px;
@@ -7876,7 +7877,7 @@ footer.footer-white .footer-bottom a {
 .page-content {
     margin-top: 0;
     padding-bottom: 50px;
-	background:#F6F6F6;
+    background:#F6F6F6;
 }
 .content-area {
     padding-top: 60px;
@@ -8005,7 +8006,7 @@ footer.footer-white .footer-bottom a {
 }
 /*===============================================
 
-	gallery pages css
+    gallery pages css
 
 =============================================== */
 
@@ -8017,7 +8018,7 @@ footer.footer-white .footer-bottom a {
 }
 /*===============================================
 
-	Layout boxed css
+    Layout boxed css
 
 =============================================== */
 
@@ -8239,19 +8240,19 @@ ol.commentlist li .star-rating {
 }
 /* text social */
 .fb-text{ 
-	color:#4867AA; 
+    color:#4867AA; 
 }
 .tw-text{ 
-	color:#1DA1F2; 
+    color:#1DA1F2; 
 }
 .gplus-text{ 
-	color:#DC4A38; 
+    color:#DC4A38; 
 }
 .pin-text{ 
-	color:#CC2127; 
+    color:#CC2127; 
 }
 .link-text{ 
-	color:#0274B3; 
+    color:#0274B3; 
 }
 .w3-social-icon.w3-social-icon-lg li a {
     font-size: 14px;
@@ -8667,9 +8668,9 @@ ol.commentlist li .star-rating {
     z-index: 1;
 }
 @media only screen and (max-width: 767px) {
-	.hidden-xs{
-		display:none;
-	}	
+    .hidden-xs{
+        display:none;
+    }   
 
 }
 
@@ -8719,4 +8720,44 @@ ol.commentlist li .star-rating {
     max-width: 100%;
     height: auto;
     display:block;
+}
+.padd0
+{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.cat_prdct
+{
+    margin: 5px;
+    padding: 13px;
+}
+.padd613
+{
+    padding: 6px 13px !important;
+}
+.prdct
+{
+    border: none;
+}
+.prdct:hover
+{
+    box-shadow: 4px 4px 26px -6px rgba(0,0,0,0.96);
+transition: box-shadow 0.2s ease-in-out;
+    z-index: 3;
+}
+.prdct_desc
+{
+    border: none;
+}
+.prdct_desc p
+{
+    color: #666666;
+}
+.lnht30
+{
+    line-height: 30px;
+}
+.mt15
+{
+    margin-top: 12px;
 }
