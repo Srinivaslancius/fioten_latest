@@ -28,6 +28,9 @@ if (!isset($_POST['submit']))  {
     $created_by = $_SESSION['admin_user_id'];
     //save product images into product_images table    
     
+    $qry = "DELETE FROM product_specifications WHERE product_id ='$id'";
+    $result = $conn->query($qry);
+
     $sql1 = "UPDATE products SET product_name = '$product_name',category_id ='$category_id',sub_category_id ='$sub_category_id',sub_sub_category_id = '$sub_sub_category_id',product_price ='$product_price',price_type ='$price_type',offer_price ='$offer_price',selling_price ='$selling_price',quantity = '$quantity',minimum_order_quantity = '$minimum_order_quantity',key_features = '$key_features',product_info = '$product_info',specifications = '$specifications',availability_id = '$availability_id',status = '$status' WHERE id = '$id'"; 
     
     if ($conn->query($sql1) === TRUE) {
@@ -42,6 +45,18 @@ if (!isset($_POST['submit']))  {
         $specifications1 = $_POST['specifications'][$key];
         if($specifications1!=''){        
             $sql = "INSERT INTO product_specifications ( `product_id`,`specification_name`) VALUES ('$id','$specifications1')";
+            $result = $conn->query($sql);
+        }        
+    }
+    $product_images = $_FILES['product_images']['name'];
+    foreach($product_images as $key=>$value){
+
+        $product_images1 = $_FILES['product_images']['name'][$key];
+        $file_tmp = $_FILES["product_images"]["tmp_name"][$key];
+        $file_destination = '../uploads/product_images/' . $product_images1;
+        if($product_images1!=''){
+            move_uploaded_file($file_tmp, $file_destination);        
+            $sql = "INSERT INTO product_images ( `product_id`,`product_image`) VALUES ('$id','$product_images1')";
             $result = $conn->query($sql);
         }        
     }

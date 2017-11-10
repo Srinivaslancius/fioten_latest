@@ -38,6 +38,17 @@ if (!isset($_POST['submit']))  {
         $sql = "INSERT INTO product_specifications ( `product_id`,`specification_name`) VALUES ('$last_id','$specifications1')";
         $result = $conn->query($sql);
     }
+
+    $product_images = $_FILES['product_images']['name'];
+    foreach($product_images as $key=>$value){
+
+        $product_images1 = time().'_'.$_FILES['product_images']['name'][$key];
+        $file_tmp = $_FILES["product_images"]["tmp_name"][$key];
+        $file_destination = '../uploads/product_images/' . $product_images1;
+        move_uploaded_file($file_tmp, $file_destination);        
+        $sql = "INSERT INTO product_images ( `product_id`,`product_image`) VALUES ('$last_id','$product_images1')";
+        $result = $conn->query($sql);
+    }
     
     if( $result1 == 1){
     echo "<script type='text/javascript'>window.location='products.php?msg=success'</script>";
