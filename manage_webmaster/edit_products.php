@@ -161,7 +161,7 @@ if (!isset($_POST['submit']))  {
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Warranty</label>
 
-                    <input type="text" name="key_features" class="form-control" id="key_features" placeholder="Product Info" data-error="This field is required." required value="<?php echo $getProducts['key_features']; ?>">
+                    <input type="text" name="key_features" class="form-control" id="key_features" placeholder="Warranty" data-error="This field is required." required value="<?php echo $getProducts['key_features']; ?>">
                     <div class="help-block with-errors"></div>
                   </div>
 
