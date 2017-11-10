@@ -1,10 +1,11 @@
-<?php include_once 'admin_includes/main_header.php'; ?>
+<?php include_once 'admin_includes/main_header.php'; error_reporting(1);?>
 
 <?php 
 if (!isset($_POST['submit']))  {
             echo "";
 } else  {
     //Save data into database
+  //echo "<pre>";print_r($_POST); exit;
     $product_name = $_POST['product_name'];
     $category_id = $_POST['category_id'];
     $sub_category_id = $_POST['sub_category_id'];
@@ -13,13 +14,12 @@ if (!isset($_POST['submit']))  {
     $price_type = $_POST['price_type'];
     $offer_price = $_POST['offer_price'];
     $selling_price = $_POST['selling_price'];
-    $deal_start_date = $_POST['deal_start_date'];
-    $deal_end_date = $_POST['deal_end_date'];
+    // $deal_start_date = $_POST['deal_start_date'];
+    // $deal_end_date = $_POST['deal_end_date'];
     $quantity = $_POST['quantity'];
     $minimum_order_quantity = $_POST['minimum_order_quantity'];
     $key_features = $_POST['key_features'];
     $product_info = $_POST['product_info'];
-    $specifications = $_POST['specifications'];
     $availability_id = $_POST['availability_id'];
     $status = $_POST['status'];
     $created_at = date("Y-m-d h:i:s");
@@ -31,14 +31,11 @@ if (!isset($_POST['submit']))  {
     $result1 = $conn->query($sql1);
     $last_id = $conn->insert_id;
 
-    $product_images = $_FILES['product_images']['name'];
-    foreach($product_images as $key=>$value){
+    $specifications = $_POST['specifications'];
+    foreach($specifications as $key=>$value){
 
-        $product_images1 = time().'_'.$_FILES['product_images']['name'][$key];
-        $file_tmp = $_FILES["product_images"]["tmp_name"][$key];
-        $file_destination = '../uploads/product_images/' . $product_images1;
-        move_uploaded_file($file_tmp, $file_destination);        
-        $sql = "INSERT INTO product_images ( `product_id`,`product_image`) VALUES ('$last_id','$product_images1')";
+        $specifications1 = $_POST['specifications'][$key];       
+        $sql = "INSERT INTO product_specifications ( `product_id`,`specification_name`) VALUES ('$last_id','$specifications1')";
         $result = $conn->query($sql);
     }
     
@@ -147,7 +144,7 @@ if (!isset($_POST['submit']))  {
 
                   <div class="form-group">
                     <label for="form-control-2" class="control-label">Warranty</label>
-                    <input type="text" name="key_features" class="form-control" id="key_features"  placeholder="Product Info" data-error="This field is required." required>                  
+                    <input type="text" name="key_features" class="form-control" id="key_features"  placeholder="Warranty" data-error="This field is required." required>                  
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group">
@@ -156,10 +153,13 @@ if (!isset($_POST['submit']))  {
                     <div class="help-block with-errors"></div>
                   </div>
 
+                  <div class="input_fields_container">
                   <div class="form-group">
-                    <label for="form-control-2" class="control-label">Specifications</label>
-                    <textarea name="specifications" class="form-control" id="specifications" placeholder="Product Info" data-error="This field is required." required></textarea>
-                    <div class="help-block with-errors"></div>
+                      <label for="form-control-2" class="control-label">Specifications</label>
+                      <input type="text" name="specifications[]" class="form-control" id="specifications" placeholder="Specifications" data-error="Please enter Specifications" required>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                    <button type="button" class="btn btn-primary add_more_button">Add More Fields</button>
                   </div>
 
                   <div class="form-group">
@@ -215,8 +215,7 @@ if (!isset($_POST['submit']))  {
 <script src="//cdn.ckeditor.com/4.7.0/full/ckeditor.js"></script>
 <script>
     //CKEDITOR.replace( 'key_features' );
-    CKEDITOR.replace( 'product_info' ); 
-    CKEDITOR.replace( 'specifications' );
+    CKEDITOR.replace( 'product_info' );
 </script>
 
 <!-- <script type="text/javascript">
@@ -304,6 +303,18 @@ $(document).ready(function() {
             }
         }
    });
+    var max_fields_limit      = 10; //set limit for maximum input fields
+    var x = 1; //initialize counter for text box
+    $('.add_more_button').click(function(e){ //click event on add more fields button having class add_more_button
+        e.preventDefault();
+        if(x < max_fields_limit){ //check conditions
+            x++; //counter increment
+            $('.input_fields_container').append('<div><label for="form-control-2" class="control-label">Specifications</label><input type="text" name="specifications[]" class="form-control" id="specifications" placeholder="Specifications" data-error="Please enter Specifications" required><a href="#" class="remove_field" style="margin-left:10px;">Remove</a></div>'); //add input field
+        }
+    });  
+    $('.input_fields_container').on("click",".remove_field", function(e){ //user click on remove text links
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    });
    
   });
 function getSubCategories(val) {
