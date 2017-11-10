@@ -80,11 +80,14 @@
                             <h4>Description</h4>
                            <?php echo $getPro['product_info'];?>
                             <h4>Specifications</h4>
+                            <?php $id = $_GET['proId']; $getProductSpecifications = getDataFromTables('product_specifications','0','product_id',$id,$activeStatus=NULL,$activeTop=NULL);  ?>
                             <div class="row">
                                 <div class="col-md-12">
                                     <ul class="lnht30">
                                     <div class="col-md-4">
-                                        <li><?php echo $getPro['specifications'];?></li>
+                                        <?php while  ($getProductSpecifications1 = $getProductSpecifications->fetch_assoc()) { ?>
+                                        <li><?php echo $getProductSpecifications1['specification_name'];?></li>
+                                        <?php } ?>
                                     </div>                                    
                                     </ul>
                                 </div>
@@ -92,7 +95,7 @@
                                                         
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4>General</h4>
+                                    <h4>Waranty</h4>
                                     <ul class="lnht30">
                                     <div class="col-md-4">
                                         <li><?php echo $getPro['key_features'];?></li>
