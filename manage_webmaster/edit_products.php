@@ -163,8 +163,9 @@ if (!isset($_POST['submit']))  {
                   </div>
 
                   <div class="form-group">
-                    <label for="form-control-2" class="control-label">Key Features</label>
-                    <textarea name="key_features" class="form-control" id="key_features" placeholder="Product Info" data-error="This field is required." required><?php echo $getProducts['key_features']; ?></textarea>
+                    <label for="form-control-2" class="control-label">Warranty</label>
+
+                    <input type="text" name="key_features" class="form-control" id="key_features" placeholder="Product Info" data-error="This field is required." required value="<?php echo $getProducts['key_features']; ?>">
                     <div class="help-block with-errors"></div>
                   </div>
                   <div class="form-group">
@@ -224,7 +225,7 @@ if (!isset($_POST['submit']))  {
                          <?php } ?>
 
                       </div><br/>               
-                      <input type="button" id="add_more" class="upload" value="Add More Files"/>                                                    
+                     <!-- <input type="button" id="add_more" class="upload" value="Add More Files"/> -->
                   </div>
 
                   <?php $getStatus = getDataFromTables('user_status',$status=NULL,$clause=NULL,$id=NULL,$activeStatus=NULL,$activeTop=NULL);?>
@@ -254,7 +255,7 @@ if (!isset($_POST['submit']))  {
    <!-- Below script for ck editor -->
 <script src="//cdn.ckeditor.com/4.7.0/full/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace( 'key_features' );
+    //CKEDITOR.replace( 'key_features' );
     CKEDITOR.replace( 'product_info' ); 
     CKEDITOR.replace( 'specifications' );
 </script>
