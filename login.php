@@ -96,8 +96,8 @@
                 $message = "<html><head><title>User New Password</title></head>
                 <body>
                     <table rules='all' style='border-color: #666;' cellpadding='10'>
-                        <tr><td><strong>User Name:  </strong>$pwd</td></tr>
-                        <tr><td><strong>User Password:  </strong>$userName</td></tr>
+                        <tr><td><strong>User Name:  </strong>$userName</td></tr>
+                        <tr><td><strong>User Password:  </strong>$pwd</td></tr>
                     </table>
                 </body>
                 </html>

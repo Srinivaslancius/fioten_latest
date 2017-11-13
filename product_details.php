@@ -20,7 +20,7 @@
 <!--[if lt IE 9]>
         <script src="js/html5shiv.min.js"></script>
         <script src="js/respond.min.js"></script>
-	<![endif]-->
+    <![endif]-->
 <!-- Stylesheets -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/fontawesome/css/font-awesome.min.css" />
@@ -68,7 +68,7 @@
                     <div class="col-md-4 padd0">
                         <div class="bg-white cat_prdct prdct">
                             <?php while  ($getPro1 = $getProductsImages->fetch_assoc()) { ?>
-                            <img style="width:382px;height:295px;" src="<?php echo $base_url . 'uploads/product_images/'.$getPro1['product_image'] ?>" class="image_<?php echo $getPro1['id'];?>" alt="" />
+                            <img src="<?php echo $base_url . 'uploads/product_images/'.$getPro1['product_image'] ?>" class="image_<?php echo $getPro1['id'];?>" alt="" />
                             <?php }?>
                         </div>
                     </div>
@@ -84,11 +84,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <ul class="lnht30">
-                                    <div class="col-md-4">
-                                        <?php while  ($getProductSpecifications1 = $getProductSpecifications->fetch_assoc()) { ?>
-                                        <li><?php echo $getProductSpecifications1['specification_name'];?></li>
-                                        <?php } ?>
-                                    </div>                                    
+                                    <?php while  ($getProductSpecifications1 = $getProductSpecifications->fetch_assoc()) { ?>
+                                        <div class="col-md-4">                                            
+                                            <li><?php echo $getProductSpecifications1['specification_name'];?></li>
+                                        </div>  
+                                    <?php } ?>                                  
                                     </ul>
                                 </div>
                             </div>
